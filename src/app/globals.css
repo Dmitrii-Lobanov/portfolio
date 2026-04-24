@@ -4,15 +4,15 @@
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 
-  /* User-Friendly Senior Portfolio Colors (Slate Theme) */
-  --color-bg-base: #0f172a;
-  --color-bg-surface: #1e293b;
-  --color-bg-elevated: #334155;
-  --color-border-subtle: #334155;
-  --color-text-primary: #f8fafc;
-  --color-text-secondary: #cbd5e1;
-  --color-text-muted: #94a3b8;
-  --color-accent-indigo: #38bdf8;
+  /* Light Theme (Adham Dannaway Inspired) */
+  --color-bg-base: #ffffff;
+  --color-bg-surface: #f9fafb;
+  --color-bg-elevated: #ffffff;
+  --color-border-subtle: #e5e7eb;
+  --color-text-primary: #1f2937;
+  --color-text-secondary: #4b5563;
+  --color-text-muted: #9ca3af;
+  --color-accent-indigo: #0284c7; /* A deep, legible blue */
 }
 
 html {
@@ -29,6 +29,6 @@ body {
 }
 
 ::selection {
-  background-color: rgba(56, 189, 248, 0.3); /* Sky Accent */
-  color: #f8fafc;
+  background-color: rgba(2, 132, 199, 0.2);
+  color: #1f2937;
 }

@@ -1,18 +1,20 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 
 const navItems = [
-  { name: "Impact", href: "#impact" },
-  { name: "About", href: "#about" },
-  { name: "Case Studies", href: "#case-studies" },
-  { name: "Experience", href: "#experience" },
-  { name: "Contact", href: "#contact" },
+  { name: "Home", href: "/" },
+  { name: "About", href: "/about" },
+  { name: "Case Studies", href: "/case-studies" },
+  { name: "Experience", href: "/experience" },
+  { name: "Contact", href: "/contact" },
 ];
 
 export function Header() {
+  const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
@@ -33,15 +35,23 @@ export function Header() {
             : "bg-transparent border-transparent",
         )}
       >
-        {navItems.map((item) => (
-          <Link
-            key={item.name}
-            href={item.href}
-            className="text-sm font-medium text-text-secondary hover:text-text-primary transition-colors focus-visible:text-accent-indigo focus-visible:outline-none"
-          >
-            {item.name}
-          </Link>
-        ))}
+        {navItems.map((item) => {
+          const isActive = pathname === item.href;
+          return (
+            <Link
+              key={item.name}
+              href={item.href}
+              className={cn(
+                "text-sm font-medium transition-colors focus-visible:text-accent-indigo focus-visible:outline-none",
+                isActive
+                  ? "text-accent-indigo"
+                  : "text-text-secondary hover:text-text-primary"
+              )}
+            >
+              {item.name}
+            </Link>
+          );
+        })}
       </nav>
     </header>
   );
