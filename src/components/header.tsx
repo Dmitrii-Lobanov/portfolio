@@ -29,7 +29,7 @@ export function Header() {
         className={cn(
           "pointer-events-auto flex items-center gap-6 rounded-full px-6 py-2.5 transition-all duration-200 border",
           isScrolled
-            ? "bg-bg-surface/80 backdrop-blur-md border-border-subtle shadow-sm"
+            ? "bg-bg-surface/90 backdrop-blur-md border-border-subtle"
             : "bg-transparent border-transparent",
         )}
       >
@@ -37,7 +37,7 @@ export function Header() {
           <Link
             key={item.name}
             href={item.href}
-            className="text-sm font-medium text-text-secondary hover:text-text-primary transition-colors"
+            className="text-sm font-medium text-text-secondary hover:text-text-primary transition-colors focus-visible:text-accent-indigo focus-visible:outline-none"
           >
             {item.name}
           </Link>

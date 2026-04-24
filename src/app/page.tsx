@@ -1,5 +1,5 @@
+import { ArrowUpRight, Mail } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "@/components/icons";
-import { Mail, ArrowUpRight } from "lucide-react";
 
 export default function Home() {
   return (
@@ -18,7 +18,7 @@ export default function Home() {
         <div className="flex gap-6 items-center mt-4">
           <a
             href="#contact"
-            className="bg-text-primary text-bg-base px-6 py-3 rounded-md font-medium hover:bg-white/90 transition-colors"
+            className="bg-accent-indigo text-white px-6 py-3 rounded-md font-medium hover:brightness-110 transition-all focus-visible:ring-2 focus-visible:ring-accent-indigo focus-visible:ring-offset-2 focus-visible:ring-offset-bg-base outline-none shadow-sm"
           >
             Get in touch
           </a>
@@ -52,7 +52,7 @@ export default function Home() {
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div className="flex flex-col gap-2 p-6 bg-bg-surface border border-border-subtle rounded-xl">
-            <span className="text-3xl font-semibold text-accent-indigo">
+            <span className="text-3xl font-semibold text-text-primary">
               300k+
             </span>
             <span className="text-text-primary font-medium">Active Users</span>
@@ -62,9 +62,7 @@ export default function Home() {
             </span>
           </div>
           <div className="flex flex-col gap-2 p-6 bg-bg-surface border border-border-subtle rounded-xl">
-            <span className="text-3xl font-semibold text-accent-indigo">
-              3x
-            </span>
+            <span className="text-3xl font-semibold text-text-primary">3x</span>
             <span className="text-text-primary font-medium">
               Performance Boost
             </span>
@@ -74,7 +72,7 @@ export default function Home() {
             </span>
           </div>
           <div className="flex flex-col gap-2 p-6 bg-bg-surface border border-border-subtle rounded-xl">
-            <span className="text-3xl font-semibold text-accent-indigo">
+            <span className="text-3xl font-semibold text-text-primary">
               15+
             </span>
             <span className="text-text-primary font-medium">Apps Migrated</span>
@@ -118,12 +116,12 @@ export default function Home() {
         <div className="md:col-span-3 grid grid-cols-1 gap-6">
           <a
             href="#"
-            className="group flex flex-col sm:flex-row gap-6 p-6 bg-bg-surface border border-border-subtle rounded-xl hover:border-text-secondary/30 transition-colors"
+            className="group flex flex-col sm:flex-row gap-6 p-6 bg-bg-surface border border-border-subtle rounded-xl hover:bg-bg-elevated transition-colors focus-visible:ring-2 focus-visible:ring-accent-indigo outline-none"
           >
             <div className="flex-1 flex flex-col gap-3">
-              <h3 className="text-xl font-medium text-text-primary flex items-center gap-2">
+              <h3 className="text-xl font-medium text-text-primary flex items-center gap-2 group-hover:text-accent-indigo transition-colors">
                 Real-Time Trading Dashboard
-                <ArrowUpRight className="w-4 h-4 text-text-secondary opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
+                <ArrowUpRight className="w-4 h-4 text-accent-indigo opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
               </h3>
               <p className="text-text-secondary leading-relaxed">
                 Architected a high-throughput React dashboard consuming
@@ -132,13 +130,13 @@ export default function Home() {
                 in a smooth 60fps experience without main-thread blocking.
               </p>
               <div className="flex gap-2 mt-2">
-                <span className="text-xs font-mono px-2 py-1 bg-bg-base border border-border-subtle rounded text-text-secondary">
+                <span className="text-xs font-mono px-2 py-1 bg-bg-base border border-border-subtle rounded text-text-muted">
                   React
                 </span>
-                <span className="text-xs font-mono px-2 py-1 bg-bg-base border border-border-subtle rounded text-text-secondary">
+                <span className="text-xs font-mono px-2 py-1 bg-bg-base border border-border-subtle rounded text-text-muted">
                   WebSockets
                 </span>
-                <span className="text-xs font-mono px-2 py-1 bg-bg-base border border-border-subtle rounded text-text-secondary">
+                <span className="text-xs font-mono px-2 py-1 bg-bg-base border border-border-subtle rounded text-text-muted">
                   Performance
                 </span>
               </div>
@@ -147,12 +145,12 @@ export default function Home() {
 
           <a
             href="#"
-            className="group flex flex-col sm:flex-row gap-6 p-6 bg-bg-surface border border-border-subtle rounded-xl hover:border-text-secondary/30 transition-colors"
+            className="group flex flex-col sm:flex-row gap-6 p-6 bg-bg-surface border border-border-subtle rounded-xl hover:bg-bg-elevated transition-colors focus-visible:ring-2 focus-visible:ring-accent-indigo outline-none"
           >
             <div className="flex-1 flex flex-col gap-3">
-              <h3 className="text-xl font-medium text-text-primary flex items-center gap-2">
+              <h3 className="text-xl font-medium text-text-primary flex items-center gap-2 group-hover:text-accent-indigo transition-colors">
                 Monorepo Infrastructure Migration
-                <ArrowUpRight className="w-4 h-4 text-text-secondary opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
+                <ArrowUpRight className="w-4 h-4 text-accent-indigo opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
               </h3>
               <p className="text-text-secondary leading-relaxed">
                 Led the migration of 15 standalone legacy applications into a
@@ -161,13 +159,13 @@ export default function Home() {
                 and dropped average deployment times from 25m to 12m.
               </p>
               <div className="flex gap-2 mt-2">
-                <span className="text-xs font-mono px-2 py-1 bg-bg-base border border-border-subtle rounded text-text-secondary">
+                <span className="text-xs font-mono px-2 py-1 bg-bg-base border border-border-subtle rounded text-text-muted">
                   Turborepo
                 </span>
-                <span className="text-xs font-mono px-2 py-1 bg-bg-base border border-border-subtle rounded text-text-secondary">
+                <span className="text-xs font-mono px-2 py-1 bg-bg-base border border-border-subtle rounded text-text-muted">
                   Next.js
                 </span>
-                <span className="text-xs font-mono px-2 py-1 bg-bg-base border border-border-subtle rounded text-text-secondary">
+                <span className="text-xs font-mono px-2 py-1 bg-bg-base border border-border-subtle rounded text-text-muted">
                   CI/CD
                 </span>
               </div>
@@ -193,7 +191,7 @@ export default function Home() {
                 </h3>
                 <h4 className="text-text-secondary">Tinkoff</h4>
               </div>
-              <span className="text-sm font-mono text-text-secondary">
+              <span className="text-sm font-mono text-text-muted">
                 2020 — Present
               </span>
             </div>
@@ -215,7 +213,7 @@ export default function Home() {
                 </h3>
                 <h4 className="text-text-secondary">Previous Company</h4>
               </div>
-              <span className="text-sm font-mono text-text-secondary">
+              <span className="text-sm font-mono text-text-muted">
                 2018 — 2020
               </span>
             </div>
