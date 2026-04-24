@@ -1,14 +1,15 @@
 "use client";
 
-import { motion } from "framer-motion";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 
 const navItems = [
+  { name: "Impact", href: "#impact" },
   { name: "About", href: "#about" },
+  { name: "Case Studies", href: "#case-studies" },
   { name: "Experience", href: "#experience" },
-  { name: "Projects", href: "#projects" },
+  { name: "Contact", href: "#contact" },
 ];
 
 export function Header() {
@@ -24,14 +25,11 @@ export function Header() {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-6 px-6 pointer-events-none">
-      <motion.nav
-        initial={{ y: -20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.5, ease: "easeOut" }}
+      <nav
         className={cn(
-          "pointer-events-auto flex items-center gap-6 rounded-full px-6 py-2.5 backdrop-blur-md border transition-all duration-300",
+          "pointer-events-auto flex items-center gap-6 rounded-full px-6 py-2.5 transition-all duration-200 border",
           isScrolled
-            ? "bg-white/70 dark:bg-zinc-900/70 border-zinc-200 dark:border-zinc-800 shadow-sm"
+            ? "bg-bg-surface/80 backdrop-blur-md border-border-subtle shadow-sm"
             : "bg-transparent border-transparent",
         )}
       >
@@ -39,12 +37,12 @@ export function Header() {
           <Link
             key={item.name}
             href={item.href}
-            className="text-sm font-medium text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-50 transition-colors"
+            className="text-sm font-medium text-text-secondary hover:text-text-primary transition-colors"
           >
             {item.name}
           </Link>
         ))}
-      </motion.nav>
+      </nav>
     </header>
   );
 }
