@@ -45,7 +45,7 @@ export function Header() {
                 "text-sm font-medium transition-colors focus-visible:text-accent-indigo focus-visible:outline-none",
                 isActive
                   ? "text-accent-indigo"
-                  : "text-text-secondary hover:text-text-primary"
+                  : "text-text-secondary hover:text-text-primary",
               )}
             >
               {item.name}
