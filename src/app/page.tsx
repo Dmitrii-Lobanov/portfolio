@@ -7,6 +7,7 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import { GithubIcon, LinkedinIcon } from "@/components/icons";
+import { MotionEffects } from "@/components/motion-effects";
 
 const mediumProfile = "https://medium.com/@dmitriilobanov3";
 const linkedinProfile = "https://www.linkedin.com/in/dmitrii-lobanov/";
@@ -87,6 +88,7 @@ function ExternalLink({
 export default function Home() {
   return (
     <main>
+      <MotionEffects />
       <section className="hero-section" id="top">
         <div className="hero-status fade-in">
           <span className="status-dot" aria-hidden="true" />

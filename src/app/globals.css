@@ -79,6 +79,17 @@ a {
   border-radius: 12px;
   backdrop-filter: blur(16px);
   box-shadow: 0 8px 30px rgba(20, 39, 54, 0.08);
+  transition:
+    min-height 220ms ease,
+    background 220ms ease,
+    box-shadow 220ms ease,
+    transform 220ms ease;
+}
+.site-header.is-scrolled nav {
+  min-height: 52px;
+  background: rgba(245, 247, 248, 0.96);
+  box-shadow: 0 12px 34px rgba(20, 39, 54, 0.13);
+  transform: translateY(-3px);
 }
 .wordmark {
   font-family: var(--font-geist-mono);
@@ -225,6 +236,9 @@ a {
   color: var(--ink);
   font-weight: 390;
 }
+.hero-identity .hero-name {
+  animation: name-tracking 900ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
 .hero-role {
   max-width: 650px;
   margin-top: 25px;
@@ -284,6 +298,15 @@ a {
 .button:hover {
   transform: translateY(-2px);
 }
+.button svg {
+  transition: transform 180ms ease;
+}
+.button:hover svg {
+  transform: translate(2px, -1px);
+}
+.button-primary:hover svg {
+  transform: translateY(3px);
+}
 .button-primary {
   background: var(--acid-dark);
   border-color: var(--acid-dark);
@@ -332,6 +355,11 @@ a {
     linear-gradient(90deg, rgba(234, 242, 244, 0.045) 1px, transparent 1px);
   background-size: 56px 56px;
   mask-image: linear-gradient(black, transparent 88%);
+  transform: translate(
+    calc(var(--portrait-x, 0px) * -0.35),
+    calc(var(--portrait-y, 0px) * -0.35)
+  );
+  transition: transform 260ms ease-out;
 }
 .portrait-coordinate {
   position: absolute;
@@ -358,6 +386,9 @@ a {
   object-fit: cover;
   object-position: center 15%;
   filter: drop-shadow(0 24px 30px rgba(16, 42, 58, 0.24));
+  transform: translate(var(--portrait-x, 0px), var(--portrait-y, 0px))
+    scale(1.008);
+  transition: transform 260ms ease-out;
 }
 .portrait-caption {
   position: absolute;
@@ -992,17 +1023,13 @@ a {
   grid-template-columns: 55px 180px 1fr 40px;
   gap: 25px;
   align-items: start;
-  padding: 31px 0;
+  padding: 31px 12px;
   border-bottom: 1px solid var(--line);
-  transition:
-    padding 180ms ease,
-    background 180ms ease;
+  border-radius: var(--radius-control);
+  transition: background 340ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 .article-row:hover {
-  padding-left: 14px;
-  padding-right: 14px;
-  background: rgba(245, 247, 248, 0.72);
-  border-radius: var(--radius-control);
+  background: rgba(245, 247, 248, 0.42);
 }
 .article-index {
   font: 10px var(--font-geist-mono);
@@ -1038,12 +1065,18 @@ a {
   justify-self: end;
   color: var(--muted);
   transition:
-    color 180ms ease,
-    transform 180ms ease;
+    color 320ms ease,
+    transform 320ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 .article-row:hover .article-arrow {
   color: var(--acid-dark);
-  transform: translate(2px, -2px);
+  transform: translate(1px, -1px);
+}
+.article-copy h3 {
+  transition: transform 320ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.article-row:hover .article-copy h3 {
+  transform: translateX(1px);
 }
 .writing-link {
   margin-top: 32px;
@@ -1160,6 +1193,31 @@ a {
 .fade-in {
   animation: reveal 700ms ease both;
 }
+.motion-ready .motion-reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity 650ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 650ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+.motion-ready .motion-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.motion-ready .architecture-panel.is-visible .arch-layer span {
+  animation: architecture-node 600ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.motion-ready .architecture-panel.is-visible .arch-layer-state span {
+  animation-delay: 180ms;
+}
+.motion-ready .architecture-panel.is-visible .arch-layer-services span {
+  animation-delay: 360ms;
+}
+.motion-ready .architecture-panel.is-visible .arch-connector i {
+  animation: connector-grow 550ms ease-out both;
+  transform-origin: center;
+}
 .fade-in-delay-1 {
   animation-delay: 100ms;
 }
@@ -1177,6 +1235,27 @@ a {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+@keyframes name-tracking {
+  from {
+    letter-spacing: 0.055em;
+  }
+}
+@keyframes hub-pulse {
+  50% {
+    box-shadow: 0 0 0 22px rgba(42, 157, 171, 0.1);
+  }
+}
+@keyframes architecture-node {
+  from {
+    opacity: 0.35;
+    transform: translateY(8px);
+  }
+}
+@keyframes connector-grow {
+  from {
+    transform: scaleX(0);
   }
 }
 
@@ -1455,18 +1534,40 @@ a {
   }
 }
 
+@media (hover: hover) and (pointer: fine) {
+  .work-card:hover .flow-hub {
+    animation: hub-pulse 1.8s ease-in-out infinite;
+  }
+  .work-card:hover .flow-column i {
+    background: var(--cyan);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
   .fade-in,
-  .orbit-ring {
+  .orbit-ring,
+  .hero-identity .hero-name,
+  .work-card:hover .flow-hub,
+  .motion-ready .architecture-panel.is-visible .arch-layer span,
+  .motion-ready .architecture-panel.is-visible .arch-connector i {
     animation: none;
   }
+  .motion-ready .motion-reveal {
+    opacity: 1;
+    transform: none;
+  }
   .button,
+  .button svg,
   .work-card,
   .article-row,
-  .article-arrow {
+  .article-arrow,
+  .article-copy h3,
+  .portrait-image,
+  .portrait-grid,
+  .site-header nav {
     transition: none;
   }
 }
