@@ -37,6 +37,7 @@ html {
 }
 body {
   margin: 0;
+  overflow-x: clip;
   background:
     linear-gradient(rgba(20, 39, 54, 0.045) 1px, transparent 1px),
     linear-gradient(90deg, rgba(20, 39, 54, 0.045) 1px, transparent 1px),
@@ -66,6 +67,7 @@ a {
   pointer-events: none;
 }
 .site-header nav {
+  position: relative;
   pointer-events: auto;
   max-width: var(--max-width);
   min-height: 58px;
@@ -84,6 +86,16 @@ a {
     background 220ms ease,
     box-shadow 220ms ease,
     transform 220ms ease;
+  overflow: hidden;
+}
+.site-header nav::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  width: var(--scroll-progress, 0%);
+  height: 2px;
+  background: linear-gradient(90deg, var(--cyan), var(--acid-dark));
+  transition: width 100ms linear;
 }
 .site-header.is-scrolled nav {
   min-height: 52px;
@@ -572,7 +584,38 @@ a {
 }
 
 .section {
+  position: relative;
   padding: 150px 0;
+}
+.section::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  width: 520px;
+  height: 520px;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(80px);
+  opacity: 0.12;
+}
+.section > * {
+  position: relative;
+  z-index: 1;
+}
+#work::before {
+  top: 18%;
+  right: 0;
+  background: rgba(42, 157, 171, 0.32);
+}
+#principles::before {
+  top: 22%;
+  left: 0;
+  background: rgba(216, 101, 59, 0.22);
+}
+#writing::before {
+  right: 0;
+  bottom: 8%;
+  background: rgba(42, 157, 171, 0.24);
 }
 .section-heading {
   display: grid;
@@ -599,6 +642,7 @@ a {
   gap: 16px;
 }
 .work-card {
+  position: relative;
   min-height: 540px;
   padding: 20px;
   background: rgba(245, 247, 248, 0.88);
@@ -611,6 +655,27 @@ a {
     transform 180ms ease,
     box-shadow 180ms ease,
     border-color 180ms ease;
+}
+.work-card::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    340px circle at var(--spotlight-x, 50%) var(--spotlight-y, 50%),
+    rgba(255, 255, 255, 0.48),
+    transparent 68%
+  );
+  opacity: 0;
+  transition: opacity 420ms ease;
+}
+.work-card:hover::before {
+  opacity: 0.58;
+}
+.work-card > * {
+  position: relative;
+  z-index: 1;
 }
 .work-card:hover {
   transform: translateY(-4px);
@@ -819,6 +884,23 @@ a {
   color: var(--dark-text);
   border-radius: var(--radius-section);
   box-shadow: 0 30px 70px rgba(16, 42, 58, 0.16);
+}
+.contact-section::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(
+    520px circle at var(--spotlight-x, 70%) var(--spotlight-y, 45%),
+    rgba(42, 157, 171, 0.13),
+    transparent 70%
+  );
+}
+.contact-section > * {
+  position: relative;
+  z-index: 1;
 }
 .case-study-intro {
   display: grid;
@@ -1133,6 +1215,8 @@ a {
 }
 
 .contact-section {
+  position: relative;
+  overflow: hidden;
   margin-bottom: 12px;
   padding-top: 100px;
   padding-bottom: 24px;
@@ -1205,6 +1289,35 @@ a {
   opacity: 1;
   transform: translateY(0);
 }
+.motion-ready .section-heading h2 {
+  clip-path: inset(0 0 100% 0);
+  transform: translateY(8px);
+  transition:
+    clip-path 760ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 760ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.motion-ready .section-heading.is-visible h2 {
+  clip-path: inset(0);
+  transform: translateY(0);
+}
+.motion-ready .work-card.is-visible .flow-column span,
+.motion-ready .work-card.is-visible .app-cloud i {
+  animation: diagram-node-in 520ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.motion-ready .work-card.is-visible .flow-column-right span,
+.motion-ready .work-card.is-visible .app-cloud i:nth-child(2n) {
+  animation-delay: 120ms;
+}
+.motion-ready .work-card.is-visible .metric-line i {
+  animation: metric-grow 720ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  transform-origin: left;
+}
+.motion-ready .work-card.is-visible .metric-line-after i {
+  animation-delay: 180ms;
+}
+.motion-ready .work-card.is-visible .mono-repo {
+  animation: diagram-core-in 620ms cubic-bezier(0.22, 1, 0.36, 1) 160ms both;
+}
 .motion-ready .architecture-panel.is-visible .arch-layer span {
   animation: architecture-node 600ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
@@ -1256,6 +1369,23 @@ a {
 @keyframes connector-grow {
   from {
     transform: scaleX(0);
+  }
+}
+@keyframes diagram-node-in {
+  from {
+    opacity: 0;
+    transform: translateY(7px);
+  }
+}
+@keyframes metric-grow {
+  from {
+    transform: scaleX(0.12);
+  }
+}
+@keyframes diagram-core-in {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
   }
 }
 
@@ -1551,12 +1681,20 @@ a {
   .orbit-ring,
   .hero-identity .hero-name,
   .work-card:hover .flow-hub,
+  .motion-ready .work-card.is-visible .flow-column span,
+  .motion-ready .work-card.is-visible .app-cloud i,
+  .motion-ready .work-card.is-visible .metric-line i,
+  .motion-ready .work-card.is-visible .mono-repo,
   .motion-ready .architecture-panel.is-visible .arch-layer span,
   .motion-ready .architecture-panel.is-visible .arch-connector i {
     animation: none;
   }
   .motion-ready .motion-reveal {
     opacity: 1;
+    transform: none;
+  }
+  .motion-ready .section-heading h2 {
+    clip-path: none;
     transform: none;
   }
   .button,

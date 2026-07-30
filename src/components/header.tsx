@@ -13,7 +13,7 @@ export function Header() {
     <header className="site-header">
       <nav aria-label="Main navigation">
         <Link
-          href="/#top"
+          href="#top"
           className="wordmark"
           aria-label="Dmitrii Lobanov, home"
         >

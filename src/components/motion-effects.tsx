@@ -30,8 +30,12 @@ export function MotionEffects() {
     root.classList.add("motion-ready");
 
     const header = document.querySelector<HTMLElement>(".site-header");
-    const updateHeader = () =>
+    const updateHeader = () => {
       header?.classList.toggle("is-scrolled", scrollY > 28);
+      const scrollable = document.documentElement.scrollHeight - innerHeight;
+      const progress = scrollable > 0 ? Math.min(scrollY / scrollable, 1) : 0;
+      header?.style.setProperty("--scroll-progress", `${progress * 100}%`);
+    };
     updateHeader();
     window.addEventListener("scroll", updateHeader, { passive: true });
 
@@ -81,11 +85,35 @@ export function MotionEffects() {
       portrait.addEventListener("pointerleave", resetPortrait);
     }
 
+    const spotlightItems = Array.from(
+      document.querySelectorAll<HTMLElement>(".work-card, .contact-section"),
+    );
+    const updateSpotlight = (event: PointerEvent) => {
+      const target = event.currentTarget as HTMLElement;
+      const rect = target.getBoundingClientRect();
+      target.style.setProperty(
+        "--spotlight-x",
+        `${event.clientX - rect.left}px`,
+      );
+      target.style.setProperty(
+        "--spotlight-y",
+        `${event.clientY - rect.top}px`,
+      );
+    };
+    if (canHover) {
+      spotlightItems.forEach((item) => {
+        item.addEventListener("pointermove", updateSpotlight);
+      });
+    }
+
     return () => {
       observer.disconnect();
       window.removeEventListener("scroll", updateHeader);
       portrait?.removeEventListener("pointermove", handlePointerMove);
       portrait?.removeEventListener("pointerleave", resetPortrait);
+      spotlightItems.forEach((item) => {
+        item.removeEventListener("pointermove", updateSpotlight);
+      });
     };
   }, []);
 
