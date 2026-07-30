@@ -8,15 +8,18 @@
 :root {
   --font-geist-sans: Arial, Helvetica, sans-serif;
   --font-geist-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
-  --paper: #f1f0ea;
-  --paper-bright: #f8f7f2;
-  --ink: #171916;
-  --muted: #696b65;
-  --line: #cccdc6;
-  --acid: #c8ff3d;
-  --acid-dark: #91c500;
-  --dark: #151814;
-  --dark-soft: #20241e;
+  --paper: #e8eef2;
+  --paper-bright: #f5f7f8;
+  --ink: #142736;
+  --muted: #526a79;
+  --line: #bccbd3;
+  --acid: #d8653b;
+  --acid-dark: #b94d28;
+  --cyan: #2a9dab;
+  --cyan-dark: #187783;
+  --dark: #102a3a;
+  --dark-soft: #173b4d;
+  --dark-text: #eaf2f4;
   --max-width: 1240px;
 }
 
@@ -31,8 +34,8 @@ html {
 body {
   margin: 0;
   background:
-    linear-gradient(rgba(23, 25, 22, 0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(23, 25, 22, 0.035) 1px, transparent 1px),
+    linear-gradient(rgba(20, 39, 54, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(20, 39, 54, 0.045) 1px, transparent 1px),
     var(--paper);
   background-size: 48px 48px;
   color: var(--ink);
@@ -67,11 +70,11 @@ a {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  background: rgba(248, 247, 242, 0.88);
-  border: 1px solid rgba(23, 25, 22, 0.14);
+  background: rgba(245, 247, 248, 0.9);
+  border: 1px solid rgba(20, 39, 54, 0.14);
   border-radius: 4px;
   backdrop-filter: blur(16px);
-  box-shadow: 0 8px 30px rgba(23, 25, 22, 0.06);
+  box-shadow: 0 8px 30px rgba(20, 39, 54, 0.08);
 }
 .wordmark {
   font-family: var(--font-geist-mono);
@@ -136,8 +139,8 @@ a {
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: var(--acid-dark);
-  box-shadow: 0 0 0 4px rgba(145, 197, 0, 0.12);
+  background: var(--cyan);
+  box-shadow: 0 0 0 4px rgba(42, 157, 171, 0.14);
 }
 .hero-grid {
   flex: 1;
@@ -180,7 +183,7 @@ a {
   margin: 32px 0 0;
   font-size: clamp(17px, 1.5vw, 21px);
   line-height: 1.55;
-  color: #52554f;
+  color: var(--muted);
 }
 .hero-actions {
   margin-top: 34px;
@@ -214,7 +217,7 @@ a {
   color: var(--acid);
 }
 .button-secondary {
-  background: rgba(248, 247, 242, 0.5);
+  background: rgba(245, 247, 248, 0.55);
 }
 
 .system-orbit {
@@ -225,15 +228,15 @@ a {
   justify-self: end;
   border: 1px solid var(--line);
   border-radius: 50%;
-  background: rgba(248, 247, 242, 0.45);
+  background: rgba(245, 247, 248, 0.52);
   overflow: hidden;
 }
 .orbit-grid {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(rgba(23, 25, 22, 0.055) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(23, 25, 22, 0.055) 1px, transparent 1px);
+    linear-gradient(rgba(20, 39, 54, 0.065) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(20, 39, 54, 0.065) 1px, transparent 1px);
   background-size: 36px 36px;
   mask-image: radial-gradient(circle, black 35%, transparent 72%);
 }
@@ -266,7 +269,7 @@ a {
 }
 .orbit-core span {
   font: 10px var(--font-geist-mono);
-  color: var(--acid);
+  color: #6bd4df;
   text-transform: uppercase;
   letter-spacing: 0.12em;
 }
@@ -283,10 +286,10 @@ a {
   position: absolute;
   width: 12px;
   height: 12px;
-  background: var(--acid-dark);
+  background: var(--cyan);
   border: 3px solid var(--paper-bright);
   border-radius: 50%;
-  box-shadow: 0 0 0 1px var(--acid-dark);
+  box-shadow: 0 0 0 1px var(--cyan-dark);
 }
 .orbit-node-a {
   top: 19%;
@@ -427,7 +430,7 @@ a {
   justify-items: center;
   background: radial-gradient(
     circle at center,
-    rgba(200, 255, 61, 0.22),
+    rgba(42, 157, 171, 0.2),
     transparent 31%
   );
 }
@@ -476,7 +479,7 @@ a {
   color: white;
   border-radius: 50%;
   font: 12px / 1.5 var(--font-geist-mono);
-  box-shadow: 0 0 0 15px rgba(200, 255, 61, 0.18);
+  box-shadow: 0 0 0 15px rgba(42, 157, 171, 0.16);
 }
 .work-card-copy {
   display: grid;
@@ -568,7 +571,7 @@ a {
 }
 .mono-repo small {
   margin-top: 8px;
-  color: #526a17;
+  color: #692815;
   font-size: 8px;
 }
 
@@ -577,7 +580,7 @@ a {
   width: min(calc(100% - 24px), 1400px);
   padding: 130px max(24px, calc((100% - var(--max-width)) / 2));
   background: var(--dark);
-  color: white;
+  color: var(--dark-text);
 }
 .case-study-intro {
   display: grid;
@@ -686,8 +689,8 @@ a {
   grid-template-columns: repeat(3, 1fr);
 }
 .arch-layer-state span:nth-child(3) {
-  background: var(--acid);
-  border-color: var(--acid-dark);
+  background: #c8e9ed;
+  border-color: var(--cyan);
 }
 .arch-connector {
   height: 80px;
@@ -789,7 +792,7 @@ a {
 .article-row:hover {
   padding-left: 14px;
   padding-right: 14px;
-  background: rgba(248, 247, 242, 0.65);
+  background: rgba(245, 247, 248, 0.72);
 }
 .article-index {
   font: 10px var(--font-geist-mono);

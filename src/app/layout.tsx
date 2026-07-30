@@ -7,6 +7,10 @@ export const metadata: Metadata = {
   title: "Dmitrii Lobanov — Senior Frontend Engineer",
   description:
     "Senior Frontend Engineer designing high-performance platforms, scalable frontend architecture, and complex product systems.",
+  icons: {
+    icon: [{ url: "/icon.svg", type: "image/svg+xml" }],
+    shortcut: "/icon.svg",
+  },
   openGraph: {
     title: "Dmitrii Lobanov — Senior Frontend Engineer",
     description:
