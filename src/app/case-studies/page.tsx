@@ -1,5 +1,5 @@
-import { Metadata } from "next";
 import { ArrowUpRight } from "lucide-react";
+import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Case Studies | Dmitrii Lobanov",
@@ -14,7 +14,7 @@ export default function CaseStudies() {
         </h1>
         <div className="grid grid-cols-1 gap-6">
           <a
-            href="#"
+            href="/#case-study"
             className="group flex flex-col sm:flex-row gap-6 p-6 bg-bg-surface border border-border-subtle rounded-xl hover:bg-bg-elevated transition-colors focus-visible:ring-2 focus-visible:ring-accent-indigo outline-none"
           >
             <div className="flex-1 flex flex-col gap-3">
@@ -43,7 +43,7 @@ export default function CaseStudies() {
           </a>
 
           <a
-            href="#"
+            href="/#case-study"
             className="group flex flex-col sm:flex-row gap-6 p-6 bg-bg-surface border border-border-subtle rounded-xl hover:bg-bg-elevated transition-colors focus-visible:ring-2 focus-visible:ring-accent-indigo outline-none"
           >
             <div className="flex-1 flex flex-col gap-3">

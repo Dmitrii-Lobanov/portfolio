@@ -1,22 +1,18 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/header";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
 export const metadata: Metadata = {
-  title: "Dmitrii Lobanov | Senior Frontend Engineer",
+  metadataBase: new URL("https://portfolio-ten-wine-92.vercel.app"),
+  title: "Dmitrii Lobanov — Senior Frontend Engineer",
   description:
-    "Senior Frontend Engineer focused on performance, architecture, and system design. Ex-Tinkoff.",
+    "Senior Frontend Engineer designing high-performance platforms, scalable frontend architecture, and complex product systems.",
+  openGraph: {
+    title: "Dmitrii Lobanov — Senior Frontend Engineer",
+    description:
+      "Frontend systems, architecture, performance, and production engineering.",
+    type: "website",
+  },
 };
 
 export default function RootLayout({
@@ -25,12 +21,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
-      <body className="min-h-screen bg-bg-base text-text-primary antialiased">
+    <html lang="en">
+      <body>
         <Header />
-        <div className="max-w-[1100px] mx-auto px-6 py-24 md:py-32">
-          {children}
-        </div>
+        {children}
       </body>
     </html>
   );
