@@ -5,8 +5,11 @@ import {
   Check,
   CircleDot,
 } from "lucide-react";
+import Image from "next/image";
+import { GithubIcon, LinkedinIcon } from "@/components/icons";
 
 const mediumProfile = "https://medium.com/@dmitriilobanov3";
+const linkedinProfile = "https://www.linkedin.com/in/dmitrii-lobanov/";
 
 const articles = [
   {
@@ -91,12 +94,47 @@ export default function Home() {
         </div>
 
         <div className="hero-grid">
-          <div className="hero-copy fade-in fade-in-delay-1">
-            <p className="eyebrow">Dmitrii Lobanov / Frontend systems</p>
-            <h1>
+          <div className="hero-identity fade-in fade-in-delay-1">
+            <h1 className="hero-name">
+              Dmitrii
+              <span>Lobanov</span>
+            </h1>
+          </div>
+
+          <div className="portrait-island fade-in fade-in-delay-2">
+            <div className="portrait-grid" aria-hidden="true" />
+            <Image
+              src="/dmitrii-editorial-portrait-polished.png"
+              alt="Dmitrii Lobanov"
+              width={1106}
+              height={1408}
+              className="portrait-image"
+              priority
+            />
+            <div className="portrait-caption">
+              <div>
+                <span>Based in</span>
+                <strong>Frontend systems</strong>
+              </div>
+              <div>
+                <span>Current signal</span>
+                <strong>
+                  <i className="availability-dot" aria-hidden="true" />{" "}
+                  Available
+                </strong>
+              </div>
+            </div>
+          </div>
+
+          <div className="hero-details fade-in fade-in-delay-1">
+            <div className="hero-role">
+              <span>Senior Frontend Engineer</span>
+              <span>Architecture · Performance · Product systems</span>
+            </div>
+            <h2 className="hero-statement">
               I make complex
               <span>frontends feel simple.</span>
-            </h1>
+            </h2>
             <p className="hero-intro">
               I design and build high-performance web platforms where product
               complexity, large datasets, and long-lived architecture meet.
@@ -108,34 +146,13 @@ export default function Home() {
               </a>
               <a
                 className="button button-secondary"
-                href="https://github.com/Dmitrii-Lobanov"
+                href={linkedinProfile}
                 target="_blank"
                 rel="noreferrer"
               >
                 Start a conversation{" "}
                 <ArrowUpRight size={17} aria-hidden="true" />
               </a>
-            </div>
-          </div>
-
-          <div
-            className="system-orbit fade-in fade-in-delay-2"
-            role="img"
-            aria-label="A diagram showing the concerns of a frontend system"
-          >
-            <div className="orbit-grid" aria-hidden="true" />
-            <span className="orbit-label orbit-label-top">PRODUCT</span>
-            <span className="orbit-label orbit-label-right">SCALE</span>
-            <span className="orbit-label orbit-label-bottom">TEAMS</span>
-            <span className="orbit-label orbit-label-left">USERS</span>
-            <div className="orbit-ring orbit-ring-outer" aria-hidden="true" />
-            <div className="orbit-ring orbit-ring-inner" aria-hidden="true" />
-            <div className="orbit-node orbit-node-a" aria-hidden="true" />
-            <div className="orbit-node orbit-node-b" aria-hidden="true" />
-            <div className="orbit-core">
-              <span>Frontend</span>
-              <strong>System</strong>
-              <small>Designed to evolve</small>
             </div>
           </div>
         </div>
@@ -522,16 +539,28 @@ export default function Home() {
               I am interested in senior frontend and platform work where
               architecture, performance, and product quality genuinely matter.
             </p>
-            <a
-              className="contact-email"
-              href="https://github.com/Dmitrii-Lobanov"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <CircleDot size={20} aria-hidden="true" />
-              Open my GitHub profile
-              <ArrowUpRight size={20} aria-hidden="true" />
-            </a>
+            <div className="contact-links">
+              <a
+                className="contact-email"
+                href={linkedinProfile}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <LinkedinIcon width={20} height={20} aria-hidden="true" />
+                Connect with me on LinkedIn
+                <ArrowUpRight size={20} aria-hidden="true" />
+              </a>
+              <a
+                className="contact-email"
+                href="https://github.com/Dmitrii-Lobanov"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <GithubIcon width={20} height={20} aria-hidden="true" />
+                Explore my GitHub
+                <ArrowUpRight size={20} aria-hidden="true" />
+              </a>
+            </div>
           </div>
         </div>
         <footer>
