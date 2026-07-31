@@ -6,6 +6,13 @@ import {
   CircleDot,
 } from "lucide-react";
 import Image from "next/image";
+import {
+  CaseStudyVisuals,
+  DecisionMatrix,
+  EngineeringScope,
+  PublicLab,
+  WritingConstellation,
+} from "@/components/content-visuals";
 import { GithubIcon, LinkedinIcon } from "@/components/icons";
 import { MotionEffects } from "@/components/motion-effects";
 
@@ -179,10 +186,12 @@ export default function Home() {
         </div>
       </section>
 
+      <EngineeringScope />
+
       <section className="section" id="work">
         <div className="section-heading">
           <div>
-            <p className="eyebrow">01 / Selected systems</p>
+            <p className="eyebrow">02 / Selected systems</p>
             <h2>
               Production work,
               <br />
@@ -293,7 +302,7 @@ export default function Home() {
       <section className="case-study-section" id="case-study">
         <div className="case-study-intro">
           <div>
-            <p className="eyebrow eyebrow-light">02 / Featured case study</p>
+            <p className="eyebrow eyebrow-light">03 / Featured case study</p>
             <h2>
               A frontend became
               <br />a product system.
@@ -364,6 +373,8 @@ export default function Home() {
           </article>
         </div>
 
+        <CaseStudyVisuals />
+
         <div className="architecture-panel">
           <div className="architecture-caption">
             <p>System map / simplified</p>
@@ -412,7 +423,7 @@ export default function Home() {
       <section className="section" id="principles">
         <div className="section-heading">
           <div>
-            <p className="eyebrow">03 / Working principles</p>
+            <p className="eyebrow">04 / Working principles</p>
             <h2>
               How I reduce
               <br />
@@ -437,12 +448,15 @@ export default function Home() {
             </article>
           ))}
         </div>
+        <DecisionMatrix />
       </section>
+
+      <PublicLab />
 
       <section className="section writing-section" id="writing">
         <div className="section-heading">
           <div>
-            <p className="eyebrow">04 / Selected writing</p>
+            <p className="eyebrow">06 / Selected writing</p>
             <h2>
               Systems,
               <br />
@@ -454,6 +468,7 @@ export default function Home() {
             platforms, written from production experience.
           </p>
         </div>
+        <WritingConstellation />
         <div className="articles-list">
           {articles.map((article) => (
             <ExternalLink
@@ -485,7 +500,7 @@ export default function Home() {
       <section className="section experience-section" id="experience">
         <div className="section-heading">
           <div>
-            <p className="eyebrow">05 / Experience</p>
+            <p className="eyebrow">07 / Experience</p>
             <h2>
               Built through
               <br />
@@ -498,7 +513,7 @@ export default function Home() {
           </p>
         </div>
         <div className="experience-row">
-          <div className="experience-date">2020 — 2025</div>
+          <div className="experience-date">2021 — 2026</div>
           <div className="experience-role">
             <h3>Senior Frontend Engineer</h3>
             <p>Tinkoff / T-Bank</p>
@@ -529,7 +544,7 @@ export default function Home() {
       </section>
 
       <section className="contact-section" id="contact">
-        <p className="eyebrow eyebrow-light">06 / Start a conversation</p>
+        <p className="eyebrow eyebrow-light">08 / Start a conversation</p>
         <div className="contact-grid">
           <h2>
             Have a difficult

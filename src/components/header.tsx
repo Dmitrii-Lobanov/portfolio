@@ -5,6 +5,7 @@ const navItems = [
   { name: "Work", href: "/#work" },
   { name: "Case study", href: "/#case-study" },
   { name: "Principles", href: "/#principles" },
+  { name: "Lab", href: "/#lab" },
   { name: "Writing", href: "/#writing" },
 ];
 
