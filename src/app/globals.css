@@ -1547,7 +1547,7 @@ a {
 }
 .lab-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 14px;
 }
 .lab-card {
@@ -1611,11 +1611,21 @@ a {
   font-size: 13px;
   line-height: 1.55;
 }
-.lab-link {
+.lab-actions {
   display: flex;
+  flex-wrap: wrap;
+  gap: 10px 20px;
+}
+.lab-actions a {
+  min-height: 30px;
+  display: inline-flex;
+  gap: 8px;
   justify-content: space-between;
   align-items: center;
   font-size: 12px;
+}
+.lab-actions a:hover {
+  color: var(--acid-dark);
 }
 
 .writing-constellation {
@@ -1863,7 +1873,7 @@ a {
     grid-template-columns: 1fr 1fr;
   }
   .lab-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
   }
   .lab-card {
     min-height: 0;
@@ -2131,6 +2141,9 @@ a {
   }
   .lab-card h3 {
     font-size: 30px;
+  }
+  .lab-grid {
+    grid-template-columns: 1fr;
   }
   .writing-constellation {
     margin-top: -8px;

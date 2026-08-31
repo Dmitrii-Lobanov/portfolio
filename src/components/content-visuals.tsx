@@ -28,6 +28,22 @@ const decisions = [
 const labs = [
   {
     index: "01",
+    name: "Reliable Kanban",
+    label: "Full-stack reliability",
+    href: "https://github.com/Dmitrii-Lobanov/kanban-board",
+    demoHref: "https://kanban-board-psi-taupe.vercel.app",
+    summary:
+      "An authenticated Kanban system built around optimistic updates, rollback, per-task concurrency, stable API contracts, and production delivery.",
+    nodes: [
+      "React + Clerk",
+      "Optimistic mutation",
+      "Versioned REST",
+      "Prisma",
+      "PostgreSQL",
+    ],
+  },
+  {
+    index: "02",
     name: "Polaris",
     label: "Browser IDE + AI",
     href: "https://github.com/Dmitrii-Lobanov/Cursor-clone",
@@ -36,7 +52,7 @@ const labs = [
     nodes: ["CodeMirror", "Xterm", "WebContainer", "AI SDK", "Convex"],
   },
   {
-    index: "02",
+    index: "03",
     name: "WikiMasters",
     label: "Knowledge platform",
     href: "https://github.com/Dmitrii-Lobanov/wikimasters",
@@ -45,7 +61,7 @@ const labs = [
     nodes: ["Next.js", "Postgres", "Redis", "Blob", "AI"],
   },
   {
-    index: "03",
+    index: "04",
     name: "CourseForge",
     label: "Architecture in progress",
     href: "https://github.com/Dmitrii-Lobanov/course-creation-platform",
@@ -235,13 +251,7 @@ export function PublicLab() {
       </div>
       <div className="lab-grid">
         {labs.map((lab) => (
-          <a
-            className="lab-card"
-            href={lab.href}
-            target="_blank"
-            rel="noreferrer"
-            key={lab.name}
-          >
+          <article className="lab-card" key={lab.name}>
             <div className="lab-card-top">
               <span>{lab.index}</span>
               <GithubIcon width={18} height={18} aria-hidden="true" />
@@ -257,10 +267,17 @@ export function PublicLab() {
               ))}
             </div>
             <p className="lab-summary">{lab.summary}</p>
-            <strong className="lab-link">
-              View repository <ArrowUpRight size={16} aria-hidden="true" />
-            </strong>
-          </a>
+            <div className="lab-actions">
+              {lab.demoHref && (
+                <a href={lab.demoHref} target="_blank" rel="noreferrer">
+                  Live demo <ArrowUpRight size={16} aria-hidden="true" />
+                </a>
+              )}
+              <a href={lab.href} target="_blank" rel="noreferrer">
+                Repository <ArrowUpRight size={16} aria-hidden="true" />
+              </a>
+            </div>
+          </article>
         ))}
       </div>
     </section>
