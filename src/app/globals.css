@@ -2549,6 +2549,134 @@ a {
 .home-about-grid .route-link {
   margin-top: 24px;
 }
+.home-flagship {
+  min-height: 600px;
+  padding: 38px;
+  display: grid;
+  grid-template-columns: 0.75fr 1.25fr;
+  grid-template-rows: 1fr auto;
+  gap: 45px 70px;
+  overflow: hidden;
+  border-radius: var(--radius-section);
+  background: var(--dark);
+  color: var(--dark-text);
+  box-shadow: 0 22px 55px rgba(16, 42, 58, 0.14);
+  transition:
+    transform 280ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 280ms ease;
+}
+.home-flagship:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 28px 70px rgba(16, 42, 58, 0.2);
+}
+.home-flagship-copy {
+  display: flex;
+  flex-direction: column;
+}
+.home-flagship-copy > span,
+.home-flagship-system small {
+  color: var(--cyan);
+  font: 9px var(--font-geist-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.home-flagship-copy h3 {
+  margin: 42px 0 18px;
+  font-size: clamp(40px, 4.8vw, 66px);
+  line-height: 0.94;
+  letter-spacing: -0.06em;
+  font-weight: 540;
+}
+.home-flagship-copy p {
+  max-width: 460px;
+  margin: 0;
+  color: rgba(234, 242, 244, 0.62);
+  font-size: 14px;
+  line-height: 1.65;
+}
+.home-flagship-copy > strong {
+  margin-top: auto;
+  padding-top: 36px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+}
+.home-flagship-copy > strong svg {
+  color: var(--cyan);
+  transition: transform 180ms ease;
+}
+.home-flagship:hover .home-flagship-copy > strong svg {
+  transform: translateX(4px);
+}
+.home-flagship-system {
+  align-self: center;
+  display: grid;
+  grid-template-columns: 1fr 28px 1fr 28px 1fr;
+  align-items: center;
+}
+.home-flagship-system > div {
+  min-height: 185px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  border: 1px solid rgba(234, 242, 244, 0.18);
+  border-radius: var(--radius-card);
+  background: rgba(255, 255, 255, 0.025);
+}
+.home-flagship-system .home-flagship-core {
+  border-color: rgba(42, 157, 171, 0.62);
+  background: rgba(42, 157, 171, 0.09);
+}
+.home-flagship-system b {
+  margin: 30px 0 8px;
+  font-size: 17px;
+  font-weight: 520;
+}
+.home-flagship-system span {
+  color: rgba(234, 242, 244, 0.42);
+  font: 8px / 1.5 var(--font-geist-mono);
+}
+.home-flagship-system > i {
+  height: 1px;
+  background: var(--cyan);
+}
+.home-flagship-metrics {
+  grid-column: 1 / -1;
+  padding-top: 22px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid rgba(234, 242, 244, 0.16);
+}
+.home-flagship-metrics span {
+  color: rgba(234, 242, 244, 0.48);
+  font: 9px var(--font-geist-mono);
+  text-transform: uppercase;
+}
+.home-flagship-metrics strong {
+  margin-right: 7px;
+  color: var(--dark-text);
+  font-size: 14px;
+}
+.home-public-heading {
+  margin: 78px 0 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  border-bottom: 1px solid var(--line);
+}
+.home-public-heading .eyebrow {
+  margin-bottom: 16px;
+}
+.home-public-description {
+  margin: 0 0 16px;
+  color: var(--muted);
+  font-size: 12px;
+}
+.home-public-grid .project-card {
+  min-height: 510px;
+}
 .home-contact {
   margin-top: 30px;
 }
@@ -3652,6 +3780,12 @@ a {
   .editorial-card {
     min-height: 330px;
   }
+  .home-flagship {
+    grid-template-columns: 1fr;
+  }
+  .home-flagship-system {
+    min-height: 260px;
+  }
   .thinking-format {
     grid-template-columns: 1fr 1fr;
   }
@@ -3842,6 +3976,40 @@ a {
   .editorial-card {
     min-height: 360px;
     padding: 22px;
+  }
+  .home-flagship {
+    min-height: 0;
+    padding: 24px;
+    gap: 55px;
+    border-radius: 18px;
+  }
+  .home-flagship-copy {
+    min-height: 390px;
+  }
+  .home-flagship-system {
+    min-height: 0;
+    grid-template-columns: 1fr;
+  }
+  .home-flagship-system > div {
+    width: 100%;
+    min-height: 145px;
+  }
+  .home-flagship-system > i {
+    width: 1px;
+    height: 24px;
+    justify-self: center;
+  }
+  .home-flagship-metrics {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  .home-public-heading {
+    margin-top: 58px;
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .home-public-description {
+    max-width: 260px;
   }
   .site-footer {
     align-items: flex-start;
