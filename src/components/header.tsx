@@ -1,13 +1,21 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { GithubIcon, LinkedinIcon } from "@/components/icons";
 
 const navItems = [
+  { name: "Home", href: "/" },
   { name: "Work", href: "/work" },
   { name: "Thinking", href: "/thinking" },
   { name: "About", href: "/about" },
 ];
 
 export function Header() {
+  const pathname = usePathname();
+  const isActive = (href: string) =>
+    href === "/" ? pathname === "/" : pathname.startsWith(href);
+
   return (
     <header className="site-header">
       <nav aria-label="Main navigation">
@@ -16,7 +24,12 @@ export function Header() {
         </Link>
         <div className="nav-links">
           {navItems.map((item) => (
-            <Link key={item.name} href={item.href}>
+            <Link
+              key={item.name}
+              href={item.href}
+              className={isActive(item.href) ? "is-active" : undefined}
+              aria-current={isActive(item.href) ? "page" : undefined}
+            >
               {item.name}
             </Link>
           ))}
@@ -26,7 +39,12 @@ export function Header() {
             <summary aria-label="Open site navigation">Menu</summary>
             <div>
               {navItems.map((item) => (
-                <Link key={item.name} href={item.href}>
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  className={isActive(item.href) ? "is-active" : undefined}
+                  aria-current={isActive(item.href) ? "page" : undefined}
+                >
                   {item.name}
                 </Link>
               ))}
@@ -52,7 +70,11 @@ export function Header() {
           >
             <GithubIcon width={17} height={17} aria-hidden="true" />
           </a>
-          <Link href="/contact" className="nav-contact">
+          <Link
+            href="/contact"
+            className={`nav-contact${pathname.startsWith("/contact") ? " is-active" : ""}`}
+            aria-current={pathname.startsWith("/contact") ? "page" : undefined}
+          >
             Let&apos;s talk <span aria-hidden="true">↗</span>
           </Link>
         </div>
