@@ -18,6 +18,13 @@ const revealSelectors = [
   ".decision-row",
   ".lab-card",
   ".writing-constellation",
+  ".route-intro-grid > *",
+  ".project-card",
+  ".editorial-card",
+  ".proof-card",
+  ".decision-band",
+  ".case-lens",
+  ".route-section-heading",
 ];
 
 export function MotionEffects() {
@@ -94,7 +101,7 @@ export function MotionEffects() {
 
     const spotlightItems = Array.from(
       document.querySelectorAll<HTMLElement>(
-        ".work-card, .lab-card, .contact-section",
+        ".work-card, .lab-card, .project-card, .editorial-card, .contact-section",
       ),
     );
     const updateSpotlight = (event: PointerEvent) => {
