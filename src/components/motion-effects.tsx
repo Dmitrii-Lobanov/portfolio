@@ -25,6 +25,15 @@ const revealSelectors = [
   ".decision-band",
   ".case-lens",
   ".route-section-heading",
+  ".proof-ribbon-item",
+  ".duality-list",
+  ".breakout-visual",
+  ".breakout-copy",
+  ".kanban-breakout",
+  ".kanban-copy",
+  ".edge-copy",
+  ".event-stream > div",
+  ".thinking-links > a",
 ];
 
 export function MotionEffects() {
@@ -99,6 +108,38 @@ export function MotionEffects() {
       portrait.addEventListener("pointerleave", resetPortrait);
     }
 
+    const depthStages = Array.from(
+      document.querySelectorAll<HTMLElement>(".screenbreak-stage"),
+    );
+    const updateDepth = (event: PointerEvent) => {
+      const stage = event.currentTarget as HTMLElement;
+      const rect = stage.getBoundingClientRect();
+      const x = (event.clientX - rect.left) / rect.width - 0.5;
+      const y = (event.clientY - rect.top) / rect.height - 0.5;
+      stage.style.setProperty("--stage-x", x.toFixed(3));
+      stage.style.setProperty("--stage-y", y.toFixed(3));
+      stage.querySelectorAll<HTMLElement>("[data-depth]").forEach((layer) => {
+        const depth = Number(layer.dataset.depth ?? 0);
+        layer.style.setProperty("--depth-x", `${x * depth * 42}px`);
+        layer.style.setProperty("--depth-y", `${y * depth * 28}px`);
+      });
+    };
+    const resetDepth = (event: PointerEvent) => {
+      const stage = event.currentTarget as HTMLElement;
+      stage.style.removeProperty("--stage-x");
+      stage.style.removeProperty("--stage-y");
+      stage.querySelectorAll<HTMLElement>("[data-depth]").forEach((layer) => {
+        layer.style.removeProperty("--depth-x");
+        layer.style.removeProperty("--depth-y");
+      });
+    };
+    if (canHover) {
+      depthStages.forEach((stage) => {
+        stage.addEventListener("pointermove", updateDepth);
+        stage.addEventListener("pointerleave", resetDepth);
+      });
+    }
+
     const spotlightItems = Array.from(
       document.querySelectorAll<HTMLElement>(
         ".work-card, .lab-card, .project-card, .editorial-card, .contact-section",
@@ -129,6 +170,10 @@ export function MotionEffects() {
       portrait?.removeEventListener("pointerleave", resetPortrait);
       spotlightItems.forEach((item) => {
         item.removeEventListener("pointermove", updateSpotlight);
+      });
+      depthStages.forEach((stage) => {
+        stage.removeEventListener("pointermove", updateDepth);
+        stage.removeEventListener("pointerleave", resetDepth);
       });
     };
   }, []);
