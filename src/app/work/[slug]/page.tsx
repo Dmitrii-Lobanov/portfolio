@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { CpaCaseStudy } from "@/components/cpa-case-study";
 import { ExternalAction, SiteFooter } from "@/components/editorial";
+import { KanbanCaseStudy } from "@/components/kanban-case-study";
 import { getProject, projects } from "@/content/portfolio";
 import { ProjectInstrument } from "../page";
 
@@ -30,7 +31,7 @@ export default async function ProjectPage({ params }: Props) {
   return (
     <main className="route-main project-detail">
       <section
-        className={`project-detail-hero${project.slug === "cpa-platform" ? " cpa-detail-hero" : ""}`}
+        className={`project-detail-hero${project.slug === "cpa-platform" ? " cpa-detail-hero" : ""}${project.slug === "reliable-kanban" ? " kanban-detail-hero" : ""}`}
       >
         <Link href="/work" className="back-link">
           <ArrowLeft size={15} /> All work
@@ -43,7 +44,8 @@ export default async function ProjectPage({ params }: Props) {
             <h1>{project.name}</h1>
           </div>
           <p>{project.summary}</p>
-          {project.slug === "cpa-platform" && (
+          {(project.slug === "cpa-platform" ||
+            project.slug === "reliable-kanban") && (
             <ProjectInstrument project={project} />
           )}
         </div>
@@ -69,17 +71,32 @@ export default async function ProjectPage({ params }: Props) {
 
       {project.slug === "cpa-platform" ? (
         <CpaCaseStudy />
+      ) : project.slug === "reliable-kanban" ? (
+        <KanbanCaseStudy />
       ) : (
         <>
           <section className="project-system-section">
             <div className="project-context">
-              <p className="eyebrow eyebrow-light">01 / Context</p>
-              <h2>Complexity arrived through the product.</h2>
+              <p className="eyebrow eyebrow-light">
+                01 /{" "}
+                {project.slug === "reliable-kanban"
+                  ? "The pressure"
+                  : "Context"}
+              </p>
+              <h2>
+                {project.slug === "reliable-kanban"
+                  ? "The difficult part was not moving a card. It was knowing when that move was still valid."
+                  : "Complexity arrived through the product."}
+              </h2>
               <p className="project-context-copy">{project.context}</p>
             </div>
             <div className="detail-system-map">
               <div className="detail-system-caption">
-                <span>System path / simplified</span>
+                <span>
+                  {project.slug === "reliable-kanban"
+                    ? "A task moves through five guarantees"
+                    : "System path / simplified"}
+                </span>
                 <span>{project.outcome}</span>
               </div>
               <div className="detail-system-flow">
@@ -99,7 +116,11 @@ export default async function ProjectPage({ params }: Props) {
             <div className="route-section-heading">
               <div>
                 <p className="eyebrow">02 / Decisions</p>
-                <h2>Constraints became explicit trade-offs.</h2>
+                <h2>
+                  {project.slug === "reliable-kanban"
+                    ? "Speed is useful only when the system can recover."
+                    : "Constraints became explicit trade-offs."}
+                </h2>
               </div>
               <p>
                 Technology follows the guarantee the system needs—not the other
@@ -133,11 +154,43 @@ export default async function ProjectPage({ params }: Props) {
         </>
       )}
 
-      <section className="project-outcome">
+      <section
+        className={`project-outcome${project.slug === "reliable-kanban" ? " kanban-outcome" : ""}`}
+      >
         <p className="eyebrow eyebrow-light">
-          {project.slug === "cpa-platform" ? "06" : "03"} / Outcome
+          {project.slug === "cpa-platform"
+            ? "06"
+            : project.slug === "reliable-kanban"
+              ? "04"
+              : "03"}{" "}
+          / Outcome
         </p>
         <h2>{project.outcome}</h2>
+        {project.slug === "reliable-kanban" && (
+          <div className="kanban-outcome-signal" aria-hidden="true">
+            <div>
+              <i />
+              <span>Immediate</span>
+              <small>local intent</small>
+            </div>
+            <b>
+              <i />
+            </b>
+            <div>
+              <i />
+              <span>Validated</span>
+              <small>server authority</small>
+            </div>
+            <b>
+              <i />
+            </b>
+            <div>
+              <i />
+              <span>Durable</span>
+              <small>accepted state</small>
+            </div>
+          </div>
+        )}
         <div className="project-actions">
           {project.demo && (
             <ExternalAction href={project.demo}>
