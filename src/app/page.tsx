@@ -388,49 +388,140 @@ export default function Home() {
             <ArrowRight size={16} aria-hidden="true" />
           </Link>
         </div>
-        <div className="event-stream">
-          <div>
-            <span>12:04:09</span>
-            <strong>offer.updated</strong>
-            <em>accepted</em>
-          </div>
-          <div className="event-duplicate">
-            <span>12:04:09</span>
-            <strong>offer.updated</strong>
-            <em>duplicate</em>
-          </div>
-          <div>
-            <span>12:04:10</span>
-            <strong>document.ready</strong>
-            <em>accepted</em>
-          </div>
-          <div className="event-resolved">
-            <span>12:04:10</span>
-            <strong>idempotency.guard</strong>
-            <em>resolved</em>
+        <div className="incident-observatory screenbreak-stage">
+          <div className="incident-console">
+            <div className="incident-console-head">
+              <span>Live event topology</span>
+              <span className="incident-live">System observing</span>
+            </div>
+            <div className="incident-flow">
+              <div className="incident-rail" />
+              <svg
+                className="incident-branch"
+                viewBox="0 0 100 300"
+                preserveAspectRatio="none"
+                aria-hidden="true"
+              >
+                <defs>
+                  <linearGradient
+                    id="incident-branch-gradient"
+                    x1="0"
+                    y1="0"
+                    x2="0"
+                    y2="1"
+                  >
+                    <stop offset="0" stopColor="#ffad89" />
+                    <stop offset="0.48" stopColor="#ef6743" />
+                    <stop offset="1" stopColor="#a93720" />
+                  </linearGradient>
+                </defs>
+                <path
+                  className="incident-branch-body"
+                  d="M44 95 C44 158 52 168 54 224"
+                />
+                <path
+                  className="incident-branch-light"
+                  d="M44 95 C44 158 52 168 54 224"
+                />
+              </svg>
+              <div
+                className="incident-node incident-node-source"
+                data-depth="0.18"
+              >
+                <strong>Offer UI</strong>
+                <span>event emitted</span>
+              </div>
+              <div
+                className="incident-node incident-node-gateway"
+                data-depth="0.28"
+              >
+                <strong>Event gateway</strong>
+                <span>delivery check</span>
+              </div>
+              <div
+                className="incident-node incident-node-state"
+                data-depth="0.38"
+              >
+                <strong>Server state</strong>
+                <span>accepted once</span>
+              </div>
+              <div
+                className="incident-node incident-node-guard"
+                data-depth="0.5"
+              >
+                <strong>Idempotency guard</strong>
+                <span>duplicate absorbed</span>
+              </div>
+              <i className="incident-orb incident-orb-primary" />
+              <i className="incident-orb incident-orb-duplicate" />
+              <div className="incident-resolution">
+                Resolved · one state transition
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="thinking-stage">
+      <section className="thinking-stage screenbreak-stage">
         <div>
           <p className="screenbreak-kicker">04 / Thinking in public</p>
           <h2>The reasoning is part of the work</h2>
         </div>
         <div className="thinking-links">
-          <Link href="/thinking/knowledge-base">
-            <span>Structured knowledge</span>
+          <Link
+            href="/thinking/knowledge-base"
+            className="thinking-link thinking-link-wiki"
+          >
+            <span className="thinking-link-index">01</span>
+            <span className="thinking-link-type">Structured knowledge</span>
             <strong>Frontend Engineering Wiki</strong>
+            <span
+              className="thinking-mini thinking-mini-wiki"
+              aria-hidden="true"
+            >
+              <i />
+              <i />
+              <i />
+              <i />
+              <i />
+              <i />
+            </span>
             <ArrowUpRight aria-hidden="true" />
           </Link>
-          <Link href="/thinking/articles">
-            <span>Long-form field notes</span>
+          <Link
+            href="/thinking/articles"
+            className="thinking-link thinking-link-essays"
+          >
+            <span className="thinking-link-index">02</span>
+            <span className="thinking-link-type">Long-form field notes</span>
             <strong>Architecture essays</strong>
+            <span
+              className="thinking-mini thinking-mini-essays"
+              aria-hidden="true"
+            >
+              <i />
+              <i />
+              <i />
+            </span>
             <ArrowUpRight aria-hidden="true" />
           </Link>
-          <Link href="/thinking/edge-case-inc">
-            <span>Serialized investigations</span>
+          <Link
+            href="/thinking/edge-case-inc"
+            className="thinking-link thinking-link-edge"
+          >
+            <span className="thinking-link-index">03</span>
+            <span className="thinking-link-type">
+              Serialized investigations
+            </span>
             <strong>Edge Case Inc.</strong>
+            <span
+              className="thinking-mini thinking-mini-edge"
+              aria-hidden="true"
+            >
+              <i />
+              <i />
+              <i />
+            </span>
             <ArrowUpRight aria-hidden="true" />
           </Link>
         </div>
@@ -440,11 +531,53 @@ export default function Home() {
         <p className="screenbreak-kicker screenbreak-kicker-light">
           05 / Start a conversation
         </p>
-        <div>
-          <h2>Building a product whose complexity is starting to show?</h2>
-          <Link className="screenbreak-button" href="/contact">
-            Let&apos;s talk <ArrowUpRight size={17} aria-hidden="true" />
-          </Link>
+        <div className="contact-stage">
+          <div className="contact-stage-copy">
+            <h2>Building a product whose complexity is starting to show?</h2>
+            <p>
+              Bring me the difficult workflow, the fragile boundary, or the
+              performance problem that refuses to stay hidden.
+            </p>
+          </div>
+          <div className="contact-console">
+            <div className="contact-console-head">
+              <span>Conversation channel</span>
+              <span className="contact-console-status">
+                <i aria-hidden="true" /> Available
+              </span>
+            </div>
+            <div className="contact-signal" aria-hidden="true">
+              <i />
+              <i />
+              <i />
+              <i />
+              <i />
+              <i />
+              <i />
+              <i />
+              <i />
+              <i />
+              <i />
+              <i />
+            </div>
+            <dl className="contact-console-details">
+              <div>
+                <dt>Signal</dt>
+                <dd>Product · architecture · frontend</dd>
+              </div>
+              <div>
+                <dt>Next step</dt>
+                <dd>A focused first conversation</dd>
+              </div>
+            </dl>
+            <Link
+              className="screenbreak-button contact-console-button"
+              href="/contact"
+            >
+              Start the conversation
+              <ArrowUpRight size={17} aria-hidden="true" />
+            </Link>
+          </div>
         </div>
         <SiteFooter />
       </section>

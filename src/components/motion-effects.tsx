@@ -33,6 +33,7 @@ const revealSelectors = [
   ".kanban-copy",
   ".edge-copy",
   ".event-stream > div",
+  ".incident-observatory",
   ".thinking-links > a",
 ];
 
