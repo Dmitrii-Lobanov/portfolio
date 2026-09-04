@@ -83,25 +83,120 @@ const projectShortNames: Record<string, string> = {
 
 function ProjectInstrument({ project }: { project: Project }) {
   return (
-    <div className="work-project-instrument" aria-hidden="true">
-      <div className="work-instrument-head">
-        <span>System topology</span>
-        <span>
-          <i /> Live model
-        </span>
-      </div>
-      <div className="work-node-track">
-        {project.nodes.map((node, index) => (
-          <div className="work-node-wrap" key={node}>
-            <span className="work-node">
-              <small>{String(index + 1).padStart(2, "0")}</small>
-              {node}
-            </span>
-            {index < project.nodes.length - 1 && <i />}
+    <div
+      className={`work-project-instrument work-product-art work-product-art-${project.slug}`}
+      aria-hidden="true"
+    >
+      <div className="work-art-halo" />
+      <div className="work-art-orbit work-art-orbit-a" />
+      <div className="work-art-orbit work-art-orbit-b" />
+      <div className="work-art-device">
+        <div className="work-art-device-top">
+          <span />
+          <span />
+          <span />
+          <i />
+        </div>
+        <div className="work-art-canvas">
+          <div className="work-art-sidebar">
+            <i />
+            <i />
+            <i />
+            <i />
           </div>
-        ))}
+          <div className="work-art-content">
+            {project.slug === "cpa-platform" && (
+              <>
+                <div className="work-art-title-line" />
+                <div className="work-art-chart">
+                  <span />
+                  <span />
+                  <span />
+                  <span />
+                  <span />
+                </div>
+                <div className="work-art-row">
+                  <i />
+                  <i />
+                  <i />
+                </div>
+              </>
+            )}
+            {project.slug === "reliable-kanban" && (
+              <div className="work-art-kanban">
+                {[0, 1, 2].map((column) => (
+                  <div
+                    className={`work-art-kanban-column work-art-kanban-column-${column + 1}`}
+                    key={column}
+                  >
+                    <span />
+                    <i
+                      className={
+                        column === 1 ? "work-art-kanban-active" : undefined
+                      }
+                    />
+                    <i />
+                    {column !== 2 && <i />}
+                  </div>
+                ))}
+                <b />
+              </div>
+            )}
+            {project.slug === "frontend-engineering-wiki" && (
+              <div className="work-art-knowledge">
+                <span className="work-art-knowledge-core" />
+                <i />
+                <i />
+                <i />
+                <i />
+                <i />
+                <b />
+                <b />
+                <b />
+                <b />
+              </div>
+            )}
+            {project.slug === "polaris" && (
+              <div className="work-art-workspace">
+                <span />
+                <span />
+                <span />
+                <div>
+                  <i />
+                  <i />
+                  <i />
+                </div>
+              </div>
+            )}
+            {project.slug === "wikimasters" && (
+              <div className="work-art-stack">
+                <span />
+                <span />
+                <span />
+                <span />
+                <span />
+                <i />
+              </div>
+            )}
+          </div>
+        </div>
       </div>
-      <span className="work-instrument-signal" />
+      <div className="work-art-ribbon work-art-ribbon-cyan" />
+      <div className="work-art-ribbon work-art-ribbon-orange" />
+      <div className="work-art-floater work-art-floater-a">
+        <i />
+        <span />
+        <span />
+      </div>
+      <div className="work-art-floater work-art-floater-b">
+        <i />
+        <span />
+      </div>
+      <div className="work-art-particles">
+        <i />
+        <i />
+        <i />
+      </div>
     </div>
   );
 }
@@ -349,8 +444,23 @@ export default function WorkPage() {
       </section>
 
       <section className="work-route-cta">
-        <span>Need the reasoning behind a particular decision?</span>
-        <Link href="/contact">
+        <div className="work-route-cta-copy">
+          <span>
+            <i /> Open to ambitious systems
+          </span>
+          <strong>Have a product whose complexity is starting to show?</strong>
+          <small>
+            Let&apos;s turn the pressure points into clear engineering
+            decisions.
+          </small>
+        </div>
+        <div className="work-route-cta-signal" aria-hidden="true">
+          <i />
+          <i />
+          <i />
+          <span />
+        </div>
+        <Link className="nav-contact work-route-cta-button" href="/contact">
           Start a conversation <ArrowUpRight size={17} aria-hidden="true" />
         </Link>
       </section>
