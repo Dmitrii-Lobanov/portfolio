@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { CpaCaseStudy } from "@/components/cpa-case-study";
 import { ExternalAction, SiteFooter } from "@/components/editorial";
 import { getProject, projects } from "@/content/portfolio";
+import { ProjectInstrument } from "../page";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -28,7 +29,9 @@ export default async function ProjectPage({ params }: Props) {
   if (!project) notFound();
   return (
     <main className="route-main project-detail">
-      <section className="project-detail-hero">
+      <section
+        className={`project-detail-hero${project.slug === "cpa-platform" ? " cpa-detail-hero" : ""}`}
+      >
         <Link href="/work" className="back-link">
           <ArrowLeft size={15} /> All work
         </Link>
@@ -40,6 +43,9 @@ export default async function ProjectPage({ params }: Props) {
             <h1>{project.name}</h1>
           </div>
           <p>{project.summary}</p>
+          {project.slug === "cpa-platform" && (
+            <ProjectInstrument project={project} />
+          )}
         </div>
         <dl className="project-facts">
           <div>

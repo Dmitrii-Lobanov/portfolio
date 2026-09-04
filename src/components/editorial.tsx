@@ -59,8 +59,13 @@ export function ExternalAction({
   children: React.ReactNode;
 }) {
   return (
-    <a href={href} target="_blank" rel="noreferrer" className="route-link">
-      {children} <ArrowUpRight size={16} aria-hidden="true" />
+    <a
+      href={href}
+      target="_blank"
+      rel="noreferrer"
+      className="route-link gradient-action"
+    >
+      <span>{children}</span> <ArrowUpRight size={16} aria-hidden="true" />
     </a>
   );
 }

@@ -66,7 +66,7 @@ const decisions = [
     number: "04",
     question: "How could the system evolve while it was still shipping?",
     decision: "Sequenced migration into shared foundations",
-    why: "More than fifteen applications could move gradually. Product delivery continued while common contracts, tooling and components became stronger.",
+    why: "Product delivery continued while shared contracts, tooling and components became stronger. Each migration reduced risk without requiring a disruptive rewrite.",
   },
 ];
 
@@ -271,11 +271,11 @@ export function CpaCaseStudy() {
         <div className="cpa-impact-strip">
           <article>
             <strong>300k+</strong>
-            <span>users at platform scale</span>
+            <span>people supported across the platform</span>
           </article>
           <article>
-            <strong>15+</strong>
-            <span>applications moved toward shared foundations</span>
+            <strong className="cpa-reliability-metric">10% → 0%</strong>
+            <span>data-loss rate after the reliability redesign</span>
           </article>
           <article>
             <strong>3×</strong>
@@ -283,24 +283,28 @@ export function CpaCaseStudy() {
           </article>
           <article>
             <strong>4.5 yrs</strong>
-            <span>of continuous product evolution</span>
+            <span>shipping while the system kept evolving</span>
           </article>
         </div>
         <div className="cpa-reading-list">
           <span>Related field notes</span>
           <a
+            className="gradient-action"
             href="https://medium.com/@dmitriilobanov3/frontend-system-design-of-a-large-cpa-platform-b0c448f20ba4"
             target="_blank"
             rel="noreferrer"
           >
-            Frontend system design <ArrowUpRight aria-hidden="true" />
+            <span>Frontend system design</span>
+            <ArrowUpRight aria-hidden="true" />
           </a>
           <a
+            className="gradient-action"
             href="https://medium.com/@dmitriilobanov3/building-a-large-cpa-platform-at-tinkoff-product-workflows-behind-a-complex-fintech-frontend-edb82069ad2c"
             target="_blank"
             rel="noreferrer"
           >
-            Product workflows <ArrowUpRight aria-hidden="true" />
+            <span>Product workflows</span>
+            <ArrowUpRight aria-hidden="true" />
           </a>
         </div>
         <p className="cpa-confidentiality">

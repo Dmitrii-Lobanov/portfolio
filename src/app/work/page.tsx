@@ -81,7 +81,7 @@ const projectShortNames: Record<string, string> = {
   wikimasters: "WikiMasters",
 };
 
-function ProjectInstrument({ project }: { project: Project }) {
+export function ProjectInstrument({ project }: { project: Project }) {
   return (
     <div
       className={`work-project-instrument work-product-art work-product-art-${project.slug}`}
