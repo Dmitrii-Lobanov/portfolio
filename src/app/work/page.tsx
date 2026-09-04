@@ -1,7 +1,7 @@
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { PageIntro, SiteFooter } from "@/components/editorial";
+import { SiteFooter } from "@/components/editorial";
 import { type Project, projects } from "@/content/portfolio";
 
 export const metadata: Metadata = {
@@ -41,6 +41,46 @@ const projectEvidence: Record<
   },
 };
 
+const capabilities = [
+  "Architecture",
+  "Reliability",
+  "Product UX",
+  "Performance",
+  "Data",
+  "Knowledge",
+] as const;
+
+const projectCapabilityMap: Record<
+  string,
+  Array<(typeof capabilities)[number]>
+> = {
+  "cpa-platform": [
+    "Architecture",
+    "Reliability",
+    "Product UX",
+    "Performance",
+    "Data",
+  ],
+  "reliable-kanban": ["Architecture", "Reliability", "Product UX", "Data"],
+  "frontend-engineering-wiki": ["Product UX", "Performance", "Knowledge"],
+  polaris: ["Architecture", "Product UX", "Performance", "Data"],
+  wikimasters: [
+    "Architecture",
+    "Reliability",
+    "Product UX",
+    "Data",
+    "Knowledge",
+  ],
+};
+
+const projectShortNames: Record<string, string> = {
+  "cpa-platform": "CPA platform",
+  "reliable-kanban": "Kanban",
+  "frontend-engineering-wiki": "Engineering Wiki",
+  polaris: "Polaris",
+  wikimasters: "WikiMasters",
+};
+
 function ProjectInstrument({ project }: { project: Project }) {
   return (
     <div className="work-project-instrument" aria-hidden="true">
@@ -78,12 +118,9 @@ function WorkProject({
   return (
     <article
       className={`work-project work-project-${project.slug}${featured ? " work-project-featured" : ""}`}
-      data-index={project.index}
     >
       <header className="work-project-head">
-        <span>
-          {project.index} / {project.label}
-        </span>
+        <span>{project.label}</span>
         <span>{project.status}</span>
       </header>
       <div className="work-project-layout">
@@ -95,7 +132,8 @@ function WorkProject({
             <span>{evidence.caption}</span>
           </div>
           <Link className="route-link" href={`/work/${project.slug}`}>
-            Open case study <ArrowRight size={16} aria-hidden="true" />
+            <span>Open case study</span>
+            <ArrowRight size={16} aria-hidden="true" />
           </Link>
         </div>
         <ProjectInstrument project={project} />
@@ -114,34 +152,167 @@ export default function WorkPage() {
 
   return (
     <main className="route-main work-route">
-      <PageIntro
-        eyebrow="Work / Selected systems"
-        title={
-          <>
-            <span>Not a gallery.</span>
-            <br />A record of decisions.
-          </>
-        }
-        description="Products are shown here as systems under pressure: the constraint, the engineering response, and the measurable evidence that the response worked."
-      />
+      <section className="route-intro work-intro">
+        <p className="eyebrow">Work / Selected systems</p>
+        <div className="work-intro-layout">
+          <div className="work-intro-copy">
+            <h1>
+              <span>Not a gallery.</span>
+              <br />A record of decisions.
+            </h1>
+            <p>
+              Products are shown here as systems under pressure: the constraint,
+              the engineering response, and the measurable evidence that the
+              response worked.
+            </p>
+          </div>
+          <div className="work-decision-engine" aria-hidden="true">
+            <div className="system-sculpture">
+              <div className="sculpture-caption sculpture-caption-input">
+                Product pressure
+                <span>Unsorted signals</span>
+              </div>
+              <div className="sculpture-fragments">
+                <i />
+                <i />
+                <i />
+                <i />
+                <i />
+                <i />
+              </div>
+              <div className="sculpture-machine">
+                <span className="machine-spine" />
+                <span className="machine-ring machine-ring-outer" />
+                <span className="machine-ring machine-ring-inner" />
+                <span className="machine-core">
+                  <small>Engineering</small>
+                  <strong>Judgment</strong>
+                  <i />
+                </span>
+                <span className="machine-gate machine-gate-top">Boundary</span>
+                <span className="machine-gate machine-gate-bottom">
+                  Ownership
+                </span>
+                <i className="machine-packet packet-one" />
+                <i className="machine-packet packet-two" />
+              </div>
+              <div className="sculpture-output">
+                <span>
+                  <small>01</small>Clear
+                </span>
+                <span>
+                  <small>02</small>Fast
+                </span>
+                <span>
+                  <small>03</small>Dependable
+                </span>
+              </div>
+              <div className="sculpture-caption sculpture-caption-output">
+                Stable system
+                <span>Defensible outcome</span>
+              </div>
+              <span className="sculpture-floor" />
+            </div>
+          </div>
+        </div>
+      </section>
 
-      <section className="work-route-summary" aria-label="Work overview">
-        <div>
-          <strong>05</strong>
-          <span>systems examined</span>
+      <section
+        className="work-capability-section"
+        aria-labelledby="capability-title"
+      >
+        <header className="work-capability-heading">
+          <div>
+            <p className="eyebrow">Portfolio capability map</p>
+            <h2 id="capability-title">
+              Five systems. One engineering practice.
+            </h2>
+          </div>
+          <p>
+            Follow each project through the capabilities it exercises. Bright
+            cells mark substantial, documented responsibility—not a technology
+            checklist.
+          </p>
+        </header>
+        <div className="capability-console">
+          <div
+            className="project-constellation"
+            aria-label="Five connected portfolio projects"
+            role="img"
+          >
+            <span className="constellation-orbit constellation-orbit-a" />
+            <span className="constellation-orbit constellation-orbit-b" />
+            <span className="constellation-core">
+              <small>Engineering</small>
+              <strong>Practice</strong>
+              <i />
+            </span>
+            {projects.map((project) => (
+              <Link
+                className={`constellation-project constellation-project-${project.index}`}
+                href={`/work/${project.slug}`}
+                key={project.slug}
+              >
+                <small>{project.index}</small>
+                {projectShortNames[project.slug]}
+              </Link>
+            ))}
+            <i className="constellation-packet constellation-packet-a" />
+            <i className="constellation-packet constellation-packet-b" />
+          </div>
+
+          <table
+            className="capability-matrix"
+            aria-label="Projects by engineering capability"
+          >
+            <thead>
+              <tr className="capability-matrix-head">
+                <th scope="col">Project</th>
+                {capabilities.map((capability) => (
+                  <th scope="col" key={capability}>
+                    {capability}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {projects.map((project) => (
+                <tr className="capability-matrix-row" key={project.slug}>
+                  <th scope="row">
+                    <small>{project.index}</small>
+                    {projectShortNames[project.slug]}
+                  </th>
+                  {capabilities.map((capability) => {
+                    const active =
+                      projectCapabilityMap[project.slug].includes(capability);
+                    return (
+                      <td
+                        aria-label={`${capability}: ${active ? "demonstrated" : "not a primary focus"}`}
+                        key={capability}
+                      >
+                        <i className={active ? "is-active" : undefined} />
+                      </td>
+                    );
+                  })}
+                </tr>
+              ))}
+            </tbody>
+            <tfoot>
+              <tr>
+                <td colSpan={7}>
+                  <div className="capability-matrix-legend">
+                    <span>
+                      <i /> Documented responsibility
+                    </span>
+                    <span>
+                      <i /> Adjacent capability
+                    </span>
+                  </div>
+                </td>
+              </tr>
+            </tfoot>
+          </table>
         </div>
-        <div>
-          <strong>01</strong>
-          <span>long-lived production platform</span>
-        </div>
-        <div>
-          <strong>04</strong>
-          <span>public builds and knowledge products</span>
-        </div>
-        <p>
-          <span>Reading guide</span>
-          Follow the signal from product pressure to system boundary to outcome.
-        </p>
       </section>
 
       <section
