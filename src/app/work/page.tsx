@@ -144,16 +144,23 @@ export function ProjectInstrument({ project }: { project: Project }) {
             )}
             {project.slug === "frontend-engineering-wiki" && (
               <div className="work-art-knowledge">
+                <svg
+                  className="work-art-knowledge-links"
+                  viewBox="0 0 100 100"
+                  preserveAspectRatio="none"
+                >
+                  <path d="M15.5 14 C28 14 35 39 50.5 51.5" />
+                  <path d="M84.5 13 C72 13 66 39 50.5 51.5" />
+                  <path d="M11.5 52 C26 52 35 52 50.5 51.5" />
+                  <path d="M89.5 80 C73 80 67 63 50.5 51.5" />
+                  <path d="M25.5 88 C34 76 41 63 50.5 51.5" />
+                </svg>
                 <span className="work-art-knowledge-core" />
                 <i />
                 <i />
                 <i />
                 <i />
                 <i />
-                <b />
-                <b />
-                <b />
-                <b />
               </div>
             )}
             {project.slug === "polaris" && (

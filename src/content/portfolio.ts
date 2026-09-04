@@ -132,15 +132,15 @@ export const projects: Project[] = [
     label: "Knowledge product",
     status: "Growing",
     summary:
-      "A structured learning system connecting handbooks, interview explanations, quick references, and deliberate practice.",
+      "A growing map of frontend engineering connecting first-principles explanations, interview reasoning, quick references, and deliberate practice.",
     context:
-      "Frontend knowledge is usually fragmented across articles, documentation, interview lists, and isolated exercises. The wiki gives each learning mode a place in one connected system.",
+      "Documentation explains APIs, articles isolate ideas, interview lists test recall, and courses impose a fixed sequence. The Wiki connects those formats into one navigable learning system.",
     role: "Creator and engineer",
     period: "2026 — ongoing",
     scale: "10 chapters · 224 answers · 12 tracks",
     outcome:
-      "A curriculum that moves from understanding to explanation and practice.",
-    nodes: ["Learn", "Explain", "Recall", "Practice", "Extend"],
+      "A knowledge base that helps engineers find an answer—and understand where it belongs.",
+    nodes: ["Understand", "Explain", "Recall", "Apply", "Deepen"],
     decisions: [
       {
         constraint: "Different goals require different depth",

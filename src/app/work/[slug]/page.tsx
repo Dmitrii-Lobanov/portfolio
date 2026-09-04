@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { CpaCaseStudy } from "@/components/cpa-case-study";
 import { ExternalAction, SiteFooter } from "@/components/editorial";
 import { KanbanCaseStudy } from "@/components/kanban-case-study";
+import { WikiCaseStudy } from "@/components/wiki-case-study";
 import { getProject, projects } from "@/content/portfolio";
 import { ProjectInstrument } from "../page";
 
@@ -31,7 +32,7 @@ export default async function ProjectPage({ params }: Props) {
   return (
     <main className="route-main project-detail">
       <section
-        className={`project-detail-hero${project.slug === "cpa-platform" ? " cpa-detail-hero" : ""}${project.slug === "reliable-kanban" ? " kanban-detail-hero" : ""}`}
+        className={`project-detail-hero${project.slug === "cpa-platform" ? " cpa-detail-hero" : ""}${project.slug === "reliable-kanban" ? " kanban-detail-hero" : ""}${project.slug === "frontend-engineering-wiki" ? " wiki-detail-hero" : ""}`}
       >
         <Link href="/work" className="back-link">
           <ArrowLeft size={15} /> All work
@@ -45,7 +46,8 @@ export default async function ProjectPage({ params }: Props) {
           </div>
           <p>{project.summary}</p>
           {(project.slug === "cpa-platform" ||
-            project.slug === "reliable-kanban") && (
+            project.slug === "reliable-kanban" ||
+            project.slug === "frontend-engineering-wiki") && (
             <ProjectInstrument project={project} />
           )}
         </div>
@@ -73,6 +75,8 @@ export default async function ProjectPage({ params }: Props) {
         <CpaCaseStudy />
       ) : project.slug === "reliable-kanban" ? (
         <KanbanCaseStudy />
+      ) : project.slug === "frontend-engineering-wiki" ? (
+        <WikiCaseStudy />
       ) : (
         <>
           <section className="project-system-section">
@@ -155,14 +159,16 @@ export default async function ProjectPage({ params }: Props) {
       )}
 
       <section
-        className={`project-outcome${project.slug === "reliable-kanban" ? " kanban-outcome" : ""}`}
+        className={`project-outcome${project.slug === "reliable-kanban" ? " kanban-outcome" : ""}${project.slug === "frontend-engineering-wiki" ? " wiki-outcome" : ""}`}
       >
         <p className="eyebrow eyebrow-light">
           {project.slug === "cpa-platform"
             ? "06"
             : project.slug === "reliable-kanban"
               ? "04"
-              : "03"}{" "}
+              : project.slug === "frontend-engineering-wiki"
+                ? "06"
+                : "03"}{" "}
           / Outcome
         </p>
         <h2>{project.outcome}</h2>
