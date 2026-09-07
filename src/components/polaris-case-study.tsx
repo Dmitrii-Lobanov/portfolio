@@ -19,12 +19,12 @@ const clocks = [
 ];
 
 const requestStages = [
-  "Select code",
-  "Add instruction",
-  "Assemble context",
-  "Run model",
-  "Stream response",
-  "Persist conversation",
+  ["Select code", "Editor range"],
+  ["Add instruction", "User intent"],
+  ["Assemble context", "Files + history"],
+  ["Run model", "Background task"],
+  ["Stream response", "Incremental result"],
+  ["Persist conversation", "Durable record"],
 ];
 
 const boundaries = [
@@ -212,23 +212,49 @@ export function PolarisCaseStudy() {
             <h2>The interaction continues after the button is released.</h2>
           </div>
           <p>
-            The interface acknowledges intent now. Expensive work proceeds
-            through an explicit, observable path.
+            The interface acknowledges intent immediately, then turns it into
+            durable background work. Context assembly, model execution,
+            streaming, and persistence remain visible as separate stages—so a
+            slow or failed step can be understood and recovered.
           </p>
         </div>
         <div className="polaris-request-track">
-          {requestStages.map((stage, index) => (
-            <div key={stage}>
-              <article>
-                <small>0{index + 1}</small>
-                <strong>{stage}</strong>
-              </article>
-              {index < requestStages.length - 1 && (
-                <ArrowRight aria-hidden="true" />
-              )}
-            </div>
-          ))}
-          <i className="polaris-request-packet" aria-hidden="true" />
+          <header>
+            <span>AI request / observable execution</span>
+            <span>
+              <i /> Workflow active
+            </span>
+          </header>
+          <div className="polaris-request-rail" aria-hidden="true">
+            <i />
+          </div>
+          <div className="polaris-request-stages">
+            {requestStages.map(([stage, detail], index) => (
+              <div key={stage}>
+                <article>
+                  <small>0{index + 1}</small>
+                  <div
+                    className={`polaris-stage-icon polaris-stage-icon-${index + 1}`}
+                    aria-hidden="true"
+                  >
+                    <i />
+                    <i />
+                    <i />
+                  </div>
+                  <strong>{stage}</strong>
+                  <span>{detail}</span>
+                </article>
+                {index < requestStages.length - 1 && (
+                  <ArrowRight aria-hidden="true" />
+                )}
+              </div>
+            ))}
+          </div>
+          <footer>
+            <span>Intent accepted</span>
+            <span>Context resolved</span>
+            <span>Result retained</span>
+          </footer>
         </div>
       </section>
 
@@ -245,47 +271,90 @@ export function PolarisCaseStudy() {
         </div>
         <div className="polaris-boundary-table">
           <header>
-            <span>Boundary</span>
-            <span>Owns</span>
-            <span>Does not own</span>
+            <span>Contract map / five guarded seams</span>
+            <span>
+              <i /> Boundaries active
+            </span>
           </header>
-          {boundaries.map(([name, owns, excludes]) => (
+          {boundaries.map(([name, owns, excludes], index) => (
             <article key={name}>
-              <strong>{name}</strong>
-              <span>{owns}</span>
-              <span>{excludes}</span>
+              <div className="polaris-boundary-name">
+                <small>0{index + 1}</small>
+                <strong>{name}</strong>
+              </div>
+              <div className="polaris-boundary-owner">
+                <small>Owns</small>
+                <span>{owns}</span>
+              </div>
+              <div className="polaris-boundary-gate" aria-hidden="true">
+                <i />
+                <b />
+              </div>
+              <div className="polaris-boundary-excludes">
+                <small>Kept outside</small>
+                <span>{excludes}</span>
+              </div>
             </article>
           ))}
+          <footer>
+            <span>Capability</span>
+            <i />
+            <span>Protected responsibility</span>
+          </footer>
         </div>
       </section>
 
       <section className="polaris-scope">
         <header>
-          <p className="eyebrow">05 / Product surface</p>
-          <h2>A functional foundation—with the next boundary left visible.</h2>
+          <div>
+            <p className="eyebrow">05 / Product surface</p>
+            <h2>
+              A functional foundation - with the next boundary left visible.
+            </h2>
+          </div>
+          <p>
+            The current workspace is useful on its own. The next phase extends
+            that foundation into executable projects and repository workflows
+            without disguising planned work as finished product.
+          </p>
         </header>
         <div className="polaris-scope-grid">
-          <article>
-            <span>
-              <i /> Current foundation
-            </span>
+          <article className="polaris-scope-current">
+            <header>
+              <span>
+                <i /> Current foundation
+              </span>
+              <b>Working now</b>
+            </header>
             <ul>
-              {current.map((item) => (
-                <li key={item}>{item}</li>
+              {current.map((item, index) => (
+                <li key={item}>
+                  <i aria-hidden="true" />
+                  <small>0{index + 1}</small>
+                  <span>{item}</span>
+                </li>
               ))}
             </ul>
           </article>
           <div className="polaris-scope-bridge" aria-hidden="true">
             <i />
             <b />
+            <span>Extend</span>
           </div>
-          <article>
-            <span>
-              <i /> Next system boundary
-            </span>
+          <article className="polaris-scope-next">
+            <header>
+              <span>
+                <i /> Next system boundary
+              </span>
+              <b>Planned</b>
+            </header>
             <ul>
-              {next.map((item) => (
-                <li key={item}>{item}</li>
+              {next.map((item, index) => (
+                <li key={item}>
+                  <i aria-hidden="true" />
+                  <small>0{index + 1}</small>
+                  <span>{item}</span>
+                </li>
               ))}
             </ul>
           </article>
@@ -294,13 +363,40 @@ export function PolarisCaseStudy() {
 
       <section className="polaris-decisions">
         <header>
-          <p className="eyebrow">06 / Engineering decisions</p>
-          <h2>The product shape determined the architecture.</h2>
+          <div>
+            <p className="eyebrow">06 / Engineering decisions</p>
+            <h2>The product shape determined the architecture.</h2>
+          </div>
+          <p>
+            Each choice turns a product pressure into a deliberate boundary. The
+            cost stays visible alongside the behavior it makes possible.
+          </p>
         </header>
         <div className="polaris-decision-grid">
           {decisions.map(([title, pressure, decision, cost, effect], index) => (
             <article key={title}>
-              <small>0{index + 1}</small>
+              <div
+                className={`polaris-decision-visual polaris-decision-visual-${index + 1}`}
+                aria-hidden="true"
+              >
+                <div className="polaris-decision-scene">
+                  <span className="polaris-decision-node node-a" />
+                  <span className="polaris-decision-node node-b" />
+                  <span className="polaris-decision-node node-c" />
+                  <i className="polaris-decision-signal" />
+                  <b className="polaris-decision-boundary" />
+                </div>
+                <em>
+                  {
+                    [
+                      "Request released · task continues",
+                      "Editor swapped · contract remains",
+                      "Sources gathered · context made explicit",
+                    ][index]
+                  }
+                </em>
+              </div>
+              <small>0{index + 1} / Decision</small>
               <h3>{title}</h3>
               <dl>
                 <div>
