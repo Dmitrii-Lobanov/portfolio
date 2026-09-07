@@ -206,17 +206,16 @@ export const projects: Project[] = [
     slug: "wikimasters",
     index: "05",
     name: "WikiMasters",
-    label: "Full-stack platform",
+    label: "Collaborative knowledge platform",
     status: "MVP",
     summary:
-      "A collaborative wiki exploring typed persistence, caching, object storage, AI summaries, email, and production testing.",
+      "A collaborative wiki MVP for creating, editing, and reading articles. Authored knowledge stays central, supported by media, cached reads, and AI summaries.",
     context:
       "A content platform needs more than CRUD: identity, caching, storage, delivery, testing, and AI features must remain understandable as one product.",
     role: "Full-stack engineer",
     period: "2026",
-    scale: "Serverless product stack",
-    outcome:
-      "A production-shaped MVP with explicit infrastructure responsibilities.",
+    scale: "Content · caching · media · AI",
+    outcome: "A working foundation for collaborative knowledge.",
     nodes: ["Next.js", "Postgres", "Redis", "Blob", "AI"],
     decisions: [
       {

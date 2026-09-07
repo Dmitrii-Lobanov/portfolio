@@ -7,6 +7,10 @@ import { ExternalAction, SiteFooter } from "@/components/editorial";
 import { KanbanCaseStudy } from "@/components/kanban-case-study";
 import { PolarisCaseStudy } from "@/components/polaris-case-study";
 import { WikiCaseStudy } from "@/components/wiki-case-study";
+import {
+  WikiMastersArticle,
+  WikiMastersCaseStudy,
+} from "@/components/wikimasters-case-study";
 import { getProject, projects } from "@/content/portfolio";
 import { ProjectInstrument } from "../page";
 
@@ -31,7 +35,9 @@ export default async function ProjectPage({ params }: Props) {
   const project = getProject((await params).slug);
   if (!project) notFound();
   return (
-    <main className="route-main project-detail">
+    <main
+      className={`route-main project-detail${project.slug === "wikimasters" ? " wm-detail" : ""}`}
+    >
       <section
         className={`project-detail-hero${project.slug === "cpa-platform" ? " cpa-detail-hero" : ""}${project.slug === "reliable-kanban" ? " kanban-detail-hero" : ""}${project.slug === "frontend-engineering-wiki" ? " wiki-detail-hero" : ""}${project.slug === "polaris" ? " polaris-detail-hero" : ""}`}
       >
@@ -46,6 +52,7 @@ export default async function ProjectPage({ params }: Props) {
             <h1>{project.name}</h1>
           </div>
           <p>{project.summary}</p>
+          {project.slug === "wikimasters" && <WikiMastersArticle />}
           {(project.slug === "cpa-platform" ||
             project.slug === "reliable-kanban" ||
             project.slug === "frontend-engineering-wiki" ||
@@ -63,7 +70,7 @@ export default async function ProjectPage({ params }: Props) {
             <dd>{project.period}</dd>
           </div>
           <div>
-            <dt>Scale</dt>
+            <dt>{project.slug === "wikimasters" ? "Focus" : "Scale"}</dt>
             <dd>{project.scale}</dd>
           </div>
           <div>
@@ -81,6 +88,8 @@ export default async function ProjectPage({ params }: Props) {
         <WikiCaseStudy />
       ) : project.slug === "polaris" ? (
         <PolarisCaseStudy />
+      ) : project.slug === "wikimasters" ? (
+        <WikiMastersCaseStudy />
       ) : (
         <>
           <section className="project-system-section">
@@ -174,10 +183,19 @@ export default async function ProjectPage({ params }: Props) {
                 ? "06"
                 : project.slug === "polaris"
                   ? "07"
-                  : "03"}{" "}
+                  : project.slug === "wikimasters"
+                    ? "05"
+                    : "03"}{" "}
           / Outcome
         </p>
         <h2>{project.outcome}</h2>
+        {project.slug === "wikimasters" && (
+          <p className="wm-outcome-copy">
+            The MVP brings content persistence, caching, media storage, and AI
+            summaries into a single wiki product, with clear responsibilities
+            for each part of the system.
+          </p>
+        )}
         {project.slug === "reliable-kanban" && (
           <div className="kanban-outcome-signal" aria-hidden="true">
             <div>
