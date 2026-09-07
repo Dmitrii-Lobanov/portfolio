@@ -94,52 +94,108 @@ export function PolarisCaseStudy() {
         <div
           className="polaris-workspace-map"
           role="img"
-          aria-label="User intent flowing into editor, files, and assistant systems"
+          aria-label="A workspace command coordinating editor, file persistence, and background assistant systems"
         >
           <header>
-            <span>User intent</span>
+            <span>Workspace orchestration</span>
             <span>
-              <i /> Workspace active
+              <i /> Session active
             </span>
           </header>
-          <div className="polaris-intent">
-            <b>Command</b>
-            <small>one visible action</small>
+          <div className="polaris-command-bar">
+            <span aria-hidden="true">⌘</span>
+            <div>
+              <small>User intent</small>
+              <strong>Refactor the selected component</strong>
+            </div>
+            <b>Run</b>
           </div>
-          <div className="polaris-signal" aria-hidden="true">
+          <div className="polaris-dispatch" aria-hidden="true">
+            <span />
+            <i />
+            <i />
             <i />
           </div>
           <div className="polaris-surfaces">
             <article>
-              <small>01</small>
-              <strong>Editor</strong>
-              <span>Local state</span>
+              <div className="polaris-surface-heading">
+                <small>01 / Immediate</small>
+                <i />
+              </div>
+              <strong>Editor intent</strong>
+              <div className="polaris-editor-lines" aria-hidden="true">
+                <i />
+                <i />
+                <i />
+                <i />
+              </div>
+              <span>Selection preserved</span>
             </article>
             <article>
-              <small>02</small>
-              <strong>Files</strong>
-              <span>Persistence</span>
+              <div className="polaris-surface-heading">
+                <small>02 / Persistent</small>
+                <i />
+              </div>
+              <strong>Project state</strong>
+              <div className="polaris-file-stack" aria-hidden="true">
+                <i />
+                <i />
+                <i />
+              </div>
+              <span>Changes recorded</span>
             </article>
             <article>
-              <small>03</small>
-              <strong>Assistant</strong>
-              <span>Background work</span>
+              <div className="polaris-surface-heading">
+                <small>03 / Asynchronous</small>
+                <i />
+              </div>
+              <strong>Assistant task</strong>
+              <div className="polaris-assistant-wave" aria-hidden="true">
+                <i />
+                <i />
+                <i />
+                <i />
+                <i />
+              </div>
+              <span>Running independently</span>
             </article>
           </div>
+          <footer>
+            <span>One action</span>
+            <b>three lifecycles</b>
+            <i />
+          </footer>
         </div>
       </section>
 
       <section className="polaris-clocks">
         <header>
-          <p className="eyebrow">02 / Workspace model</p>
-          <h2>One workspace. Three different clocks.</h2>
+          <div>
+            <p className="eyebrow">02 / Workspace model</p>
+            <h2>One workspace. Three different clocks.</h2>
+          </div>
+          <p>
+            The workspace stays coherent by giving each kind of state its own
+            pace and source of truth. Immediate feedback never pretends to be a
+            saved result, and background work never blocks the editor.
+          </p>
         </header>
         <div className="polaris-clock-grid">
-          {clocks.map(([number, title, copy]) => (
+          {clocks.map(([number, title, copy], index) => (
             <article key={title}>
               <small>{number}</small>
-              <div className="polaris-clock" aria-hidden="true">
-                <i />
+              <div
+                className={`polaris-clock-visual polaris-clock-visual-${index + 1}`}
+                aria-hidden="true"
+              >
+                <div className="polaris-clock-window">
+                  <span />
+                  <span />
+                  <span />
+                </div>
+                <div className="polaris-clock-path">
+                  <i />
+                </div>
                 <b />
               </div>
               <h3>{title}</h3>
