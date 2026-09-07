@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { CpaCaseStudy } from "@/components/cpa-case-study";
 import { ExternalAction, SiteFooter } from "@/components/editorial";
 import { KanbanCaseStudy } from "@/components/kanban-case-study";
+import { PolarisCaseStudy } from "@/components/polaris-case-study";
 import { WikiCaseStudy } from "@/components/wiki-case-study";
 import { getProject, projects } from "@/content/portfolio";
 import { ProjectInstrument } from "../page";
@@ -32,7 +33,7 @@ export default async function ProjectPage({ params }: Props) {
   return (
     <main className="route-main project-detail">
       <section
-        className={`project-detail-hero${project.slug === "cpa-platform" ? " cpa-detail-hero" : ""}${project.slug === "reliable-kanban" ? " kanban-detail-hero" : ""}${project.slug === "frontend-engineering-wiki" ? " wiki-detail-hero" : ""}`}
+        className={`project-detail-hero${project.slug === "cpa-platform" ? " cpa-detail-hero" : ""}${project.slug === "reliable-kanban" ? " kanban-detail-hero" : ""}${project.slug === "frontend-engineering-wiki" ? " wiki-detail-hero" : ""}${project.slug === "polaris" ? " polaris-detail-hero" : ""}`}
       >
         <Link href="/work" className="back-link">
           <ArrowLeft size={15} /> All work
@@ -47,7 +48,8 @@ export default async function ProjectPage({ params }: Props) {
           <p>{project.summary}</p>
           {(project.slug === "cpa-platform" ||
             project.slug === "reliable-kanban" ||
-            project.slug === "frontend-engineering-wiki") && (
+            project.slug === "frontend-engineering-wiki" ||
+            project.slug === "polaris") && (
             <ProjectInstrument project={project} />
           )}
         </div>
@@ -77,6 +79,8 @@ export default async function ProjectPage({ params }: Props) {
         <KanbanCaseStudy />
       ) : project.slug === "frontend-engineering-wiki" ? (
         <WikiCaseStudy />
+      ) : project.slug === "polaris" ? (
+        <PolarisCaseStudy />
       ) : (
         <>
           <section className="project-system-section">
@@ -168,7 +172,9 @@ export default async function ProjectPage({ params }: Props) {
               ? "04"
               : project.slug === "frontend-engineering-wiki"
                 ? "06"
-                : "03"}{" "}
+                : project.slug === "polaris"
+                  ? "07"
+                  : "03"}{" "}
           / Outcome
         </p>
         <h2>{project.outcome}</h2>

@@ -168,17 +168,17 @@ export const projects: Project[] = [
     slug: "polaris",
     index: "04",
     name: "Polaris",
-    label: "Browser IDE + AI",
-    status: "Public experiment",
+    label: "AI development workspace",
+    status: "Functional foundation",
     summary:
-      "An in-browser development environment connecting an editor, terminal, runtime, AI workflows, persistence, and GitHub.",
+      "An experimental browser workspace bringing projects, files, editing, AI assistance, and long-running workflows into one coherent interface.",
     context:
       "Browser IDEs combine several independently complex systems: text editing, terminal emulation, runtime isolation, persistence, asynchronous AI work, and repository workflows.",
     role: "Frontend and systems engineer",
     period: "2026",
-    scale: "Five integrated subsystems",
+    scale: "Editor · files · AI · persistence · workflows",
     outcome:
-      "A coherent browser workspace built from explicit integration boundaries.",
+      "A working foundation whose editor, project, conversation, and background-work responsibilities are separated for deliberate evolution.",
     nodes: ["CodeMirror", "Xterm", "WebContainer", "AI SDK", "Convex"],
     decisions: [
       {
