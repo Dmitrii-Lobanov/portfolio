@@ -1,94 +1,184 @@
+import {
+  ArrowRight,
+  Blocks,
+  BookOpen,
+  Gauge,
+  GraduationCap,
+  MessageSquareText,
+  Workflow,
+} from "lucide-react";
 import type { Metadata } from "next";
-import { PageIntro, SiteFooter } from "@/components/editorial";
+import Image from "next/image";
+import Link from "next/link";
+import { SiteFooter } from "@/components/editorial";
 
 export const metadata: Metadata = { title: "About | Dmitrii Lobanov" };
 
+const focus = [
+  {
+    icon: Workflow,
+    number: "01",
+    title: "Complex workflows",
+    copy: "Interfaces shaped by permissions, asynchronous state, operational rules, and large datasets.",
+  },
+  {
+    icon: Blocks,
+    number: "02",
+    title: "Product architecture",
+    copy: "Boundaries that clarify ownership and keep systems understandable and replaceable.",
+  },
+  {
+    icon: Gauge,
+    number: "03",
+    title: "Engineering leverage",
+    copy: "Performance work, migration strategy, shared foundations, and knowledge that teams can reuse.",
+  },
+];
+
 const method = [
+  ["01", "Workflow", "What must the user accomplish?"],
+  ["02", "Constraint", "What creates genuine pressure?"],
+  ["03", "Ownership", "Which system owns the responsibility?"],
+  ["04", "Mechanism", "What is the smallest sufficient design?"],
+  ["05", "Evidence", "How will we know it worked?"],
+];
+
+const evidence = [
   [
-    "01",
-    "Understand the workflow",
-    "Find the user task and the business invariant before discussing implementation.",
+    "300,000+",
+    "users",
+    "Product decisions made for meaningful operational scale.",
   ],
   [
-    "02",
-    "Locate the constraint",
-    "Separate real scale, security, delivery, and organizational pressure from imagined complexity.",
+    "15+",
+    "applications",
+    "Migration work that preserved delivery while foundations changed.",
   ],
   [
-    "03",
-    "Define ownership",
-    "Give data, state, events, and lifecycle responsibilities an explicit home.",
+    "3×",
+    "rendering",
+    "A measured improvement produced through targeted performance work.",
   ],
-  [
-    "04",
-    "Choose the mechanism",
-    "Select the smallest design that can provide the required guarantee.",
-  ],
-  [
-    "05",
-    "Measure and explain",
-    "Verify the outcome and turn the lesson into knowledge the next engineer can reuse.",
-  ],
+];
+
+const principles = [
+  "Product pressure should determine architecture.",
+  "Ownership should be visible in code and interfaces.",
+  "Performance work needs measurements.",
+  "Replaceability is a product capability.",
+  "Knowledge should survive the person who discovered it.",
 ];
 
 export default function AboutPage() {
   return (
-    <main className="route-main">
-      <PageIntro
-        eyebrow="About / Engineer and educator"
-        title={
-          <>
-            Implementation is
-            <br />
-            only one part.
-          </>
-        }
-        description="I work between product engineering and architecture: shipping the workflow, improving the system underneath it, and making the reasoning visible to the team."
-      />
-      <section className="about-story">
-        <div>
-          <p className="eyebrow">Professional focus</p>
-          <h2>Complex products need clear boundaries.</h2>
-        </div>
-        <div>
+    <main className="route-main about-page">
+      <section className="about-hero">
+        <div className="about-hero-copy">
+          <p className="eyebrow">About / Product engineer and architect</p>
+          <h1>
+            I turn complex workflows into systems teams can safely evolve.
+          </h1>
           <p>
-            I am a Senior Frontend and Product Engineer with 6+ years of
-            experience building React and TypeScript systems shaped by real
-            operational complexity.
+            I’m a Senior Frontend and Product Engineer working across interface
+            architecture, platform boundaries, performance, and delivery. I
+            build the product, improve the system beneath it, and make the
+            reasoning reusable.
           </p>
-          <p>
-            My strongest work sits where user workflows, data ownership,
-            performance, permissions, and long-lived delivery meet. I care about
-            architecture because it changes how safely people can ship—not
-            because diagrams look impressive.
-          </p>
-        </div>
-      </section>
-      <section className="route-section method-section">
-        <div className="route-section-heading">
-          <div>
-            <p className="eyebrow">Working model</p>
-            <h2>From ambiguity to a defensible decision.</h2>
+          <div className="about-proof-line" aria-label="Professional focus">
+            <span>Product engineering</span>
+            <span>Frontend architecture</span>
+            <span>Engineering knowledge</span>
           </div>
         </div>
-        <div className="method-list">
-          {method.map(([number, title, copy]) => (
+        <div
+          className="about-portrait"
+          aria-label="Portrait of Dmitrii Lobanov"
+        >
+          <div className="about-portrait-grid" aria-hidden="true" />
+          <span className="about-portrait-label">Engineer / educator</span>
+          <Image
+            src="/my-photo-no-bg-amazed.png"
+            alt="Dmitrii Lobanov"
+            width={1129}
+            height={944}
+            className="about-portrait-image"
+            priority
+          />
+          <div className="about-portrait-status">
+            <i /> Building systems and explaining why
+          </div>
+        </div>
+      </section>
+
+      <section className="about-surface about-focus">
+        <header className="about-heading">
+          <div>
+            <p className="eyebrow">01 / Where I do my best work</p>
+            <h2>Product pressure becomes an engineering shape.</h2>
+          </div>
+          <p>
+            My strongest work sits where user workflows, data ownership,
+            performance, permissions, and long-lived delivery meet.
+          </p>
+        </header>
+        <div className="about-focus-grid">
+          {focus.map(({ icon: Icon, number, title, copy }) => (
             <article key={number}>
-              <span>{number}</span>
+              <div className="about-focus-visual" aria-hidden="true">
+                <Icon size={30} />
+                <span>
+                  <i />
+                  <i />
+                  <i />
+                </span>
+              </div>
+              <span className="about-number">{number}</span>
               <h3>{title}</h3>
               <p>{copy}</p>
             </article>
           ))}
         </div>
       </section>
-      <section className="route-section experience-summary">
-        <div className="route-section-heading">
+
+      <section className="about-surface about-method">
+        <header className="about-heading">
           <div>
-            <p className="eyebrow">Experience</p>
-            <h2>Built through production pressure.</h2>
+            <p className="eyebrow">02 / Working model</p>
+            <h2>From ambiguity to a defensible decision.</h2>
           </div>
+          <p>
+            Architecture starts with the guarantee a product needs—not with a
+            preferred library or an impressive diagram.
+          </p>
+        </header>
+        <div className="about-method-track">
+          <div className="about-method-signal" aria-hidden="true">
+            <i />
+          </div>
+          {method.map(([number, title, copy]) => (
+            <article key={number}>
+              <span>{number}</span>
+              <i aria-hidden="true" />
+              <h3>{title}</h3>
+              <p>{copy}</p>
+            </article>
+          ))}
         </div>
-        <article>
+      </section>
+
+      <section className="about-surface about-experience">
+        <header className="about-heading">
+          <div>
+            <p className="eyebrow">03 / Production evidence</p>
+            <h2>Built through real operational pressure.</h2>
+          </div>
+          <p>
+            Six-plus years of React and TypeScript work shaped by users,
+            migrations, delivery constraints, and systems that had to keep
+            running while they changed.
+          </p>
+        </header>
+        <div className="about-role">
           <div>
             <span>2021 — 2026</span>
             <strong>Tinkoff / T-Bank</strong>
@@ -97,35 +187,87 @@ export default function AboutPage() {
             <h3>Senior Frontend Engineer</h3>
             <p>
               Built and evolved a large CPA platform spanning partner and
-              internal operational products. Worked across architecture,
+              internal operational products, working across architecture,
               performance, design foundations, real-time workflows, complex data
               interfaces, and migration strategy.
             </p>
+            <Link className="route-link" href="/work/cpa-platform">
+              See the production case study <ArrowRight size={16} />
+            </Link>
           </div>
-          <ul>
-            <li>300,000+ users</li>
-            <li>15+ applications migrated</li>
-            <li>3× rendering improvement</li>
-          </ul>
-        </article>
-        <div className="contribution-grid">
+        </div>
+        <div className="about-evidence-grid">
+          {evidence.map(([value, label, copy]) => (
+            <article key={value}>
+              <strong>{value}</strong>
+              <span>{label}</span>
+              <p>{copy}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="about-surface about-knowledge">
+        <header className="about-heading">
           <div>
+            <p className="eyebrow">04 / Engineering knowledge</p>
+            <h2>The work becomes more valuable when the reasoning travels.</h2>
+          </div>
+          <p>
+            I turn production lessons into explanations other engineers can
+            question, apply, and improve.
+          </p>
+        </header>
+        <div className="about-contribution-grid">
+          <article>
+            <MessageSquareText size={28} />
             <span>Speaking</span>
             <h3>Technical meetup speaker</h3>
             <p>
-              Shared practical lessons about state management, bundlers,
-              architecture, performance, and long-term maintainability.
+              Translated production lessons into practical guidance on state,
+              performance, tooling, architecture, and maintainability.
             </p>
-          </div>
-          <div>
+          </article>
+          <article>
+            <GraduationCap size={28} />
             <span>Mentoring</span>
             <h3>Graduate project mentor</h3>
             <p>
-              Guided students from product idea to a production-oriented
-              full-stack React application.
+              Helped students move from a product idea through system
+              boundaries, implementation, deployment, and technical explanation.
             </p>
-          </div>
+          </article>
+          <article className="about-principles">
+            <BookOpen size={28} />
+            <span>Operating principles</span>
+            <ul>
+              {principles.map((principle) => (
+                <li key={principle}>{principle}</li>
+              ))}
+            </ul>
+          </article>
         </div>
+      </section>
+
+      <section className="about-cta">
+        <div>
+          <p className="eyebrow">05 / Start a conversation</p>
+          <h2>
+            Building a product with difficult workflows or architectural
+            pressure?
+          </h2>
+        </div>
+        <nav aria-label="About page actions">
+          <Link href="/work">
+            View selected work <ArrowRight size={17} />
+          </Link>
+          <Link href="/thinking">
+            Read technical writing <ArrowRight size={17} />
+          </Link>
+          <Link href="/contact" className="about-primary-action">
+            Let’s talk <ArrowRight size={17} />
+          </Link>
+        </nav>
       </section>
       <SiteFooter />
     </main>
