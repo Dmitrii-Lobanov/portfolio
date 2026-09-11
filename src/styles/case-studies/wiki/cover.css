@@ -1,0 +1,59 @@
+/* Final wiki hero spacing overrides: generic route rules are declared earlier. */
+section.project-detail-hero.wiki-detail-hero {
+  padding: 48px clamp(42px, 4.8vw, 76px) 42px;
+}
+section.wiki-detail-hero .project-detail-title {
+  grid-template-columns: minmax(0, 0.92fr) minmax(500px, 1.08fr);
+  gap: 28px clamp(42px, 4vw, 68px);
+}
+section.wiki-detail-hero .project-detail-title > div:first-child,
+section.wiki-detail-hero .project-detail-title > p {
+  position: relative;
+  z-index: 2;
+  min-width: 0;
+}
+section.wiki-detail-hero .project-detail-title h1 {
+  max-width: 660px;
+  font-size: clamp(62px, 6.8vw, 102px);
+  overflow-wrap: normal;
+}
+section.wiki-detail-hero .work-project-instrument {
+  min-width: 0;
+}
+section.wiki-detail-hero .project-facts {
+  margin-top: 58px;
+}
+@media (max-width: 1000px) {
+  section.project-detail-hero.wiki-detail-hero {
+    padding: 112px clamp(26px, 6vw, 52px) 34px;
+  }
+  section.wiki-detail-hero .project-detail-title {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  section.wiki-detail-hero .project-detail-title h1 {
+    max-width: 780px;
+    font-size: clamp(58px, 11vw, 94px);
+  }
+}
+@media (max-width: 680px) {
+  section.project-detail-hero.wiki-detail-hero {
+    padding: 104px 22px 28px;
+  }
+  section.wiki-detail-hero .project-detail-title h1 {
+    font-size: clamp(48px, 17vw, 72px);
+  }
+  section.wiki-detail-hero .project-facts {
+    margin-top: 38px;
+  }
+}
+/* Wiki opening spread follows the established Kanban editorial proportions. */
+.project-detail .wiki-problem {
+  grid-template-columns: minmax(300px, 0.72fr) minmax(620px, 1.28fr);
+  gap: clamp(48px, 7vw, 100px);
+  align-items: center;
+  padding: clamp(52px, 6vw, 82px) clamp(28px, 5vw, 72px);
+}
+.project-detail .wiki-problem-copy h2 {
+  margin: 18px 0 24px;
+}

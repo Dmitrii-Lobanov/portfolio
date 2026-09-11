@@ -1,0 +1,135 @@
+/* Final CPA case-file palette overrides (kept after legacy responsive rules). */
+.project-detail .cpa-overview,
+.project-detail .cpa-architecture-section {
+  color: var(--ink);
+  border: 1px solid rgba(31, 91, 104, 0.18);
+  background:
+    radial-gradient(circle at 90% 8%, rgba(54, 195, 209, 0.1), transparent 25%),
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.97),
+      rgba(235, 245, 246, 0.92)
+    );
+  box-shadow:
+    0 12px 0 rgba(39, 106, 117, 0.1),
+    0 28px 60px rgba(9, 39, 48, 0.08);
+}
+.project-detail .cpa-section-heading > p,
+.project-detail .surface-title p {
+  color: var(--muted);
+}
+.project-detail .surface-map {
+  gap: 20px;
+  grid-template-columns: 1fr 130px 1fr;
+  perspective: 1200px;
+}
+.project-detail .surface-map > article {
+  border-color: rgba(31, 91, 104, 0.16);
+  background: rgba(255, 255, 255, 0.74);
+  color: var(--ink);
+  box-shadow:
+    0 9px 0 rgba(39, 106, 117, 0.1),
+    0 22px 40px rgba(9, 39, 48, 0.07),
+    inset 0 1px 0 #fff;
+  transition:
+    transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 0.45s ease;
+}
+.project-detail .surface-map > article:first-child {
+  transform: rotateY(4deg) rotateX(1deg);
+}
+.project-detail .surface-map > article:last-child {
+  transform: rotateY(-4deg) rotateX(1deg);
+}
+.project-detail .surface-map > article:hover {
+  transform: translateY(-7px) rotateY(0);
+}
+.project-detail .domain-cloud span {
+  border-color: rgba(31, 91, 104, 0.16);
+  color: var(--ink);
+  background: rgba(234, 245, 246, 0.78);
+}
+.project-detail .surface-bridge {
+  color: var(--muted);
+}
+.project-detail .surface-bridge i {
+  width: 3px;
+  border-radius: 9px;
+  background: linear-gradient(var(--cyan), var(--acid));
+  box-shadow: 0 0 16px rgba(54, 195, 209, 0.32);
+}
+.project-detail .surface-bridge strong {
+  color: var(--cyan-dark);
+}
+.project-detail .cpa-data-flow article {
+  border-color: rgba(31, 91, 104, 0.18);
+  background: linear-gradient(145deg, #fff, #e8f3f4);
+  color: var(--ink);
+  box-shadow:
+    0 8px 0 rgba(39, 106, 117, 0.1),
+    0 18px 32px rgba(9, 39, 48, 0.07);
+}
+.project-detail .cpa-data-flow article span,
+.project-detail .state-caption,
+.project-detail .state-ownership article > span,
+.project-detail .state-ownership article b {
+  color: var(--muted);
+}
+.project-detail .state-ownership {
+  border-color: rgba(31, 91, 104, 0.18);
+}
+.project-detail .state-ownership article {
+  border-color: rgba(31, 91, 104, 0.14);
+}
+.project-detail .state-ownership article > span {
+  color: var(--cyan-dark);
+}
+.project-detail .state-ownership article b {
+  color: var(--ink);
+}
+.project-detail .state-ownership article p {
+  color: var(--muted);
+}
+.project-detail .cpa-impact-strip {
+  padding: 20px;
+  gap: 12px;
+  border: 1px solid rgba(31, 91, 104, 0.17);
+  border-radius: 28px;
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.92),
+    rgba(232, 244, 246, 0.88)
+  );
+  box-shadow:
+    0 10px 0 rgba(39, 106, 117, 0.1),
+    0 26px 48px rgba(9, 39, 48, 0.07);
+}
+.project-detail .cpa-impact-strip article {
+  min-height: 210px;
+  padding: 26px;
+  border: 1px solid rgba(31, 91, 104, 0.14);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow:
+    0 6px 0 rgba(39, 106, 117, 0.08),
+    inset 0 1px 0 #fff;
+}
+.project-detail .cpa-impact-strip strong {
+  background: linear-gradient(100deg, var(--cyan-dark), var(--acid));
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+@media (max-width: 900px) {
+  .project-detail .surface-map {
+    grid-template-columns: 1fr;
+  }
+  .project-detail .surface-bridge {
+    min-height: 120px;
+    flex-direction: row;
+  }
+  .project-detail .surface-bridge i {
+    width: 54px;
+    height: 3px;
+  }
+}

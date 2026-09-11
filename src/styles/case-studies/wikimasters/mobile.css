@@ -1,0 +1,19 @@
+@media (max-width: 680px) {
+  section.project-detail-hero:where(.wm-detail .project-detail-hero),
+  .project-detail.wm-detail > .wm-section,
+  .project-detail.wm-detail > .project-outcome {
+    width: calc(100% - 12px);
+    padding: 44px 22px;
+    border-radius: 20px;
+  }
+
+  section.project-detail-hero:where(.wm-detail .project-detail-hero) {
+    min-height: auto;
+    margin-bottom: 28px;
+  }
+
+  .wm-detail .wm-section h2,
+  .wm-detail .project-outcome h2 {
+    font-size: clamp(42px, 13vw, 60px);
+  }
+}

@@ -1,0 +1,106 @@
+/* Polaris stays light: cyan and orange are signals, never panel fills. */
+.work-project-grid .work-project-polaris {
+  --card-edge: #cfdcda;
+  --card-shadow: rgba(54, 68, 64, 0.12);
+  border-color: rgba(84, 112, 108, 0.2);
+  background:
+    radial-gradient(
+      circle at 82% 24%,
+      rgba(247, 185, 71, 0.13),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 14% 78%,
+      rgba(238, 100, 57, 0.08),
+      transparent 26%
+    ), linear-gradient(145deg, #fffefa, #f2f1ea);
+  box-shadow:
+    inset 0 2px 0 rgba(255, 255, 255, 0.92),
+    0 var(--work-depth) 0 #d3dedc,
+    0 24px 38px rgba(42, 58, 54, 0.12);
+  color: var(--ink);
+}
+.work-project-grid .work-project-polaris .work-project-head,
+.work-project-grid .work-project-polaris .work-project-copy > p,
+.work-project-grid .work-project-polaris .work-project-evidence span,
+.work-project-grid .work-project-polaris .work-project-foot {
+  color: var(--muted);
+}
+.work-project-grid .work-project-polaris .work-project-evidence strong,
+.work-project-grid .work-project-polaris .work-project-foot span:nth-child(2) {
+  color: var(--cyan-dark);
+}
+.work-project-grid .work-project-polaris .work-project-evidence {
+  border-color: rgba(69, 104, 102, 0.16);
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.94), #f0eee6);
+  box-shadow:
+    inset 1px 2px 0 #fff,
+    inset -1px -2px 0 rgba(91, 80, 64, 0.05),
+    4px 5px 0 rgba(202, 212, 208, 0.74);
+}
+.work-project-grid .work-project-polaris .work-project-foot {
+  border-top-color: rgba(64, 91, 88, 0.16);
+}
+.work-project-grid .work-project-polaris .route-link,
+.work-project-grid
+  .work-project-polaris
+  .route-link:is(:hover, :focus-visible) {
+  color: var(--ink);
+  -webkit-text-fill-color: var(--ink);
+}
+.work-project-grid .work-project-polaris .route-link span {
+  color: var(--ink);
+  -webkit-text-fill-color: var(--ink);
+}
+.work-project-grid
+  .work-project-polaris
+  .route-link:is(:hover, :focus-visible)
+  span {
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+.work-project-grid .work-project-polaris .work-project-instrument {
+  border-color: rgba(67, 133, 130, 0.22);
+  background:
+    linear-gradient(rgba(103, 99, 87, 0.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(103, 99, 87, 0.055) 1px, transparent 1px),
+    linear-gradient(145deg, #fffefa, #eeeae0);
+  background-size:
+    25px 25px,
+    25px 25px,
+    auto;
+  box-shadow:
+    inset 2px 2px 0 #fff,
+    inset -1px -2px 0 rgba(91, 80, 64, 0.06),
+    9px 11px 0 #ced8d5,
+    0 24px 38px rgba(42, 58, 54, 0.13);
+}
+.work-project-polaris .work-art-halo {
+  background: radial-gradient(
+    circle,
+    rgba(247, 185, 71, 0.22),
+    rgba(238, 100, 57, 0.07) 42%,
+    transparent 70%
+  );
+}
+.work-project-polaris .work-art-workspace > span {
+  border-color: rgba(80, 108, 104, 0.17);
+  background: linear-gradient(145deg, #fff, #eeeae2);
+  box-shadow:
+    inset 1px 1px 0 #fff,
+    3px 4px 0 rgba(193, 204, 200, 0.62);
+}
+.work-project-polaris .work-art-workspace > div {
+  border: 1px solid rgba(85, 103, 94, 0.17);
+  background: linear-gradient(145deg, #fffaf0, #e8e3d9);
+  box-shadow:
+    inset 1px 1px 0 #fff,
+    5px 6px 0 #c9d2cf,
+    0 12px 20px rgba(62, 72, 66, 0.1);
+}
+.work-project-polaris .work-art-workspace > div i {
+  background: linear-gradient(90deg, var(--cyan), #e7b84f);
+}
+.work-project-polaris .work-art-workspace > div i:nth-child(3) {
+  background: linear-gradient(90deg, #efb84b, var(--orange));
+}

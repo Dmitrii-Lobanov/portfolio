@@ -1,0 +1,155 @@
+.project-detail-hero {
+  min-height: 650px;
+  padding: 75px 0 90px;
+  display: flex;
+  flex-direction: column;
+}
+.project-detail-title {
+  margin-top: auto;
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 80px;
+  align-items: end;
+}
+.project-detail-title h1,
+.case-file-hero h1 {
+  margin: 18px 0 0;
+  font-size: clamp(64px, 8vw, 108px);
+  line-height: 0.9;
+  letter-spacing: -0.075em;
+  font-weight: 560;
+}
+.project-detail-title > p {
+  color: var(--muted);
+  line-height: 1.65;
+  font-size: 16px;
+}
+.project-facts {
+  margin: 72px 0 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid var(--line);
+}
+.project-facts div {
+  padding: 16px 10px 0 0;
+}
+.project-facts dt {
+  color: var(--muted);
+  font: 9px var(--font-geist-mono);
+  text-transform: uppercase;
+}
+.project-facts dd {
+  margin: 7px 0 0;
+  font-size: 13px;
+}
+.project-system-section {
+  width: min(calc(100% - 12px), 1400px);
+  margin: 0 auto;
+  padding: 100px max(24px, calc((100% - 1200px) / 2));
+  border-radius: var(--radius-section);
+  background: var(--dark);
+  color: var(--dark-text);
+}
+.project-context {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 70px;
+  align-items: end;
+}
+.project-context-copy {
+  color: rgba(234, 242, 244, 0.65);
+  line-height: 1.7;
+}
+.detail-system-map {
+  margin-top: 95px;
+  padding: 30px;
+  border: 1px solid rgba(234, 242, 244, 0.19);
+  border-radius: var(--radius-panel);
+  background: rgba(255, 255, 255, 0.025);
+}
+.detail-system-caption {
+  padding-bottom: 22px;
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+  border-bottom: 1px solid rgba(234, 242, 244, 0.14);
+  color: rgba(234, 242, 244, 0.55);
+  font: 8px var(--font-geist-mono);
+  text-transform: uppercase;
+}
+.detail-system-flow {
+  padding: 65px 0 40px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
+.detail-system-flow div {
+  display: flex;
+  align-items: center;
+}
+.detail-system-flow span {
+  flex: 1;
+  min-height: 74px;
+  padding: 15px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(234, 242, 244, 0.22);
+  text-align: center;
+  font: 9px var(--font-geist-mono);
+}
+.detail-system-flow svg {
+  width: 28px;
+  color: var(--cyan);
+}
+.decision-stack {
+  border-top: 1px solid var(--line);
+}
+.decision-band {
+  padding: 28px 0;
+  display: grid;
+  grid-template-columns: 45px 1.2fr 1.4fr 1fr 1.2fr;
+  gap: 20px;
+  border-bottom: 1px solid var(--line);
+}
+.decision-band > span {
+  color: var(--acid-dark);
+  font: 10px var(--font-geist-mono);
+}
+.decision-band div {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.decision-band small {
+  color: var(--muted);
+  font: 8px var(--font-geist-mono);
+  text-transform: uppercase;
+}
+.decision-band strong,
+.decision-band p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.5;
+}
+.decision-band p {
+  color: var(--muted);
+}
+.project-outcome {
+  width: min(calc(100% - 12px), 1400px);
+  margin: 0 auto;
+  padding: 110px max(24px, calc((100% - 1200px) / 2));
+  border-radius: var(--radius-section);
+  background: var(--dark);
+  color: var(--dark-text);
+}
+.project-outcome h2 {
+  max-width: 950px;
+  margin: 28px 0 70px;
+  font-size: clamp(48px, 6vw, 82px);
+  line-height: 0.96;
+  letter-spacing: -0.065em;
+}
+.project-actions {
+  display: flex;
+  gap: 28px;
+  flex-wrap: wrap;
+}

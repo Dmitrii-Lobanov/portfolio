@@ -1,0 +1,509 @@
+@media (max-width: 900px) {
+  .nav-links {
+    display: none;
+  }
+  .site-header nav {
+    grid-template-columns: 1fr auto;
+  }
+  .hero-grid,
+  .section-heading,
+  .case-study-intro,
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+  .hero-grid {
+    gap: 24px;
+    padding-top: 60px;
+  }
+  .hero-identity,
+  .hero-details,
+  .portrait-island {
+    grid-column: auto;
+  }
+  .hero-identity {
+    grid-row: 1;
+  }
+  .portrait-island {
+    grid-row: 2;
+  }
+  .hero-details {
+    grid-row: 3;
+  }
+  .system-orbit {
+    justify-self: center;
+    max-width: 360px;
+  }
+  .portrait-island {
+    min-height: 600px;
+    width: min(100%, 500px);
+    justify-self: center;
+  }
+  .impact-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .impact-item:nth-child(2) {
+    border-right: 0;
+  }
+  .impact-item:nth-child(-n + 2) {
+    border-bottom: 1px solid var(--line);
+  }
+  .impact-item:first-child,
+  .impact-item:nth-child(3) {
+    padding-left: 0;
+  }
+  .section-heading {
+    gap: 28px;
+  }
+  .work-grid {
+    grid-template-columns: 1fr;
+  }
+  .work-card-featured {
+    grid-column: auto;
+  }
+  .principles-list article {
+    grid-template-columns: 45px 1fr;
+  }
+  .principles-list p,
+  .principles-list small {
+    grid-column: 2;
+    justify-self: start;
+  }
+  .article-row {
+    grid-template-columns: 40px 1fr 35px;
+  }
+  .article-meta {
+    grid-column: 2;
+    flex-direction: row;
+  }
+  .article-copy {
+    grid-column: 2;
+  }
+  .article-arrow {
+    grid-column: 3;
+    grid-row: 1 / span 3;
+  }
+  .experience-row {
+    grid-template-columns: 1fr 2fr;
+  }
+  .experience-copy {
+    grid-column: 2;
+  }
+  .visual-story-grid {
+    grid-template-columns: 1fr;
+  }
+  .state-lanes {
+    grid-template-columns: 1fr 1fr;
+  }
+  .lab-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .lab-card {
+    min-height: 0;
+  }
+  .writing-constellation {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+  .writing-constellation i {
+    display: none;
+  }
+}
+
+/* Kanban case file: a quiet live board, with motion concentrated in the system art. */
+
+.kanban-detail-hero .work-project-instrument {
+  isolation: isolate;
+  transition:
+    transform 700ms cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 700ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.kanban-detail-hero .work-project-instrument::before {
+  content: "";
+  position: absolute;
+  inset: 12% 8%;
+  z-index: -1;
+  border: 1px solid rgba(53, 192, 204, 0.2);
+  border-radius: 50%;
+  transform: rotate(-12deg) scale(0.72);
+  opacity: 0.5;
+  animation: kanban-detail-orbit 12s ease-in-out infinite;
+}
+
+.kanban-detail-hero .work-project-instrument::after {
+  content: "LIVE BOARD / OPTIMISTIC STATE";
+  position: absolute;
+  top: 22px;
+  right: 24px;
+  color: rgba(24, 93, 104, 0.58);
+  font: 600 10px / 1 var(--font-mono, monospace);
+  letter-spacing: 0.16em;
+  pointer-events: none;
+  animation: kanban-detail-label 4s ease-in-out infinite;
+}
+
+.kanban-detail-hero .work-project-instrument:hover {
+  transform: rotate(-1.5deg) translateY(-7px) scale(1.012);
+  box-shadow:
+    0 12px 0 rgba(156, 190, 193, 0.48),
+    0 30px 45px rgba(18, 72, 81, 0.16),
+    0 0 0 1px rgba(53, 192, 204, 0.12);
+}
+
+.kanban-detail-hero .work-art-kanban-column {
+  animation: kanban-column-breathe 5.8s ease-in-out infinite;
+}
+
+.kanban-detail-hero .work-art-kanban-column:nth-child(2) {
+  animation-delay: -1.2s;
+}
+
+.kanban-detail-hero .work-art-kanban-column:nth-child(3) {
+  animation-delay: -2.5s;
+}
+
+.kanban-detail-hero .work-art-kanban-column > i {
+  transition:
+    transform 500ms cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 500ms ease,
+    background 500ms ease;
+}
+
+.kanban-detail-hero .work-art-kanban-column:hover > i {
+  transform: translateY(-4px) rotate(-1deg);
+  background: linear-gradient(145deg, #fefefe, #dff3f2);
+  box-shadow: 0 8px 13px rgba(35, 108, 119, 0.16);
+}
+
+.kanban-detail-hero .work-art-kanban-active {
+  animation: kanban-card-signal 2.8s ease-in-out infinite;
+}
+
+.kanban-detail-hero .work-art-ribbon-cyan {
+  animation-duration: 8s;
+}
+
+.kanban-detail-hero .work-art-ribbon-orange {
+  animation-duration: 9.5s;
+  animation-delay: -2s;
+}
+
+@keyframes kanban-detail-orbit {
+  0%,
+  100% {
+    transform: rotate(-12deg) scale(0.72);
+    opacity: 0.38;
+  }
+  50% {
+    transform: rotate(5deg) scale(0.86);
+    opacity: 0.68;
+  }
+}
+
+@keyframes kanban-detail-label {
+  0%,
+  100% {
+    opacity: 0.55;
+    letter-spacing: 0.16em;
+  }
+  50% {
+    opacity: 0.9;
+    letter-spacing: 0.19em;
+  }
+}
+
+@keyframes kanban-column-breathe {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+@keyframes kanban-card-signal {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(53, 192, 204, 0);
+  }
+  50% {
+    box-shadow: 0 0 0 7px rgba(53, 192, 204, 0.14);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kanban-detail-hero .work-project-instrument::before,
+  .kanban-detail-hero .work-project-instrument::after,
+  .kanban-detail-hero .work-art-kanban-column,
+  .kanban-detail-hero .work-art-kanban-active {
+    animation: none;
+  }
+  .kanban-detail-hero .work-project-instrument,
+  .kanban-detail-hero .work-art-kanban-column > i {
+    transition: none;
+  }
+}
+
+@media (min-width: 621px) and (max-width: 900px) {
+  .hero-name span {
+    display: inline;
+    margin-left: 0.2em;
+  }
+}
+
+@media (max-width: 620px) {
+  .section::before {
+    width: 320px;
+    height: 320px;
+  }
+  .site-header {
+    padding: 10px;
+  }
+  .site-header nav {
+    min-height: 52px;
+    padding-left: 14px;
+  }
+  .nav-contact {
+    padding: 9px 12px;
+  }
+  .nav-social {
+    width: 36px;
+    height: 36px;
+  }
+  .hero-section,
+  .section {
+    width: calc(100% - 30px);
+  }
+  .hero-section {
+    padding-top: 100px;
+  }
+  .hero-grid {
+    padding: 34px 0 32px;
+  }
+  .hero-identity h1 {
+    font-size: clamp(48px, 15vw, 68px);
+  }
+  .hero-role {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 7px;
+  }
+  .hero-statement {
+    font-size: clamp(32px, 9.5vw, 38px);
+  }
+  .hero-actions {
+    flex-direction: column;
+  }
+  .button {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .system-orbit {
+    max-width: 300px;
+  }
+  .portrait-island {
+    min-height: 0;
+  }
+  .portrait-image {
+    position: relative;
+    inset: auto;
+    display: block;
+    height: auto;
+    object-fit: contain;
+    object-position: center;
+  }
+  .portrait-caption {
+    position: relative;
+    inset: auto;
+  }
+  .impact-item {
+    padding: 18px 12px;
+  }
+  .impact-item strong {
+    font-size: 30px;
+  }
+  .section {
+    padding: 84px 0;
+  }
+  .section-heading {
+    margin-bottom: 38px;
+  }
+  .section-heading h2,
+  .case-study-intro h2,
+  .contact-grid h2 {
+    font-size: clamp(40px, 12vw, 46px);
+  }
+  .work-card,
+  .work-card-featured {
+    min-height: 440px;
+  }
+  .work-visual {
+    min-height: 260px;
+    gap: 8px;
+  }
+  .flow-column {
+    flex-direction: column;
+  }
+  .flow-column-right {
+    flex-direction: column-reverse;
+  }
+  .flow-column i {
+    width: 1px;
+    min-height: 36px;
+  }
+  .flow-column i:after {
+    display: none;
+  }
+  .flow-hub {
+    width: 100px;
+    height: 100px;
+    font-size: 10px;
+  }
+  .work-card-copy {
+    grid-template-columns: 32px 1fr;
+  }
+  .metric-chart {
+    padding: 20px 2px;
+  }
+  .migration-visual {
+    gap: 12px;
+  }
+  .app-cloud {
+    width: 115px;
+  }
+  .mono-repo {
+    width: 105px;
+    height: 105px;
+  }
+  .editorial-feature-section {
+    width: calc(100% - 12px);
+    padding: 90px 20px;
+    border-radius: 18px;
+  }
+  .case-steps article {
+    grid-template-columns: 38px 1fr;
+    gap: 10px;
+  }
+  .architecture-panel {
+    padding: 14px;
+  }
+  .architecture-caption span {
+    display: none;
+  }
+  .arch-layer span {
+    padding: 13px 5px;
+    font-size: 8px;
+  }
+  .arch-connector {
+    height: 58px;
+  }
+  .case-study-footer {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .principles-list article {
+    grid-template-columns: 35px 1fr;
+    gap: 15px;
+  }
+  .article-row {
+    grid-template-columns: 28px 1fr 25px;
+    gap: 10px;
+  }
+  .experience-row {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  .experience-copy {
+    grid-column: auto;
+  }
+  .contact-grid {
+    gap: 45px;
+    padding-bottom: 80px;
+  }
+  .contact-email {
+    font-size: 12px;
+  }
+  .contact-section footer {
+    flex-direction: column;
+    gap: 8px;
+  }
+  .scope-map-head {
+    display: none;
+  }
+  .scope-track {
+    min-height: 0;
+    padding: 18px 0;
+    grid-template-columns: 26px 1fr;
+    gap: 7px 12px;
+  }
+  .scope-track strong {
+    grid-column: 2;
+  }
+  .scope-track svg {
+    display: none;
+  }
+  .case-visual-suite {
+    margin-top: 60px;
+  }
+  .topology-card,
+  .performance-card,
+  .state-map-card {
+    padding: 16px;
+  }
+  .visual-card-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .topology-map {
+    grid-template-columns: 1fr;
+  }
+  .topology-line {
+    display: none;
+  }
+  .topology-surface,
+  .topology-platform {
+    grid-column: 1;
+  }
+  .topology-platform {
+    flex-direction: column;
+  }
+  .timing-row {
+    grid-template-columns: 70px 1fr 44px;
+  }
+  .performance-path {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .performance-path svg {
+    transform: rotate(90deg);
+  }
+  .state-lanes {
+    grid-template-columns: 1fr;
+  }
+  .state-lanes > div {
+    min-height: 170px;
+  }
+  .decision-matrix-head {
+    display: none;
+  }
+  .decision-row {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .decision-row strong {
+    margin-bottom: 4px;
+  }
+  .lab-card h3 {
+    font-size: 30px;
+  }
+  .lab-grid {
+    grid-template-columns: 1fr;
+  }
+  .writing-constellation {
+    margin-top: -8px;
+    padding: 16px;
+    grid-template-columns: 1fr;
+  }
+}

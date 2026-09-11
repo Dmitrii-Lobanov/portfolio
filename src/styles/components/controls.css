@@ -1,0 +1,119 @@
+/* Glossy molded action controls */
+.button-tactile {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid #a92f17;
+  border-radius: 12px;
+  background:
+    radial-gradient(
+      ellipse 90% 75% at 50% -8%,
+      rgba(255, 174, 146, 0.78) 0%,
+      rgba(239, 83, 46, 0.3) 46%,
+      transparent 70%
+    ), linear-gradient(180deg, #f45d38 0%, #e54524 48%, #c93419 100%);
+  box-shadow:
+    inset 0 2px 0 rgba(255, 255, 255, 0.72),
+    inset 2px 0 0 rgba(255, 142, 108, 0.34),
+    inset -2px 0 0 rgba(120, 29, 12, 0.28),
+    inset 0 -4px 0 #9d2914,
+    inset 0 -8px 12px rgba(112, 23, 9, 0.3);
+  transform: none;
+}
+.button-tactile::before {
+  position: absolute;
+  top: 3px;
+  right: 7px;
+  left: 7px;
+  height: 42%;
+  border-top: 1px solid rgba(255, 255, 255, 0.88);
+  border-radius: 9px 9px 50% 50%;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.34),
+    rgba(255, 255, 255, 0.06) 78%,
+    transparent
+  );
+  content: "";
+  pointer-events: none;
+}
+.button-tactile:hover {
+  border-color: #982812;
+  background:
+    radial-gradient(
+      ellipse 90% 75% at 50% -8%,
+      rgba(255, 190, 164, 0.82) 0%,
+      rgba(245, 92, 53, 0.32) 46%,
+      transparent 70%
+    ), linear-gradient(180deg, #fa6841 0%, #eb4b29 48%, #cf381c 100%);
+  box-shadow:
+    inset 0 2px 0 rgba(255, 255, 255, 0.78),
+    inset 2px 0 0 rgba(255, 151, 117, 0.38),
+    inset -2px 0 0 rgba(120, 29, 12, 0.28),
+    inset 0 -4px 0 #962611,
+    inset 0 -8px 12px rgba(112, 23, 9, 0.28);
+  filter: none;
+  transform: translateY(-1px);
+}
+.button-tactile:active {
+  background: linear-gradient(180deg, #cf381d 0%, #e24625 100%);
+  box-shadow:
+    inset 0 3px 7px rgba(102, 21, 8, 0.42),
+    inset 0 -2px 0 rgba(255, 126, 89, 0.32);
+  transform: translateY(1px) scale(0.985);
+}
+.screenbreak-text-link {
+  width: fit-content;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding-bottom: 7px;
+  border-bottom: 1px solid currentColor;
+  font-size: 13px;
+  font-weight: 700;
+}
+.screenbreak-text-link svg {
+  transition: transform 180ms ease;
+}
+.screenbreak-text-link:hover svg {
+  transform: translate(3px, -1px);
+}
+.screenbreak-text-link,
+.route-link,
+.text-link {
+  transition:
+    color 180ms ease,
+    border-color 180ms ease;
+}
+.screenbreak-text-link:is(:hover, :focus-visible),
+.route-link:is(:hover, :focus-visible),
+.text-link:is(:hover, :focus-visible) {
+  color: transparent;
+  background-image: linear-gradient(
+    105deg,
+    #12677b 0%,
+    var(--sb-cyan) 30%,
+    #f0a14c 55%,
+    var(--sb-orange) 76%,
+    #12677b 100%
+  );
+  background-size: 220% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  border-image: linear-gradient(90deg, var(--sb-cyan), var(--sb-orange)) 1;
+  animation: link-gradient-flow 2.8s ease-in-out infinite alternate;
+}
+.screenbreak-text-link:is(:hover, :focus-visible) svg,
+.route-link:is(:hover, :focus-visible) svg,
+.text-link:is(:hover, :focus-visible) svg {
+  color: var(--sb-orange);
+  -webkit-text-fill-color: initial;
+}
+@keyframes link-gradient-flow {
+  from {
+    background-position: 0% 50%;
+  }
+  to {
+    background-position: 100% 50%;
+  }
+}
