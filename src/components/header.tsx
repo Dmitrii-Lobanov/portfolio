@@ -72,7 +72,7 @@ export function Header() {
           </a>
           <Link
             href="/contact"
-            className={`nav-contact${pathname.startsWith("/contact") ? " is-active" : ""}`}
+            className={`button-tactile nav-contact${pathname.startsWith("/contact") ? " is-active" : ""}`}
             aria-current={pathname.startsWith("/contact") ? "page" : undefined}
           >
             Let&apos;s talk <span aria-hidden="true">↗</span>

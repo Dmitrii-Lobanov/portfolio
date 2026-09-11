@@ -82,7 +82,7 @@ const evidence = [
 export function WikiCaseStudy() {
   return (
     <>
-      <section className="wiki-problem">
+      <section className="wiki-section wiki-problem">
         <div className="wiki-problem-copy">
           <p className="eyebrow">01 / The problem</p>
           <h2>
@@ -143,27 +143,27 @@ export function WikiCaseStudy() {
               </circle>
             ))}
           </svg>
-          <span className="wiki-map-source wiki-map-docs">
+          <span className="wiki-map-node wiki-map-source wiki-map-docs">
             <b aria-hidden="true">{`{ }`}</b>
             Documentation
             <small>Source truth</small>
           </span>
-          <span className="wiki-map-source wiki-map-articles">
+          <span className="wiki-map-node wiki-map-source wiki-map-articles">
             <b aria-hidden="true">Aa</b>
             Articles
             <small>Deep context</small>
           </span>
-          <span className="wiki-map-source wiki-map-interviews">
+          <span className="wiki-map-node wiki-map-source wiki-map-interviews">
             <b aria-hidden="true">?</b>
             Interview prompts
             <small>Active recall</small>
           </span>
-          <span className="wiki-map-source wiki-map-courses">
+          <span className="wiki-map-node wiki-map-source wiki-map-courses">
             <b aria-hidden="true">▶</b>
             Courses
             <small>Guided practice</small>
           </span>
-          <div className="wiki-map-core">
+          <div className="wiki-map-node wiki-map-core">
             <small>Connected</small>
             <strong>Mental model</strong>
           </div>
@@ -177,7 +177,7 @@ export function WikiCaseStudy() {
         </div>
       </section>
 
-      <section className="wiki-learning">
+      <section className="wiki-section wiki-learning">
         <header>
           <p className="eyebrow">02 / The learning loop</p>
           <h2>One topic. Four useful ways to engage with it.</h2>
@@ -211,7 +211,7 @@ export function WikiCaseStudy() {
         </div>
       </section>
 
-      <section className="wiki-architecture">
+      <section className="wiki-section wiki-architecture">
         <div className="route-section-heading">
           <div>
             <p className="eyebrow">03 / Information architecture</p>
@@ -243,7 +243,7 @@ export function WikiCaseStudy() {
         </div>
       </section>
 
-      <section className="wiki-editorial">
+      <section className="wiki-section wiki-editorial">
         <header>
           <p className="eyebrow">04 / Editorial decisions</p>
           <h2>Content is designed as deliberately as an interface.</h2>
@@ -274,7 +274,7 @@ export function WikiCaseStudy() {
         </div>
       </section>
 
-      <section className="wiki-evidence">
+      <section className="wiki-section wiki-evidence">
         <div className="wiki-evidence-head">
           <p className="eyebrow">05 / Shape of the system</p>
           <h2>Evidence of structure - not vanity metrics</h2>

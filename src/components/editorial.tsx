@@ -44,7 +44,7 @@ export function ProjectCard({ project }: { project: Project }) {
         ))}
       </div>
       <p className="project-summary">{project.summary}</p>
-      <Link className="route-link" href={`/work/${project.slug}`}>
+      <Link className="action-link route-link" href={`/work/${project.slug}`}>
         View case study <ArrowRight size={16} aria-hidden="true" />
       </Link>
     </article>
@@ -63,7 +63,7 @@ export function ExternalAction({
       href={href}
       target="_blank"
       rel="noreferrer"
-      className="route-link gradient-action"
+      className="action-link route-link gradient-action"
     >
       <span>{children}</span> <ArrowUpRight size={16} aria-hidden="true" />
     </a>

@@ -44,7 +44,7 @@ const decisions = [
 export function WikiMastersArticle() {
   return (
     <div
-      className="wm-article"
+      className="wm-flow-panel wm-article"
       role="img"
       aria-label="Illustration of an authored article with an attached media asset and a supplemental AI summary"
     >
@@ -91,7 +91,7 @@ export function WikiMastersCaseStudy() {
             knowledge product.
           </p>
         </div>
-        <div className="wm-responsibilities">
+        <div className="wm-flow-panel wm-responsibilities">
           <header>
             <span className="wm-kicker">
               One article / clear responsibilities
@@ -131,7 +131,7 @@ export function WikiMastersCaseStudy() {
             summaries support different parts of the reading experience.
           </p>
         </header>
-        <div className="wm-lifecycle">
+        <div className="wm-flow-panel wm-lifecycle">
           <div className="wm-source">
             <BookOpen size={28} />
             <span className="wm-kicker">Authored content</span>

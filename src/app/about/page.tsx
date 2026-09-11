@@ -72,7 +72,7 @@ const principles = [
 export default function AboutPage() {
   return (
     <main className="route-main about-page">
-      <section className="about-hero">
+      <section className="about-section-surface about-hero">
         <div className="about-hero-copy">
           <p className="eyebrow">About / Product engineer and architect</p>
           <h1>
@@ -110,7 +110,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="about-surface about-focus">
+      <section className="about-section-surface about-surface about-focus">
         <header className="about-heading">
           <div>
             <p className="eyebrow">01 / Where I do my best work</p>
@@ -140,7 +140,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="about-surface about-method">
+      <section className="about-section-surface about-surface about-method">
         <header className="about-heading">
           <div>
             <p className="eyebrow">02 / Working model</p>
@@ -166,7 +166,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="about-surface about-experience">
+      <section className="about-section-surface about-surface about-experience">
         <header className="about-heading">
           <div>
             <p className="eyebrow">03 / Production evidence</p>
@@ -191,7 +191,7 @@ export default function AboutPage() {
               performance, design foundations, real-time workflows, complex data
               interfaces, and migration strategy.
             </p>
-            <Link className="route-link" href="/work/cpa-platform">
+            <Link className="action-link route-link" href="/work/cpa-platform">
               See the production case study <ArrowRight size={16} />
             </Link>
           </div>
@@ -207,7 +207,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="about-surface about-knowledge">
+      <section className="about-section-surface about-surface about-knowledge">
         <header className="about-heading">
           <div>
             <p className="eyebrow">04 / Engineering knowledge</p>
@@ -249,7 +249,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="about-cta">
+      <section className="about-section-surface about-cta">
         <div>
           <p className="eyebrow">05 / Start a conversation</p>
           <h2>

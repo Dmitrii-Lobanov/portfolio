@@ -41,7 +41,7 @@ export default async function ProjectPage({ params }: Props) {
       <section
         className={`project-detail-hero${project.slug === "cpa-platform" ? " cpa-detail-hero" : ""}${project.slug === "reliable-kanban" ? " kanban-detail-hero" : ""}${project.slug === "frontend-engineering-wiki" ? " wiki-detail-hero" : ""}${project.slug === "polaris" ? " polaris-detail-hero" : ""}`}
       >
-        <Link href="/work" className="back-link">
+        <Link href="/work" className="action-link back-link">
           <ArrowLeft size={15} /> All work
         </Link>
         <div className="project-detail-title">

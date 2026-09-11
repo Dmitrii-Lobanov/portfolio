@@ -88,7 +88,10 @@ export default function KnowledgeBasePage() {
           <ExternalAction href={externalLinks.wiki}>
             Open the wiki
           </ExternalAction>
-          <Link className="route-link" href="/work/frontend-engineering-wiki">
+          <Link
+            className="action-link route-link"
+            href="/work/frontend-engineering-wiki"
+          >
             Read the product case study →
           </Link>
         </div>

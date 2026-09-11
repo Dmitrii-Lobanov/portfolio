@@ -221,7 +221,7 @@ function WorkProject({
     <article
       className={`work-project work-project-${project.slug}${featured ? " work-project-featured" : ""}`}
     >
-      <header className="work-project-head">
+      <header className="work-project-meta work-project-head">
         <span>{project.label}</span>
         <span>{project.status}</span>
       </header>
@@ -233,14 +233,17 @@ function WorkProject({
             <strong>{evidence.signal}</strong>
             <span>{evidence.caption}</span>
           </div>
-          <Link className="route-link" href={`/work/${project.slug}`}>
+          <Link
+            className="action-link route-link"
+            href={`/work/${project.slug}`}
+          >
             <span>Open case study</span>
             <ArrowRight size={16} aria-hidden="true" />
           </Link>
         </div>
         <ProjectInstrument project={project} />
       </div>
-      <footer className="work-project-foot">
+      <footer className="work-project-meta work-project-foot">
         <span>{project.role}</span>
         <span>{evidence.focus}</span>
         <span>{project.period}</span>
@@ -338,7 +341,7 @@ export default function WorkPage() {
         </header>
         <div className="capability-console">
           <div
-            className="project-constellation"
+            className="system-grid-visual project-constellation"
             aria-label="Five connected portfolio projects"
             role="img"
           >
@@ -364,7 +367,7 @@ export default function WorkPage() {
           </div>
 
           <table
-            className="capability-matrix"
+            className="system-grid-visual capability-matrix"
             aria-label="Projects by engineering capability"
           >
             <thead>
@@ -467,7 +470,10 @@ export default function WorkPage() {
           <i />
           <span />
         </div>
-        <Link className="nav-contact work-route-cta-button" href="/contact">
+        <Link
+          className="button-tactile nav-contact work-route-cta-button"
+          href="/contact"
+        >
           Start a conversation <ArrowUpRight size={17} aria-hidden="true" />
         </Link>
       </section>

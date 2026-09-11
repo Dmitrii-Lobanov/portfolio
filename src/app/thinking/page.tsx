@@ -59,7 +59,10 @@ function WikiVisual() {
 
 function EdgeVisual() {
   return (
-    <div className="thinking-edge-visual" aria-hidden="true">
+    <div
+      className="thinking-preview-surface thinking-edge-visual"
+      aria-hidden="true"
+    >
       <div>
         <span>Incident</span>
         <strong>Duplicate event</strong>
@@ -80,7 +83,10 @@ function EdgeVisual() {
 
 function EssayVisual() {
   return (
-    <div className="thinking-essay-visual" aria-hidden="true">
+    <div
+      className="thinking-preview-surface thinking-essay-visual"
+      aria-hidden="true"
+    >
       <header>
         <i />
         <i />
@@ -134,19 +140,19 @@ export default function ThinkingPage() {
               </span>
             </header>
             <div className="thinking-refinery-stage">
-              <div className="thinking-refinery-input">
+              <div className="thinking-refinery-node thinking-refinery-input">
                 <small>Input</small>
                 <strong>Production question</strong>
                 <i />
                 <i />
                 <i />
               </div>
-              <div className="thinking-refinery-core">
+              <div className="thinking-refinery-node thinking-refinery-core">
                 <span>Engineering</span>
                 <strong>Reasoning</strong>
                 <i />
               </div>
-              <div className="thinking-refinery-output">
+              <div className="thinking-refinery-node thinking-refinery-output">
                 <small>Output</small>
                 <strong>Reusable knowledge</strong>
                 <i />

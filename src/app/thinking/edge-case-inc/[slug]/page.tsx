@@ -23,7 +23,7 @@ export default async function EdgeCasePage({ params }: Props) {
   return (
     <main className="route-main edge-case-detail">
       <section className="case-file-hero">
-        <Link href="/thinking/edge-case-inc" className="back-link">
+        <Link href="/thinking/edge-case-inc" className="action-link back-link">
           <ArrowLeft size={15} /> Edge Case Inc.
         </Link>
         <p className="eyebrow eyebrow-light">{item.number} / Incident file</p>

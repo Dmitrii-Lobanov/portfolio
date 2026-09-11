@@ -73,7 +73,7 @@ const decisions = [
 export function CpaCaseStudy() {
   return (
     <>
-      <section className="cpa-overview">
+      <section className="case-study-surface cpa-overview">
         <div className="cpa-section-heading">
           <div>
             <p className="eyebrow eyebrow-light">01 / Product system</p>
@@ -180,7 +180,7 @@ export function CpaCaseStudy() {
         </div>
       </section>
 
-      <section className="cpa-architecture-section">
+      <section className="case-study-surface cpa-architecture-section">
         <div className="cpa-section-heading">
           <div>
             <p className="eyebrow eyebrow-light">03 / Architecture</p>

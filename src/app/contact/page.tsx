@@ -37,7 +37,7 @@ const usefulContext = [
 export default function ContactPage() {
   return (
     <main className="route-main contact-page contact-editorial">
-      <section className="contact-hero-light">
+      <section className="contact-section-surface contact-hero-light">
         <div className="contact-hero-copy">
           <p className="eyebrow">Contact / Current signal: available</p>
           <h1>Let’s make the difficult part explicit.</h1>
@@ -89,7 +89,7 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <section className="contact-surface contact-fit">
+      <section className="contact-section-surface contact-surface contact-fit">
         <header className="contact-heading">
           <div>
             <p className="eyebrow">01 / Good conversations</p>
@@ -122,7 +122,7 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <section className="contact-surface contact-brief">
+      <section className="contact-section-surface contact-surface contact-brief">
         <header className="contact-heading">
           <div>
             <p className="eyebrow">02 / A useful first message</p>
@@ -144,7 +144,7 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <section className="contact-surface contact-channels">
+      <section className="contact-section-surface contact-surface contact-channels">
         <header className="contact-heading">
           <div>
             <p className="eyebrow">03 / Choose a channel</p>
@@ -196,7 +196,7 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <section className="contact-closing">
+      <section className="contact-section-surface contact-closing">
         <div>
           <p className="eyebrow">04 / Before you write</p>
           <h2>Want more context first?</h2>

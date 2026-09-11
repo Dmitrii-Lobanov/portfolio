@@ -82,7 +82,7 @@ export function KanbanCaseStudy() {
           role="img"
           aria-label="Task update lifecycle"
         >
-          <div className="kanban-panel-head">
+          <div className="kanban-panel-label kanban-panel-head">
             <span>Task update / reliability loop</span>
             <span>
               <i /> System observing
@@ -102,7 +102,7 @@ export function KanbanCaseStudy() {
               </div>
             ))}
           </div>
-          <div className="kanban-loop-result">
+          <div className="kanban-panel-label kanban-loop-result">
             <span>Client intent</span>
             <b />
             <span>Durable task state</span>

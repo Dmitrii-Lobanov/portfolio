@@ -234,7 +234,7 @@ export default function Home() {
             experiences.
           </p>
           <div className="screenbreak-actions">
-            <Link className="screenbreak-button" href="/work">
+            <Link className="button-tactile screenbreak-button" href="/work">
               Explore the work <ArrowRight size={17} aria-hidden="true" />
             </Link>
             <Link className="screenbreak-text-link" href="/contact">
@@ -340,7 +340,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="breakout-section">
+      <section className="project-showcase-section breakout-section">
         <BrowserBreakout />
         <div className="breakout-copy">
           <p className="screenbreak-kicker">01 / CPA platform</p>
@@ -355,7 +355,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="kanban-section">
+      <section className="project-showcase-section kanban-section">
         <div className="kanban-copy">
           <p className="screenbreak-kicker">02 / Public build</p>
           <h2>State you can feel</h2>
@@ -571,7 +571,7 @@ export default function Home() {
               </div>
             </dl>
             <Link
-              className="screenbreak-button contact-console-button"
+              className="button-tactile screenbreak-button contact-console-button"
               href="/contact"
             >
               Start the conversation
