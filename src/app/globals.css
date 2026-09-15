@@ -14,7 +14,13 @@
 @import "../styles/case-studies/cpa/surfaces.css";
 @import "../styles/home/actions.css";
 @import "../styles/components/controls.css";
-@import "../styles/home/scenes.css";
+@import "../styles/home/scenes/hero-impact.css";
+@import "../styles/home/scenes/duality.css";
+@import "../styles/home/scenes/cpa-scene.css";
+@import "../styles/home/scenes/kanban-scene.css";
+@import "../styles/home/scenes/incident-scene.css";
+@import "../styles/home/scenes/thinking-contact.css";
+@import "../styles/home/scenes/responsive.css";
 @import "../styles/shared/routes.css";
 @import "../styles/work/index.css";
 @import "../styles/work/artwork.css";

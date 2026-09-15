@@ -1,0 +1,330 @@
+@media (max-width: 900px) {
+  .screenbreak-hero {
+    grid-template-columns: 1fr;
+    min-height: 0;
+  }
+  .screenbreak-hero-copy {
+    padding-bottom: 10px;
+  }
+  .cutout-stage {
+    min-height: 580px;
+  }
+  .cutout-portrait {
+    width: min(760px, 110%);
+    right: 50%;
+    transform: translateX(50%);
+  }
+  .cutout-portrait-polished {
+    right: 50%;
+    bottom: 0;
+    width: min(680px, 108%);
+    height: auto;
+  }
+  .duality-section {
+    grid-template-columns: 1fr 1fr;
+  }
+  .duality-core {
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
+  .duality-list-right {
+    text-align: right;
+  }
+  .project-showcase-section {
+    grid-template-columns: 1fr;
+  }
+  .breakout-copy {
+    grid-row: 1;
+  }
+  .kanban-copy {
+    grid-row: 1;
+  }
+  .edge-stage,
+  .thinking-stage {
+    grid-template-columns: 1fr;
+    gap: 45px;
+  }
+}
+@media (max-width: 620px) {
+  .screenbreak-hero {
+    width: calc(100% - 30px);
+    padding-top: 110px;
+  }
+  .screenbreak-hero h1 {
+    font-size: clamp(66px, 22vw, 94px);
+  }
+  .screenbreak-lead {
+    font-size: 16px;
+  }
+  .screenbreak-actions {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .cutout-stage {
+    min-height: 460px;
+  }
+  .cutout-portrait {
+    width: 125%;
+    max-width: none;
+  }
+  .cutout-portrait-polished {
+    bottom: 0;
+    width: 115%;
+    height: auto;
+  }
+  .cutout-brush {
+    left: -12%;
+    bottom: 42px;
+    width: 390px;
+    height: 210px;
+  }
+  .cutout-note {
+    top: 38px;
+    right: 2%;
+  }
+  .cutout-trace {
+    right: -2%;
+    bottom: 55px;
+  }
+  .impact-console {
+    width: calc(100% - 30px);
+    margin-top: 28px;
+    padding: 14px;
+  }
+  .impact-console-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .impact-console-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .duality-section {
+    margin-top: 70px;
+    padding: 60px 20px;
+    gap: 25px;
+  }
+  .duality-core {
+    height: 400px;
+  }
+  .duality-list h2 {
+    font-size: 28px;
+  }
+  .duality-list ul {
+    font-size: 12px;
+  }
+  .project-showcase-section {
+    padding: 75px 20px;
+    gap: 30px;
+  }
+  .breakout-visual,
+  .kanban-breakout {
+    height: 430px;
+  }
+  .breakout-monitor {
+    width: 82%;
+    height: 285px;
+  }
+  .breakout-card {
+    width: 145px;
+    min-height: 88px;
+  }
+  .breakout-card-a {
+    left: 46%;
+  }
+  .breakout-card-b {
+    left: 53%;
+    top: 160px;
+  }
+  .breakout-card-c {
+    left: 28%;
+    top: 285px;
+  }
+  .kanban-window {
+    inset: 42px 0 65px;
+  }
+  .kanban-flying-card {
+    width: 165px;
+    min-height: 90px;
+  }
+  .breakout-copy h2,
+  .kanban-copy h2,
+  .edge-copy h2,
+  .thinking-stage h2,
+  .screenbreak-contact h2 {
+    font-size: clamp(45px, 14vw, 62px);
+  }
+  .edge-stage,
+  .thinking-stage {
+    padding: 75px 20px;
+  }
+  .incident-observatory {
+    min-height: 400px;
+  }
+  .incident-console {
+    padding: 18px;
+  }
+  .incident-console-head {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .incident-flow {
+    height: 285px;
+    margin-top: 10px;
+  }
+  .incident-node {
+    min-width: 88px;
+    padding: 10px;
+  }
+  .incident-node strong {
+    font-size: 9px;
+  }
+  .incident-node span {
+    font-size: 6px;
+  }
+  .incident-node-gateway {
+    left: 36%;
+  }
+  .incident-node-guard {
+    left: 39%;
+  }
+  .thinking-link {
+    min-height: 120px;
+    padding: 16px;
+    grid-template-columns: 24px 1fr 82px 18px;
+    gap: 9px;
+  }
+  .thinking-link-index {
+    grid-row: 1 / 3;
+  }
+  .thinking-link-type {
+    grid-column: 2;
+  }
+  .thinking-link strong {
+    grid-column: 2;
+    font-size: 15px;
+  }
+  .thinking-mini {
+    width: 78px;
+    height: 58px;
+    grid-column: 3;
+    grid-row: 1 / 3;
+  }
+  .thinking-link > svg {
+    grid-column: 4;
+    grid-row: 1 / 3;
+  }
+  .screenbreak-contact {
+    padding: 75px 20px 0;
+  }
+  .screenbreak-contact > .contact-stage {
+    grid-template-columns: 1fr;
+    padding-bottom: 70px;
+  }
+  .contact-console {
+    max-width: 620px;
+    transform: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .breakout-route path,
+  .breakout-monitor,
+  .breakout-screen::after,
+  .breakout-chart-pulse,
+  .breakout-card,
+  .kanban-rig,
+  .kanban-columns i,
+  .kanban-flying-card,
+  .thinking-mini-essays i,
+  .thinking-mini-edge i,
+  .contact-console-status i,
+  .contact-signal i,
+  .incident-orb,
+  .incident-resolution,
+  .duality-core::before,
+  .core-orbit,
+  .core-module,
+  .core-signal i {
+    animation: none;
+  }
+  .incident-orb-primary {
+    left: 86%;
+  }
+  .incident-orb-duplicate {
+    display: none;
+  }
+  .incident-resolution {
+    opacity: 1;
+    translate: 0;
+  }
+  .breakout-route .breakout-packet {
+    display: none;
+  }
+  .kanban-route circle {
+    display: none;
+  }
+  .breakout-rig {
+    animation: none;
+    translate: 0;
+    transform: none;
+    transition: none;
+  }
+  .kanban-rig {
+    translate: 0;
+    transform: none;
+    transition: none;
+  }
+  .cutout-stage [data-depth],
+  .screenbreak-stage [data-depth] {
+    transition: none;
+  }
+}
+@media (hover: hover) and (pointer: fine) {
+  .work-card:hover .flow-hub {
+    animation: hub-pulse 1.8s ease-in-out infinite;
+  }
+  .work-card:hover .flow-column i {
+    background: var(--cyan);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .fade-in,
+  .orbit-ring,
+  .hero-identity .hero-name,
+  .screenbreak-text-link,
+  .route-link,
+  .text-link,
+  .impact-console-item,
+  .impact-bars i,
+  .work-card:hover .flow-hub,
+  .motion-ready .work-card.is-visible .flow-column span,
+  .motion-ready .work-card.is-visible .app-cloud i,
+  .motion-ready .work-card.is-visible .metric-line i,
+  .motion-ready .work-card.is-visible .mono-repo,
+  .motion-ready .architecture-panel.is-visible .arch-layer span,
+  .motion-ready .architecture-panel.is-visible .arch-connector i {
+    animation: none;
+  }
+  .motion-ready .motion-reveal {
+    opacity: 1;
+    transform: none;
+  }
+  .motion-ready .section-heading h2 {
+    clip-path: none;
+    transform: none;
+  }
+  .button,
+  .button svg,
+  .work-card,
+  .article-row,
+  .article-arrow,
+  .article-copy h3,
+  .portrait-image,
+  .portrait-grid,
+  .site-header nav {
+    transition: none;
+  }
+}
