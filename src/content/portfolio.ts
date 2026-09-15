@@ -6,8 +6,15 @@ export const externalLinks = {
   email: "mailto:dmitriilobanov3@gmail.com",
 };
 
+export type ProjectSlug =
+  | "cpa-platform"
+  | "reliable-kanban"
+  | "frontend-engineering-wiki"
+  | "polaris"
+  | "wikimasters";
+
 export type Project = {
-  slug: string;
+  slug: ProjectSlug;
   index: string;
   name: string;
   label: string;
