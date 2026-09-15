@@ -36,7 +36,7 @@ export default async function EdgeCasePage({ params }: Props) {
         </div>
       </section>
       <section className="case-mechanism route-section">
-        <div className="route-section-heading">
+        <div className="route-section-heading" data-reveal>
           <div>
             <p className="eyebrow">01 / Mechanism</p>
             <h2>Follow the duplicate.</h2>
@@ -57,7 +57,7 @@ export default async function EdgeCasePage({ params }: Props) {
         </div>
       </section>
       <section className="route-section lens-section">
-        <div className="route-section-heading">
+        <div className="route-section-heading" data-reveal>
           <div>
             <p className="eyebrow">02 / Perspectives</p>
             <h2>One mechanism, four consequences.</h2>
@@ -69,7 +69,7 @@ export default async function EdgeCasePage({ params }: Props) {
         </div>
         <div className="lens-grid">
           {item.lenses.map((lens, index) => (
-            <article className="case-lens" key={lens.name}>
+            <article className="case-lens" key={lens.name} data-reveal>
               <span>EPISODE 0{index + 1}</span>
               <small>{lens.name}</small>
               <h3>{lens.role}</h3>

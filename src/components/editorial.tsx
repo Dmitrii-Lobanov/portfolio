@@ -15,8 +15,8 @@ export function PageIntro({
     <section className="route-intro">
       <p className="eyebrow">{eyebrow}</p>
       <div className="route-intro-grid">
-        <h1>{title}</h1>
-        <p>{description}</p>
+        <h1 data-reveal>{title}</h1>
+        <p data-reveal>{description}</p>
       </div>
     </section>
   );
@@ -24,7 +24,7 @@ export function PageIntro({
 
 export function ProjectCard({ project }: { project: Project }) {
   return (
-    <article className="project-card">
+    <article className="project-card" data-reveal data-spotlight>
       <div className="project-card-top">
         <span>{project.index}</span>
         <span>{project.status}</span>

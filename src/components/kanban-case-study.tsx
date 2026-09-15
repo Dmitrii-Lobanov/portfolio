@@ -111,7 +111,7 @@ export function KanbanCaseStudy() {
       </section>
 
       <section className="kanban-decisions">
-        <div className="route-section-heading">
+        <div className="route-section-heading" data-reveal>
           <div>
             <p className="eyebrow">02 / Reliability decisions</p>
             <h2>Four boundaries make the board feel simple.</h2>

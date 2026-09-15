@@ -81,7 +81,12 @@ function ImpactVisual({
 
 function BrowserBreakout() {
   return (
-    <div className="breakout-visual screenbreak-stage" aria-hidden="true">
+    <div
+      className="breakout-visual screenbreak-stage"
+      aria-hidden="true"
+      data-depth-stage
+      data-reveal
+    >
       <div className="breakout-rig">
         <div className="breakout-monitor">
           <div className="breakout-browser-bar">
@@ -168,7 +173,12 @@ function BrowserBreakout() {
 
 function KanbanBreakout() {
   return (
-    <div className="kanban-breakout screenbreak-stage" aria-hidden="true">
+    <div
+      className="kanban-breakout screenbreak-stage"
+      aria-hidden="true"
+      data-depth-stage
+      data-reveal
+    >
       <div className="kanban-rig">
         <div className="kanban-window">
           <div className="kanban-toolbar">
@@ -225,7 +235,7 @@ function KanbanBreakout() {
 export default function Home() {
   return (
     <main id="top" className="screenbreak-home">
-      <section className="screenbreak-hero screenbreak-stage">
+      <section className="screenbreak-hero screenbreak-stage" data-depth-stage>
         <div className="screenbreak-hero-copy fade-in">
           <p className="screenbreak-kicker">Senior frontend engineer</p>
           <HeroName />
@@ -278,8 +288,8 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="duality-section screenbreak-stage">
-        <div className="duality-list">
+      <section className="duality-section screenbreak-stage" data-depth-stage>
+        <div className="duality-list" data-reveal>
           <p className="screenbreak-kicker">Product engineer</p>
           <h2>What people use</h2>
           <ul>
@@ -328,7 +338,7 @@ export default function Home() {
             <i />
           </div>
         </div>
-        <div className="duality-list duality-list-right">
+        <div className="duality-list duality-list-right" data-reveal>
           <p className="screenbreak-kicker">System architect</p>
           <h2>What keeps it reliable</h2>
           <ul>
@@ -342,7 +352,7 @@ export default function Home() {
 
       <section className="project-showcase-section breakout-section">
         <BrowserBreakout />
-        <div className="breakout-copy">
+        <div className="breakout-copy" data-reveal>
           <p className="screenbreak-kicker">01 / CPA platform</p>
           <h2>The workflow escapes the screen</h2>
           <p>
@@ -356,7 +366,7 @@ export default function Home() {
       </section>
 
       <section className="project-showcase-section kanban-section">
-        <div className="kanban-copy">
+        <div className="kanban-copy" data-reveal>
           <p className="screenbreak-kicker">02 / Public build</p>
           <h2>State you can feel</h2>
           <p>
@@ -371,7 +381,7 @@ export default function Home() {
       </section>
 
       <section className="edge-stage">
-        <div className="edge-copy">
+        <div className="edge-copy" data-reveal>
           <p className="screenbreak-kicker screenbreak-kicker-light">
             03 / Edge Case Inc.
           </p>
@@ -388,7 +398,11 @@ export default function Home() {
             <ArrowRight size={16} aria-hidden="true" />
           </Link>
         </div>
-        <div className="incident-observatory screenbreak-stage">
+        <div
+          className="incident-observatory screenbreak-stage"
+          data-depth-stage
+          data-reveal
+        >
           <div className="incident-console">
             <div className="incident-console-head">
               <span>Live event topology</span>
@@ -462,7 +476,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="thinking-stage screenbreak-stage">
+      <section className="thinking-stage screenbreak-stage" data-depth-stage>
         <div>
           <p className="screenbreak-kicker">04 / Thinking in public</p>
           <h2>The reasoning is part of the work</h2>
@@ -471,6 +485,7 @@ export default function Home() {
           <Link
             href="/thinking/knowledge-base"
             className="thinking-link thinking-link-wiki"
+            data-reveal
           >
             <span className="thinking-link-index">01</span>
             <span className="thinking-link-type">Structured knowledge</span>
@@ -491,6 +506,7 @@ export default function Home() {
           <Link
             href="/thinking/articles"
             className="thinking-link thinking-link-essays"
+            data-reveal
           >
             <span className="thinking-link-index">02</span>
             <span className="thinking-link-type">Long-form field notes</span>
@@ -508,6 +524,7 @@ export default function Home() {
           <Link
             href="/thinking/edge-case-inc"
             className="thinking-link thinking-link-edge"
+            data-reveal
           >
             <span className="thinking-link-index">03</span>
             <span className="thinking-link-type">

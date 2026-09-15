@@ -52,7 +52,7 @@ export default function EdgeCaseIndexPage() {
         </div>
       </section>
       <section className="route-section characters-section">
-        <div className="route-section-heading">
+        <div className="route-section-heading" data-reveal>
           <div>
             <p className="eyebrow">The team</p>
             <h2>Five lenses, one mechanism.</h2>
@@ -74,7 +74,7 @@ export default function EdgeCaseIndexPage() {
         </div>
       </section>
       <section className="route-section case-directory">
-        <div className="route-section-heading">
+        <div className="route-section-heading" data-reveal>
           <div>
             <p className="eyebrow">Case directory</p>
             <h2>Something unexpected happens every week.</h2>

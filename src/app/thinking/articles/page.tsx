@@ -27,6 +27,7 @@ export default function ArticlesPage() {
           {articles.map((article) => (
             <a
               className="article-row"
+              data-reveal
               href={article.href}
               target="_blank"
               rel="noreferrer"

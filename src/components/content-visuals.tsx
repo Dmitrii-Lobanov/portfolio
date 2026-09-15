@@ -74,7 +74,7 @@ const labs = [
 export function EngineeringScope() {
   return (
     <section className="section evidence-section" id="evidence">
-      <div className="section-heading">
+      <div className="section-heading" data-reveal>
         <div>
           <p className="eyebrow">01 / Engineering evidence</p>
           <h2>
@@ -94,7 +94,7 @@ export function EngineeringScope() {
           <span>Outcome</span>
         </div>
         {scopeTracks.map(([pressure, decision, outcome], index) => (
-          <div className="scope-track" key={pressure}>
+          <div className="scope-track" key={pressure} data-reveal>
             <small>0{index + 1}</small>
             <strong>{pressure}</strong>
             <ArrowRight aria-hidden="true" />
@@ -112,7 +112,7 @@ export function CaseStudyVisuals() {
   return (
     <div className="case-visual-suite">
       <div className="visual-story-grid">
-        <article className="topology-card">
+        <article className="topology-card" data-reveal>
           <div className="visual-card-heading">
             <span>Product topology</span>
             <small>Two surfaces · one platform</small>
@@ -150,7 +150,7 @@ export function CaseStudyVisuals() {
           </div>
         </article>
 
-        <article className="performance-card">
+        <article className="performance-card" data-reveal>
           <div className="visual-card-heading">
             <span>Performance investigation</span>
             <small>Illustrative diagnostic model</small>
@@ -178,7 +178,7 @@ export function CaseStudyVisuals() {
         </article>
       </div>
 
-      <article className="state-map-card">
+      <article className="state-map-card" data-reveal>
         <div className="visual-card-heading">
           <span>State ownership</span>
           <small>Different lifetimes need different owners</small>
@@ -223,7 +223,7 @@ export function DecisionMatrix() {
         <span>Avoid</span>
       </div>
       {decisions.map(([area, prefer, avoid]) => (
-        <div className="decision-row" key={area}>
+        <div className="decision-row" key={area} data-reveal>
           <strong>{area}</strong>
           <span>{prefer}</span>
           <span>{avoid}</span>
@@ -236,7 +236,7 @@ export function DecisionMatrix() {
 export function PublicLab() {
   return (
     <section className="section lab-section" id="lab">
-      <div className="section-heading">
+      <div className="section-heading" data-reveal>
         <div>
           <p className="eyebrow">04 / Public engineering lab</p>
           <h2>
@@ -251,7 +251,12 @@ export function PublicLab() {
       </div>
       <div className="lab-grid">
         {labs.map((lab) => (
-          <article className="lab-card" key={lab.name}>
+          <article
+            className="lab-card"
+            key={lab.name}
+            data-reveal
+            data-spotlight
+          >
             <div className="lab-card-top">
               <span>{lab.index}</span>
               <GithubIcon width={18} height={18} aria-hidden="true" />
@@ -294,7 +299,7 @@ export function WritingConstellation() {
     "Delivery",
   ];
   return (
-    <div className="writing-constellation">
+    <div className="writing-constellation" data-reveal>
       {nodes.map((node, index) => (
         <div key={node}>
           <span>{node}</span>

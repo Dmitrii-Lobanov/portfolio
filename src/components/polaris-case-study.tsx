@@ -206,7 +206,7 @@ export function PolarisCaseStudy() {
       </section>
 
       <section className="polaris-request">
-        <div className="route-section-heading">
+        <div className="route-section-heading" data-reveal>
           <div>
             <p className="eyebrow">03 / AI workflow</p>
             <h2>The interaction continues after the button is released.</h2>
@@ -259,7 +259,7 @@ export function PolarisCaseStudy() {
       </section>
 
       <section className="polaris-boundaries">
-        <div className="route-section-heading">
+        <div className="route-section-heading" data-reveal>
           <div>
             <p className="eyebrow">04 / Integration boundaries</p>
             <h2>Every subsystem gets a narrow contract.</h2>

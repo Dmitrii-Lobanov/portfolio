@@ -66,7 +66,7 @@ export default function KnowledgeBasePage() {
         </div>
       </section>
       <section className="route-section knowledge-tracks">
-        <div className="route-section-heading">
+        <div className="route-section-heading" data-reveal>
           <div>
             <p className="eyebrow">Knowledge tracks</p>
             <h2>One system, multiple paths.</h2>

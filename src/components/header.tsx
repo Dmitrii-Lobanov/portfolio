@@ -17,7 +17,7 @@ export function Header() {
     href === "/" ? pathname === "/" : pathname.startsWith(href);
 
   return (
-    <header className="site-header">
+    <header className="site-header" data-scroll-header>
       <nav aria-label="Main navigation">
         <Link href="/" className="wordmark" aria-label="Dmitrii Lobanov, home">
           DL<span>/</span>

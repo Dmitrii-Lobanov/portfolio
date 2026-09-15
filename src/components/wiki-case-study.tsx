@@ -212,7 +212,7 @@ export function WikiCaseStudy() {
       </section>
 
       <section className="wiki-section wiki-architecture">
-        <div className="route-section-heading">
+        <div className="route-section-heading" data-reveal>
           <div>
             <p className="eyebrow">03 / Information architecture</p>
             <h2>The structure grows without becoming a content dump.</h2>

@@ -136,7 +136,7 @@ export function CpaCaseStudy() {
       </section>
 
       <section className="route-section cpa-identity-section">
-        <div className="route-section-heading">
+        <div className="route-section-heading" data-reveal>
           <div>
             <p className="eyebrow">02 / The hard part</p>
             <h2>Identity was a runtime context.</h2>
@@ -233,7 +233,7 @@ export function CpaCaseStudy() {
       </section>
 
       <section className="route-section cpa-decisions-section">
-        <div className="route-section-heading">
+        <div className="route-section-heading" data-reveal>
           <div>
             <p className="eyebrow">04 / Decisions</p>
             <h2>Architecture followed the constraints.</h2>
@@ -257,7 +257,7 @@ export function CpaCaseStudy() {
       </section>
 
       <section className="route-section cpa-contribution-section">
-        <div className="route-section-heading">
+        <div className="route-section-heading" data-reveal>
           <div>
             <p className="eyebrow">05 / Contribution</p>
             <h2>Built inside a living product.</h2>
