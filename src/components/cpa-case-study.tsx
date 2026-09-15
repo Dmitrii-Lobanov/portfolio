@@ -1,74 +1,12 @@
 import { ArrowDown, ArrowRight, ArrowUpRight, ShieldCheck } from "lucide-react";
+import { CaseStudySectionHeading } from "@/components/case-study-section-heading";
 
-const managerDomains = [
-  "Products",
-  "Offers",
-  "Partners",
-  "Conversions",
-  "Statistics",
-  "Documents",
-  "Approvals",
-];
-
-const partnerDomains = [
-  "Offer discovery",
-  "Performance",
-  "Onboarding",
-  "Quiz",
-  "Academy",
-  "Signing",
-  "Support",
-];
-
-const stateLayers = [
-  {
-    name: "Server state",
-    owner: "RTK Query",
-    purpose: "Remote data, caching, invalidation and request lifecycle",
-  },
-  {
-    name: "Session context",
-    owner: "Tab + memory",
-    purpose: "Active partner identity and short-lived impersonation tokens",
-  },
-  {
-    name: "Shared UI state",
-    owner: "Redux",
-    purpose: "Cross-feature client state with an intentional lifetime",
-  },
-  {
-    name: "Local UI state",
-    owner: "React",
-    purpose: "Forms, drawers and interactions owned by one component tree",
-  },
-];
-
-const decisions = [
-  {
-    number: "01",
-    question: "How should one product serve two very different roles?",
-    decision: "A modular SPA with explicit domain boundaries",
-    why: "The teams shared authentication, routing, UI foundations and release cadence. Independent deployments would have added coordination cost without solving an organisational problem.",
-  },
-  {
-    number: "02",
-    question: "How can a manager safely work as several partners?",
-    decision: "Identity became explicit request context",
-    why: "Each browser tab owns an active partner ID; an in-memory map resolves it to a short-lived token. Manager-owned features remain attached to the original session.",
-  },
-  {
-    number: "03",
-    question: "Where should changing product data live?",
-    decision: "State ownership follows authority and lifetime",
-    why: "Remote data stays in the server-state layer. Session, shared UI and local interaction state each have smaller, deliberate update paths.",
-  },
-  {
-    number: "04",
-    question: "How could the system evolve while it was still shipping?",
-    decision: "Sequenced migration into shared foundations",
-    why: "Product delivery continued while shared contracts, tooling and components became stronger. Each migration reduced risk without requiring a disruptive rewrite.",
-  },
-];
+import {
+  managerDomains,
+  partnerDomains,
+  stateLayers,
+  decisions,
+} from "@/content/case-studies/cpa";
 
 export function CpaCaseStudy() {
   return (
@@ -136,16 +74,17 @@ export function CpaCaseStudy() {
       </section>
 
       <section className="route-section cpa-identity-section">
-        <div className="route-section-heading" data-reveal>
-          <div>
-            <p className="eyebrow">02 / The hard part</p>
-            <h2>Identity was a runtime context.</h2>
-          </div>
-          <p>
-            A manager could open multiple tabs as different partners while
-            global notifications and chat still belonged to the manager session.
-          </p>
-        </div>
+        <CaseStudySectionHeading
+          eyebrow="02 / The hard part"
+          title="Identity was a runtime context."
+          description={
+            <>
+              A manager could open multiple tabs as different partners while
+              global notifications and chat still belonged to the manager
+              session.
+            </>
+          }
+        />
 
         <div className="identity-diagram">
           <div className="identity-origin">
@@ -233,16 +172,16 @@ export function CpaCaseStudy() {
       </section>
 
       <section className="route-section cpa-decisions-section">
-        <div className="route-section-heading" data-reveal>
-          <div>
-            <p className="eyebrow">04 / Decisions</p>
-            <h2>Architecture followed the constraints.</h2>
-          </div>
-          <p>
-            The important choices were less about picking libraries and more
-            about making ownership, identity and change safe at product scale.
-          </p>
-        </div>
+        <CaseStudySectionHeading
+          eyebrow="04 / Decisions"
+          title="Architecture followed the constraints."
+          description={
+            <>
+              The important choices were less about picking libraries and more
+              about making ownership, identity and change safe at product scale.
+            </>
+          }
+        />
         <div className="cpa-decision-grid">
           {decisions.map((decision) => (
             <article key={decision.number}>
@@ -257,17 +196,17 @@ export function CpaCaseStudy() {
       </section>
 
       <section className="route-section cpa-contribution-section">
-        <div className="route-section-heading" data-reveal>
-          <div>
-            <p className="eyebrow">05 / Contribution</p>
-            <h2>Built inside a living product.</h2>
-          </div>
-          <p>
-            Over 4.5 years I worked across architecture, feature delivery,
-            performance and migration—not as a detached redesign, but alongside
-            continuous product change.
-          </p>
-        </div>
+        <CaseStudySectionHeading
+          eyebrow="05 / Contribution"
+          title="Built inside a living product."
+          description={
+            <>
+              Over 4.5 years I worked across architecture, feature delivery,
+              performance and migration—not as a detached redesign, but
+              alongside continuous product change.
+            </>
+          }
+        />
         <div className="cpa-impact-strip">
           <article>
             <strong>300k+</strong>

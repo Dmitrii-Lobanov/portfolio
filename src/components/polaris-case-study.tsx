@@ -1,81 +1,14 @@
 import { ArrowRight } from "lucide-react";
+import { CaseStudySectionHeading } from "@/components/case-study-section-heading";
 
-const clocks = [
-  [
-    "01",
-    "Immediate",
-    "Selection, open files, pane layout, and unfinished input.",
-  ],
-  [
-    "02",
-    "Persistent",
-    "Projects, file records, conversations, and user ownership.",
-  ],
-  [
-    "03",
-    "Asynchronous",
-    "AI requests, context retrieval, monitoring, and background work.",
-  ],
-];
-
-const requestStages = [
-  ["Select code", "Editor range"],
-  ["Add instruction", "User intent"],
-  ["Assemble context", "Files + history"],
-  ["Run model", "Background task"],
-  ["Stream response", "Incremental result"],
-  ["Persist conversation", "Durable record"],
-];
-
-const boundaries = [
-  ["Editor adapter", "Documents, selection, edits", "Persistence"],
-  ["Project service", "Projects and file records", "Editor presentation"],
-  ["AI workflow", "Prompt execution and progress", "Workspace layout"],
-  ["Conversation model", "Messages and continuity", "Model implementation"],
-  ["Observability", "Failures, traces, AI requests", "Product behavior"],
-];
-
-const current = [
-  "Authenticated project workspace",
-  "Resizable IDE layout",
-  "Multi-file project management",
-  "CodeMirror editor integration",
-  "AI suggestions and quick edit",
-  "Persistent conversations",
-  "Background AI workflows",
-  "Error and model monitoring",
-];
-
-const next = [
-  "AI agent with file tools",
-  "WebContainer execution",
-  "Integrated terminal and preview",
-  "GitHub import and export",
-];
-
-const decisions = [
-  [
-    "Long-running work should not belong to a request",
-    "AI tasks can outlive navigation or a server response.",
-    "Move durable execution into background workflows.",
-    "More states and operational components.",
-    "The interface remains responsive while work continues independently.",
-  ],
-  [
-    "The editor should remain replaceable",
-    "Specialized editor APIs can leak through an entire product.",
-    "Put editor operations behind a narrow workspace adapter.",
-    "Additional translation code.",
-    "Product workflows depend on editing capabilities, not editor internals.",
-  ],
-  [
-    "Context should be explicit",
-    "Useful output depends on code, project state, history, and documentation.",
-    "Assemble context as an observable workflow.",
-    "More orchestration and monitoring.",
-    "AI behavior becomes easier to inspect and improve.",
-  ],
-];
+import {
+  clocks,
+  requestStages,
+  boundaries,
+  current,
+  next,
+  decisions,
+} from "@/content/case-studies/polaris";
 
 export function PolarisCaseStudy() {
   return (
@@ -206,18 +139,18 @@ export function PolarisCaseStudy() {
       </section>
 
       <section className="polaris-request">
-        <div className="route-section-heading" data-reveal>
-          <div>
-            <p className="eyebrow">03 / AI workflow</p>
-            <h2>The interaction continues after the button is released.</h2>
-          </div>
-          <p>
-            The interface acknowledges intent immediately, then turns it into
-            durable background work. Context assembly, model execution,
-            streaming, and persistence remain visible as separate stages—so a
-            slow or failed step can be understood and recovered.
-          </p>
-        </div>
+        <CaseStudySectionHeading
+          eyebrow="03 / AI workflow"
+          title="The interaction continues after the button is released."
+          description={
+            <>
+              The interface acknowledges intent immediately, then turns it into
+              durable background work. Context assembly, model execution,
+              streaming, and persistence remain visible as separate stages—so a
+              slow or failed step can be understood and recovered.
+            </>
+          }
+        />
         <div className="polaris-request-track">
           <header>
             <span>AI request / observable execution</span>
@@ -259,16 +192,16 @@ export function PolarisCaseStudy() {
       </section>
 
       <section className="polaris-boundaries">
-        <div className="route-section-heading" data-reveal>
-          <div>
-            <p className="eyebrow">04 / Integration boundaries</p>
-            <h2>Every subsystem gets a narrow contract.</h2>
-          </div>
-          <p>
-            Adapter code is deliberate friction: it keeps a tool change from
-            becoming a workspace rewrite.
-          </p>
-        </div>
+        <CaseStudySectionHeading
+          eyebrow="04 / Integration boundaries"
+          title="Every subsystem gets a narrow contract."
+          description={
+            <>
+              Adapter code is deliberate friction: it keeps a tool change from
+              becoming a workspace rewrite.
+            </>
+          }
+        />
         <div className="polaris-boundary-table">
           <header>
             <span>Contract map / five guarded seams</span>
