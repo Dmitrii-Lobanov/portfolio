@@ -1,0 +1,113 @@
+export const knowledgeTracks = [
+  {
+    name: "JavaScript",
+    path: "javascript",
+    status: "Available",
+    copy: "Runtime behavior, language semantics, and the mental models behind everyday code.",
+  },
+  {
+    name: "TypeScript",
+    path: "typescript",
+    status: "Phase 1",
+    copy: "Model data, narrow uncertainty, and design contracts that stay maintainable.",
+  },
+  {
+    name: "React",
+    path: "react",
+    status: "Expanding",
+    copy: "Understand rendering, state, Effects, and component boundaries.",
+  },
+  {
+    name: "Data Structures & Algorithms",
+    path: "data-structures-algorithms",
+    status: "Phase 1",
+    copy: "Recognize reusable structures and patterns behind common problems.",
+  },
+  {
+    name: "Browser & Web Platform",
+    path: "browser-web-platform",
+    status: "Phase 2",
+    copy: "Connect events, rendering, networking, storage, and workers.",
+  },
+  {
+    name: "Frontend System Design",
+    path: "frontend-system-design",
+    status: "Phase 2",
+    copy: "Turn requirements into explicit ownership, resilience, and trade-offs.",
+  },
+  {
+    name: "HTML, CSS & Accessibility",
+    path: "html-css-accessibility",
+    status: "Phase 2",
+    copy: "Build semantic, responsive interfaces that people can use.",
+  },
+  {
+    name: "Testing",
+    path: "testing",
+    status: "Phase 2",
+    copy: "Choose useful boundaries and test asynchronous product behavior.",
+  },
+  {
+    name: "Next.js",
+    path: "nextjs",
+    status: "Phase 3",
+    copy: "Follow a build-along roadmap from routing to secure deployment.",
+  },
+  {
+    name: "Performance",
+    path: "performance",
+    status: "Expanding",
+    copy: "Measure loading, rendering, interaction, and memory before optimizing.",
+  },
+  {
+    name: "Web Security",
+    path: "web-security",
+    status: "Phase 3",
+    copy: "Reason about browser threats, identity, and protected data.",
+  },
+  {
+    name: "GraphQL",
+    path: "graphql",
+    status: "Phase 3",
+    copy: "Explore schemas, client caching, API evolution, and reliability.",
+  },
+] as const;
+
+export const learningModes = [
+  {
+    number: "01",
+    name: "Learn",
+    status: "Available",
+    path: "javascript/handbook/chapters/06-closures",
+    title: "Build the mental model.",
+    copy: "A closure retains access to its lexical environment. Follow what is captured, what can change, and what stays reachable.",
+    action: "Read the closures chapter",
+  },
+  {
+    number: "02",
+    name: "Explain",
+    status: "Available",
+    path: "javascript/q-and-a",
+    title: "Make the reasoning clear.",
+    copy: "Move from a short answer to the deeper reasoning behind scope, callbacks, and shared bindings.",
+    action: "Explore JavaScript Q&A",
+  },
+  {
+    number: "03",
+    name: "Recall",
+    status: "Roadmap",
+    path: "reference",
+    title: "Keep distinctions close.",
+    copy: "The planned reference mode brings comparisons, APIs, and debugging checklists into a compact format.",
+    action: "View the reference roadmap",
+  },
+  {
+    number: "04",
+    name: "Practice",
+    status: "Roadmap",
+    path: "practice",
+    title: "Test the understanding.",
+    copy: "The planned practice mode covers output prediction, debugging, coding, and architecture prompts.",
+    action: "View the practice roadmap",
+  },
+] as const;

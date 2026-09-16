@@ -91,22 +91,27 @@
   background-image: linear-gradient(
     105deg,
     #12677b 0%,
-    var(--sb-cyan) 30%,
+    var(--sb-cyan, var(--cyan)) 30%,
     #f0a14c 55%,
-    var(--sb-orange) 76%,
+    var(--sb-orange, var(--acid)) 76%,
     #12677b 100%
   );
   background-size: 220% 100%;
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  border-image: linear-gradient(90deg, var(--sb-cyan), var(--sb-orange)) 1;
+  border-image: linear-gradient(
+      90deg,
+      var(--sb-cyan, var(--cyan)),
+      var(--sb-orange, var(--acid))
+    )
+    1;
   animation: link-gradient-flow 2.8s ease-in-out infinite alternate;
 }
 .screenbreak-text-link:is(:hover, :focus-visible) svg,
 .route-link:is(:hover, :focus-visible) svg,
 .text-link:is(:hover, :focus-visible) svg {
-  color: var(--sb-orange);
+  color: var(--sb-orange, var(--acid));
   -webkit-text-fill-color: initial;
 }
 @keyframes link-gradient-flow {
