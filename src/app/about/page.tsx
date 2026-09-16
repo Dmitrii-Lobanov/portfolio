@@ -84,17 +84,13 @@ export default function AboutPage() {
             build the product, improve the system beneath it, and make the
             reasoning reusable.
           </p>
-          <div className="about-proof-line" aria-label="Professional focus">
+          <div className="about-proof-line">
             <span>Product engineering</span>
             <span>Frontend architecture</span>
             <span>Engineering knowledge</span>
           </div>
         </div>
-        <div
-          className="about-portrait"
-          aria-label="Portrait of Dmitrii Lobanov"
-        >
-          <div className="about-portrait-grid" aria-hidden="true" />
+        <figure className="about-portrait">
           <span className="about-portrait-label">Engineer / educator</span>
           <Image
             src="/my-photo-no-bg-amazed.png"
@@ -102,12 +98,16 @@ export default function AboutPage() {
             width={1129}
             height={944}
             className="about-portrait-image"
+            sizes="(max-width: 680px) calc(100vw - 100px), (max-width: 1000px) 480px, 40vw"
             priority
           />
-          <div className="about-portrait-status">
-            <i /> Building systems and explaining why
-          </div>
-        </div>
+          <figcaption className="about-portrait-status">
+            <strong>Dmitrii Lobanov</strong>
+            <span>
+              <i aria-hidden="true" /> Building systems and explaining why
+            </span>
+          </figcaption>
+        </figure>
       </section>
 
       <section className="about-section-surface about-surface about-focus">

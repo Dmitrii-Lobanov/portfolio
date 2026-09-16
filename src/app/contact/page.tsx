@@ -38,7 +38,7 @@ export default function ContactPage() {
   return (
     <main className="route-main contact-page contact-editorial">
       <section className="contact-section-surface contact-hero-light">
-        <div className="contact-hero-copy">
+        <div className="contact-hero-copy" data-reveal>
           <p className="eyebrow">Contact / Current signal: available</p>
           <h1>Let’s make the difficult part explicit.</h1>
           <p>
@@ -46,13 +46,18 @@ export default function ContactPage() {
             architecture, reliability, performance, and product quality
             genuinely matter.
           </p>
-          <a className="contact-hero-action" href={externalLinks.email}>
-            Start with an email <ArrowUpRight size={18} />
+          <a
+            className="button-tactile contact-hero-action"
+            href={externalLinks.email}
+          >
+            Start with an email <ArrowUpRight size={18} aria-hidden="true" />
           </a>
         </div>
 
         <div
           className="contact-handoff"
+          data-depth-stage
+          data-reveal
           role="img"
           aria-label="A message moving from product context to a focused engineering conversation"
         >
@@ -63,22 +68,25 @@ export default function ContactPage() {
             </span>
           </header>
           <div className="contact-handoff-track" aria-hidden="true">
+            <b />
+            <b />
+            <b />
             <i />
           </div>
           <div className="contact-handoff-stages">
-            <article>
+            <article data-depth="0.12">
               <span>01 / Brief</span>
               <MessageSquareText size={27} />
               <strong>Product context</strong>
               <small>Intent received</small>
             </article>
-            <article>
+            <article data-depth="0.2">
               <span>02 / Discuss</span>
               <Route size={27} />
               <strong>Real constraint</strong>
               <small>Pressure located</small>
             </article>
-            <article>
+            <article data-depth="0.3">
               <span>03 / Decide</span>
               <Sparkles size={27} />
               <strong>Useful next step</strong>
@@ -90,7 +98,7 @@ export default function ContactPage() {
       </section>
 
       <section className="contact-section-surface contact-surface contact-fit">
-        <header className="contact-heading">
+        <header className="contact-heading" data-reveal>
           <div>
             <p className="eyebrow">01 / Good conversations</p>
             <h2>Bring work with a real product constraint.</h2>
@@ -103,13 +111,13 @@ export default function ContactPage() {
         <div className="contact-fit-layout">
           <ul>
             {goodFit.map((item) => (
-              <li key={item}>
+              <li key={item} data-reveal>
                 <Check size={17} />
                 {item}
               </li>
             ))}
           </ul>
-          <aside>
+          <aside data-reveal>
             <span className="contact-mono-label">
               A strong fit usually includes
             </span>
@@ -123,7 +131,7 @@ export default function ContactPage() {
       </section>
 
       <section className="contact-section-surface contact-surface contact-brief">
-        <header className="contact-heading">
+        <header className="contact-heading" data-reveal>
           <div>
             <p className="eyebrow">02 / A useful first message</p>
             <h2>Context is more helpful than a polished specification.</h2>
@@ -135,7 +143,7 @@ export default function ContactPage() {
         </header>
         <div className="contact-context-grid">
           {usefulContext.map(([number, title, copy]) => (
-            <article key={number}>
+            <article key={number} data-reveal>
               <span>{number}</span>
               <h3>{title}</h3>
               <p>{copy}</p>
@@ -145,7 +153,7 @@ export default function ContactPage() {
       </section>
 
       <section className="contact-section-surface contact-surface contact-channels">
-        <header className="contact-heading">
+        <header className="contact-heading" data-reveal>
           <div>
             <p className="eyebrow">03 / Choose a channel</p>
             <h2>Use the route that fits the conversation.</h2>
@@ -159,11 +167,16 @@ export default function ContactPage() {
           <a
             href={externalLinks.email}
             className="contact-channel contact-channel-primary"
+            data-reveal
           >
             <span>
               <Mail size={25} /> Preferred
             </span>
-            <strong>dmitriilobanov3@gmail.com</strong>
+            <strong>
+              dmitriilobanov3
+              <wbr />
+              @gmail.com
+            </strong>
             <p>Send a role, project, or difficult engineering problem.</p>
             <ArrowUpRight size={20} />
           </a>
@@ -172,6 +185,7 @@ export default function ContactPage() {
             target="_blank"
             rel="noreferrer"
             className="contact-channel"
+            data-reveal
           >
             <span>
               <Share2 size={25} /> Introduction
@@ -185,6 +199,7 @@ export default function ContactPage() {
             target="_blank"
             rel="noreferrer"
             className="contact-channel"
+            data-reveal
           >
             <span>
               <Code2 size={25} /> Code
@@ -197,18 +212,18 @@ export default function ContactPage() {
       </section>
 
       <section className="contact-section-surface contact-closing">
-        <div>
+        <div data-reveal>
           <p className="eyebrow">04 / Before you write</p>
           <h2>Want more context first?</h2>
         </div>
         <nav aria-label="Explore before contacting">
-          <Link href="/work">
+          <Link href="/work" className="route-link" data-reveal>
             View selected work <ArrowRight size={17} />
           </Link>
-          <Link href="/about">
+          <Link href="/about" className="route-link" data-reveal>
             Read how I work <ArrowRight size={17} />
           </Link>
-          <Link href="/thinking">
+          <Link href="/thinking" className="route-link" data-reveal>
             Explore technical writing <ArrowRight size={17} />
           </Link>
         </nav>

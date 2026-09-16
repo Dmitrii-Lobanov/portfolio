@@ -260,7 +260,7 @@ export default function ThinkingPage() {
         <header className="thinking-heading-v2 thinking-supporting-heading">
           <div>
             <p className="eyebrow">02 / Reasoning in context</p>
-            <h2>Follow the incident—or examine the decision.</h2>
+            <h2>Follow the incident - or examine the decision.</h2>
           </div>
           <p>
             Use the investigations for connected narrative and the essays for
