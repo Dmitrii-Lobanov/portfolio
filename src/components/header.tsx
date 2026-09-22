@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useRef } from "react";
 import { GithubIcon, LinkedinIcon } from "@/components/icons";
 
 const navItems = [
@@ -13,6 +14,10 @@ const navItems = [
 
 export function Header() {
   const pathname = usePathname();
+  const menuRef = useRef<HTMLDetailsElement>(null);
+  const closeMenu = () => {
+    if (menuRef.current) menuRef.current.open = false;
+  };
   const isActive = (href: string) =>
     href === "/" ? pathname === "/" : pathname.startsWith(href);
 
@@ -35,13 +40,14 @@ export function Header() {
           ))}
         </div>
         <div className="nav-actions">
-          <details className="nav-menu">
+          <details className="nav-menu" ref={menuRef}>
             <summary aria-label="Open site navigation">Menu</summary>
             <div>
               {navItems.map((item) => (
                 <Link
                   key={item.name}
                   href={item.href}
+                  onClick={closeMenu}
                   className={isActive(item.href) ? "is-active" : undefined}
                   aria-current={isActive(item.href) ? "page" : undefined}
                 >
