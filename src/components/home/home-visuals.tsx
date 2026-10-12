@@ -25,15 +25,6 @@ export function ImpactVisual({ visual }: { visual: ImpactVisualKind }) {
       </div>
     );
   }
-  if (visual === "reliability") {
-    return (
-      <div className="impact-microviz impact-loss" aria-hidden="true">
-        <span>10%</span>
-        <i />
-        <span>0%</span>
-      </div>
-    );
-  }
   return (
     <div className="impact-microviz impact-bars" aria-hidden="true">
       <i />

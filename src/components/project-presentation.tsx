@@ -32,9 +32,10 @@ function WikiMastersHero() {
 function WikiMastersOutcome() {
   return (
     <p className="wm-outcome-copy">
-      The MVP brings content persistence, caching, media storage, and AI
-      summaries into a single wiki product, with clear responsibilities for each
-      part of the system.
+      Authenticated authors create and edit articles with tags and media.
+      Readers browse and search titles and summaries, then open the full
+      article. The list cache expires after 60 seconds and is invalidated after
+      writes.
     </p>
   );
 }

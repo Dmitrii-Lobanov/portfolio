@@ -2,12 +2,12 @@ import { ArrowRight } from "lucide-react";
 import { CaseStudySectionHeading } from "@/components/case-study-section-heading";
 
 import {
-  clocks,
-  requestStages,
   boundaries,
+  clocks,
+  constraints,
   current,
-  next,
   decisions,
+  requestStages,
 } from "@/content/case-studies/polaris";
 
 export function PolarisCaseStudy() {
@@ -16,12 +16,12 @@ export function PolarisCaseStudy() {
       <section className="polaris-pressure">
         <div className="polaris-pressure-copy">
           <p className="eyebrow">01 / Product tension</p>
-          <h2>An AI editor is several systems sharing one workspace.</h2>
+          <h2>An AI editor brings several systems together.</h2>
           <p>
-            Editing a file, requesting a change, switching projects, and
-            returning to unfinished work all run on different lifecycles. They
-            must feel immediate without becoming one indistinguishable state
-            model.
+            Import a GitHub repository, open a file, request an AI change, and
+            run the result in a browser preview. Each step crosses a different
+            lifecycle: repository work, editor state, persisted files,
+            background AI execution, and a running WebContainer.
           </p>
         </div>
         <div
@@ -39,7 +39,7 @@ export function PolarisCaseStudy() {
             <span aria-hidden="true">⌘</span>
             <div>
               <small>User intent</small>
-              <strong>Refactor the selected component</strong>
+              <strong>Refactor selection</strong>
             </div>
             <b>Run</b>
           </div>
@@ -241,21 +241,19 @@ export function PolarisCaseStudy() {
         <header>
           <div>
             <p className="eyebrow">05 / Product surface</p>
-            <h2>
-              A functional foundation - with the next boundary left visible.
-            </h2>
+            <h2>Import, edit, run, and export from one browser workspace.</h2>
           </div>
           <p>
-            The current workspace is useful on its own. The next phase extends
-            that foundation into executable projects and repository workflows
-            without disguising planned work as finished product.
+            The prototype connects repository import, editing, AI assistance,
+            terminal output, and live preview. Runtime support, service access,
+            and review remain visible constraints on that workflow.
           </p>
         </header>
         <div className="polaris-scope-grid">
           <article className="polaris-scope-current">
             <header>
               <span>
-                <i /> Current foundation
+                <i /> Implemented workflow
               </span>
               <b>Working now</b>
             </header>
@@ -272,17 +270,17 @@ export function PolarisCaseStudy() {
           <div className="polaris-scope-bridge" aria-hidden="true">
             <i />
             <b />
-            <span>Extend</span>
+            <span>Conditions</span>
           </div>
           <article className="polaris-scope-next">
             <header>
               <span>
-                <i /> Next system boundary
+                <i /> Operating constraints
               </span>
-              <b>Planned</b>
+              <b>Review before use</b>
             </header>
             <ul>
-              {next.map((item, index) => (
+              {constraints.map((item, index) => (
                 <li key={item}>
                   <i aria-hidden="true" />
                   <small>0{index + 1}</small>

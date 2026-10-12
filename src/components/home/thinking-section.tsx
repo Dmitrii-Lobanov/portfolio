@@ -34,7 +34,7 @@ export function ThinkingSection() {
         >
           <span className="thinking-link-index">02</span>
           <span className="thinking-link-type">Long-form field notes</span>
-          <strong>Architecture essays</strong>
+          <strong>Engineering field notes</strong>
           <span
             className="thinking-mini thinking-mini-essays"
             aria-hidden="true"

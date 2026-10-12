@@ -1,6 +1,7 @@
 import {
   ArrowRight,
   ArrowUpRight,
+  Gauge,
   Layers,
   ScanLine,
   Workflow,
@@ -12,12 +13,20 @@ import { articles, externalLinks } from "@/content/portfolio";
 import "@/styles/articles.css";
 
 export const metadata: Metadata = {
-  title: "Architecture Essays | Dmitrii Lobanov",
+  title: "Engineering Field Notes | Dmitrii Lobanov",
   description:
-    "Production field notes on product workflows, system boundaries, and the requirements that shape frontend architecture.",
+    "Production field notes on React performance, product workflows, system boundaries, and frontend architecture.",
 };
 
 const readingLenses = [
+  {
+    index: "04",
+    question: "Why is the frontend slow?",
+    takeaway:
+      "You need to diagnose rendering and loading bottlenecks before choosing an optimization.",
+    icon: Gauge,
+    label: "Follow the measurements",
+  },
   {
     index: "03",
     question: "What should shape the architecture?",
@@ -51,21 +60,21 @@ function getEssay(index: string) {
 }
 
 export default function ArticlesPage() {
-  const firstEssay = getEssay("03");
+  const firstEssay = getEssay("04");
   return (
     <main className="route-main essays-page">
       <section className="essays-hero">
         <div className="essays-hero-copy" data-reveal>
-          <p className="eyebrow">Thinking / Architecture essays</p>
+          <p className="eyebrow">Thinking / Engineering field notes</p>
           <h1>
             The decisions
             <br />
             behind the system.
           </h1>
           <p>
-            Field notes on how product pressure becomes frontend architecture.
-            Follow the workflows, ownership boundaries, and trade-offs behind
-            the implementation.
+            Field notes on improving a production frontend: diagnose
+            performance, follow the product workflow, and examine the
+            architecture decisions behind the result.
           </p>
           <div className="essays-actions">
             <a
@@ -74,7 +83,7 @@ export default function ArticlesPage() {
               target="_blank"
               rel="noreferrer"
             >
-              Start with requirements{" "}
+              Start with performance{" "}
               <ArrowUpRight size={17} aria-hidden="true" />
             </a>
             <a
@@ -141,8 +150,8 @@ export default function ArticlesPage() {
           <span>selected essays</span>
         </div>
         <p>
-          Three ways into the same engineering practice: start with the
-          requirement, follow the product, then inspect the system.
+          Four ways into the work: performance, requirements, product workflows,
+          and frontend system design.
         </p>
         <span>
           Published on Medium <ArrowUpRight size={15} aria-hidden="true" />
@@ -159,8 +168,8 @@ export default function ArticlesPage() {
           </div>
           <p>
             Each essay takes a different view of the work. Choose the question
-            closest to your own product; the short requirements essay is a
-            useful starting point.
+            closest to your own product, from a slow interaction to a difficult
+            architecture decision.
           </p>
         </header>
         <div className="essays-grid">
@@ -225,7 +234,7 @@ export default function ArticlesPage() {
         </div>
         <nav aria-label="Related engineering work">
           <Link className="route-link" href="/work/cpa-platform">
-            <span>Explore the CPA case study</span>
+            <span>Explore the Tinkoff case study</span>
             <ArrowRight size={17} aria-hidden="true" />
           </Link>
           <Link className="route-link" href="/thinking/knowledge-base">

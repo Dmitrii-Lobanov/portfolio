@@ -17,7 +17,7 @@ import { externalLinks } from "@/content/portfolio";
 export const metadata: Metadata = { title: "Contact | Dmitrii Lobanov" };
 
 const goodFit = [
-  "Architecture-heavy frontend and product engineering",
+  "Senior frontend engineering for fintech and SaaS products",
   "Complex workflows, permissions, and operational interfaces",
   "Platform modernization and migration strategy",
   "Performance, reliability, and engineering foundations",
@@ -42,10 +42,11 @@ export default function ContactPage() {
           <p className="eyebrow">Contact / Current signal: available</p>
           <h1>Let’s make the difficult part explicit.</h1>
           <p>
-            I’m interested in senior frontend and product engineering work where
-            architecture, reliability, performance, and product quality
-            genuinely matter.
+            I’m open to remote Senior Frontend Engineer roles through
+            international B2B contracts, building React, TypeScript, and Next.js
+            products where performance, reliability, and user experience matter.
           </p>
+          <p>Based in Ecuador · UTC−5 · English C1</p>
           <a
             className="button-tactile contact-hero-action"
             href={externalLinks.email}

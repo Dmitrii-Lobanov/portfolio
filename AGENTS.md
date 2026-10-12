@@ -13,3 +13,9 @@ case-study presentation, or portfolio copy, read and follow
 Treat that skill as the maintained source of truth for the portfolio's design
 language and editorial decisions. Preserve established decisions unless the
 user explicitly asks to change them.
+
+For the Engineered Objects redesign, also read
+`skills/portfolio-redesign/SKILL.md`. Its scoped design changes take precedence
+over the baseline where explicitly documented in `docs/redesign/design-brief.md`.
+Do not apply this direction to unrelated maintenance or change portfolio copy
+solely because a concept image uses illustrative text.

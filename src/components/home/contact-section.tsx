@@ -12,8 +12,8 @@ export function ContactSection() {
         <div className="contact-stage-copy">
           <h2>Building a product whose complexity is starting to show?</h2>
           <p>
-            Bring me the difficult workflow, the fragile boundary, or the
-            performance problem that refuses to stay hidden.
+            I’m open to remote Senior Frontend Engineer roles through
+            international B2B contracts. Based in Ecuador · UTC−5 · English C1.
           </p>
         </div>
         <div className="contact-console">

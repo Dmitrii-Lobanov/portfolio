@@ -9,6 +9,11 @@ Use this skill for visual, animation, responsive, and content work in this
 portfolio. Inspect the current page before editing; the existing implementation
 is the primary reference when it agrees with the decisions below.
 
+For the Engineered Objects redesign, additionally use
+[`portfolio-redesign`](../portfolio-redesign/SKILL.md). Its design brief defines
+the intentional departures from this baseline; all other guidance here remains
+applicable. Concept imagery does not authorize new claims or portrait changes.
+
 ## Creative direction
 
 The site is an editorial engineering portfolio with tactile, physical UI. It

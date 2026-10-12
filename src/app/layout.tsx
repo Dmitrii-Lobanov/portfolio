@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://portfolio-ten-wine-92.vercel.app"),
   title: "Dmitrii Lobanov — Senior Frontend Engineer",
   description:
-    "Senior Frontend Engineer designing high-performance platforms, scalable frontend architecture, and complex product systems.",
+    "Senior Frontend Engineer with 6+ years building React, TypeScript, and Next.js products for fintech and SaaS. Performance, reliability, and ownership through production.",
   icons: {
     icon: [{ url: "/icon.svg", type: "image/svg+xml" }],
     shortcut: "/icon.svg",
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Dmitrii Lobanov — Senior Frontend Engineer",
     description:
-      "Frontend systems, architecture, performance, and production engineering.",
+      "React, TypeScript, and Next.js product engineering with measured improvements to performance, reliability, and delivery.",
     type: "website",
   },
 };

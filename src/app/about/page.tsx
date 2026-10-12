@@ -50,14 +50,14 @@ const evidence = [
     "Product decisions made for meaningful operational scale.",
   ],
   [
-    "15+",
-    "applications",
-    "Migration work that preserved delivery while foundations changed.",
+    "−70%",
+    "interaction latency",
+    "Production p75 INP improved from 500ms to 150ms across critical workflows.",
   ],
   [
-    "3×",
-    "rendering",
-    "A measured improvement produced through targeted performance work.",
+    "−67%",
+    "loading time",
+    "Production p75 LCP improved from 6s to 2s across critical pages.",
   ],
 ];
 
@@ -74,20 +74,21 @@ export default function AboutPage() {
     <main className="route-main about-page">
       <section className="about-section-surface about-hero">
         <div className="about-hero-copy">
-          <p className="eyebrow">About / Product engineer and architect</p>
+          <p className="eyebrow">About / Senior Frontend Engineer</p>
           <h1>
             I turn complex workflows into systems teams can safely evolve.
           </h1>
           <p>
-            I’m a Senior Frontend and Product Engineer working across interface
-            architecture, platform boundaries, performance, and delivery. I
-            build the product, improve the system beneath it, and make the
-            reasoning reusable.
+            I’m a Senior Frontend Engineer with 6+ years building React,
+            TypeScript, and Next.js applications. I take ownership from the
+            first architecture decision through release, working with product,
+            design, backend, and QA to turn complex requirements into useful
+            experiences.
           </p>
           <div className="about-proof-line">
-            <span>Product engineering</span>
-            <span>Frontend architecture</span>
-            <span>Engineering knowledge</span>
+            <span>React · TypeScript · Next.js</span>
+            <span>Fintech &amp; SaaS</span>
+            <span>Performance &amp; reliability</span>
           </div>
         </div>
         <figure className="about-portrait">
@@ -180,20 +181,72 @@ export default function AboutPage() {
         </header>
         <div className="about-role">
           <div>
-            <span>2021 — 2026</span>
-            <strong>Tinkoff / T-Bank</strong>
+            <span>Mar 2026 — present</span>
+            <strong>Independent products</strong>
           </div>
           <div>
             <h3>Senior Frontend Engineer</h3>
             <p>
-              Built and evolved a large CPA platform spanning partner and
-              internal operational products, working across architecture,
-              performance, design foundations, real-time workflows, complex data
-              interfaces, and migration strategy.
+              After relocating to Ecuador, I focused on independent product
+              development: Reliable Kanban for optimistic state, concurrency,
+              and recovery, and Polaris for editor, runtime, repository, and AI
+              workflows. These projects extend my frontend expertise with
+              hands-on API and persistence work.
+            </p>
+            <Link className="action-link route-link" href="/work">
+              Explore the independent products <ArrowRight size={16} />
+            </Link>
+          </div>
+        </div>
+        <div className="about-role">
+          <div>
+            <span>Jan 2024 — Feb 2026</span>
+            <strong>Tinkoff / T-Bank</strong>
+          </div>
+          <div>
+            <h3>Senior Frontend Developer</h3>
+            <p>
+              Owned frontend architecture and delivery for critical workflows on
+              a fintech platform serving 300,000+ users. Improved production
+              loading, interaction latency, and layout stability, and replaced a
+              faulty onboarding integration causing data loss in approximately
+              10% of submissions.
             </p>
             <Link className="action-link route-link" href="/work/cpa-platform">
               See the production case study <ArrowRight size={16} />
             </Link>
+          </div>
+        </div>
+        <div className="about-role">
+          <div>
+            <span>Aug 2021 — Dec 2023</span>
+            <strong>Tinkoff / T-Bank</strong>
+          </div>
+          <div>
+            <h3>Frontend Developer</h3>
+            <p>
+              Built the frontend application from scratch and defined its
+              architecture and state-management approach. Reduced unnecessary
+              React renders by 35%, production build time from 20 to 6 minutes,
+              and manual regression testing from 90 to 20 minutes per release.
+              Promoted to Senior in January 2024.
+            </p>
+          </div>
+        </div>
+        <div className="about-role">
+          <div>
+            <span>2020 — 2021</span>
+            <strong>Earlier frontend work</strong>
+          </div>
+          <div>
+            <h3>Trading, enterprise, and real-time interfaces</h3>
+            <p>
+              At T-Soft, I built trading dashboards, forms, and messaging
+              workflows with GraphQL and Apollo Client. At IBS, I delivered
+              data-heavy B2B interfaces across enterprise projects. Earlier work
+              at Promobot connected a React interface to voice and live-data
+              APIs for robot interaction.
+            </p>
           </div>
         </div>
         <div className="about-evidence-grid">
@@ -224,8 +277,9 @@ export default function AboutPage() {
             <span>Speaking</span>
             <h3>Technical meetup speaker</h3>
             <p>
-              Translated production lessons into practical guidance on state,
-              performance, tooling, architecture, and maintainability.
+              At Tinkoff’s October 2025 meetup, I spoke about state management,
+              bundlers, and the evolution of frontend engineering, drawing on
+              lessons from large React and TypeScript applications.
             </p>
           </article>
           <article>
@@ -233,8 +287,10 @@ export default function AboutPage() {
             <span>Mentoring</span>
             <h3>Graduate project mentor</h3>
             <p>
-              Helped students move from a product idea through system
-              boundaries, implementation, deployment, and technical explanation.
+              From November 2024 to May 2025, I guided students building a
+              full-stack React parking-booking application, covering
+              architecture, API integration, state management, reusable
+              components, and debugging.
             </p>
           </article>
           <article className="about-principles">
@@ -249,9 +305,27 @@ export default function AboutPage() {
         </div>
       </section>
 
+      <section className="about-section-surface about-surface about-method">
+        <header className="about-heading">
+          <div>
+            <p className="eyebrow">05 / Development practice</p>
+            <h2>AI-assisted work, with engineering ownership.</h2>
+          </div>
+          <p>
+            I use Codex to accelerate focused implementation and review. I
+            define acceptance criteria, inspect generated changes, and validate
+            behavior through tests and build checks. Architecture and code
+            quality remain my responsibility.
+          </p>
+        </header>
+        <p>
+          Based in Ecuador · UTC−5 · English C1 · Open to remote roles through
+          international B2B contracts.
+        </p>
+      </section>
       <section className="about-section-surface about-cta">
         <div>
-          <p className="eyebrow">05 / Start a conversation</p>
+          <p className="eyebrow">06 / Start a conversation</p>
           <h2>
             Building a product with difficult workflows or architectural
             pressure?

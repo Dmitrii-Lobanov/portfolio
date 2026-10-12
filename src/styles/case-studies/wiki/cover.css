@@ -14,7 +14,7 @@ section.wiki-detail-hero .project-detail-title > p {
 }
 section.wiki-detail-hero .project-detail-title h1 {
   max-width: 660px;
-  font-size: clamp(62px, 6.8vw, 102px);
+  font-size: clamp(56px, 5.8vw, 88px);
   overflow-wrap: normal;
 }
 section.wiki-detail-hero .work-project-instrument {
@@ -41,7 +41,7 @@ section.wiki-detail-hero .project-facts {
     padding: 104px 22px 28px;
   }
   section.wiki-detail-hero .project-detail-title h1 {
-    font-size: clamp(48px, 17vw, 72px);
+    font-size: clamp(42px, 14.5vw, 56px);
   }
   section.wiki-detail-hero .project-facts {
     margin-top: 38px;

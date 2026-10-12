@@ -2,10 +2,12 @@ import { ArrowDown, ArrowRight, ArrowUpRight, ShieldCheck } from "lucide-react";
 import { CaseStudySectionHeading } from "@/components/case-study-section-heading";
 
 import {
+  contributionStories,
+  decisions,
   managerDomains,
   partnerDomains,
+  productionMetrics,
   stateLayers,
-  decisions,
 } from "@/content/case-studies/cpa";
 
 export function CpaCaseStudy() {
@@ -201,32 +203,57 @@ export function CpaCaseStudy() {
           title="Built inside a living product."
           description={
             <>
-              Over 4.5 years I worked across architecture, feature delivery,
-              performance and migration—not as a detached redesign, but
-              alongside continuous product change.
+              I built the frontend from scratch, defined its architecture and
+              state-management approach, and owned delivery for critical
+              workflows. From requirements through release, I worked with
+              product, design, backend, and QA. I was promoted to Senior in
+              January 2024.
             </>
           }
         />
         <div className="cpa-impact-strip">
-          <article>
-            <strong>300k+</strong>
-            <span>people supported across the platform</span>
-          </article>
-          <article>
-            <strong className="cpa-reliability-metric">10% → 0%</strong>
-            <span>data-loss rate after the reliability redesign</span>
-          </article>
-          <article>
-            <strong>3×</strong>
-            <span>rendering improvement in measured workflows</span>
-          </article>
-          <article>
-            <strong>4.5 yrs</strong>
-            <span>shipping while the system kept evolving</span>
-          </article>
+          {productionMetrics.map(([value, label]) => (
+            <article key={label}>
+              <strong>{value}</strong>
+              <span>{label}</span>
+            </article>
+          ))}
+        </div>
+        <div className="cpa-contribution-stories">
+          {contributionStories.map(
+            ({ label, title, pressure, action, evidence }) => (
+              <article key={label}>
+                <p className="eyebrow">{label}</p>
+                <h3>{title}</h3>
+                <dl>
+                  <div>
+                    <dt>Product pressure</dt>
+                    <dd>{pressure}</dd>
+                  </div>
+                  <div>
+                    <dt>My contribution</dt>
+                    <dd>{action}</dd>
+                  </div>
+                  <div>
+                    <dt>Observed result</dt>
+                    <dd>{evidence}</dd>
+                  </div>
+                </dl>
+              </article>
+            ),
+          )}
         </div>
         <div className="cpa-reading-list">
           <span>Related field notes</span>
+          <a
+            className="gradient-action"
+            href="https://medium.com/@dmitriilobanov3/optimizing-a-large-react-redux-app-from-render-chaos-to-a-3x-faster-ui-9d6b2038eb05"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <span>React performance investigation</span>
+            <ArrowUpRight aria-hidden="true" />
+          </a>
           <a
             className="gradient-action"
             href="https://medium.com/@dmitriilobanov3/frontend-system-design-of-a-large-cpa-platform-b0c448f20ba4"

@@ -16,8 +16,8 @@ const decisions = [
     title: "Fast reads, with an authoritative record.",
     pressure: "Readers can request the same content repeatedly.",
     decision:
-      "Use typed Postgres persistence with a Redis cache for reusable results.",
-    cost: "Cached results need an explicit invalidation policy.",
+      "Cache the article list in Redis for 60 seconds. Creation and edits delete that list key; article detail reads query Postgres directly.",
+    cost: "The TTL bounds list freshness; invalidation adds a dependency on Redis.",
     label: "Stored record / cached copy",
   },
   {
@@ -35,8 +35,9 @@ const decisions = [
     title: "Keep summaries downstream of the source.",
     pressure:
       "A short overview helps readers orient themselves, but generated text is supplemental.",
-    decision: "Treat the AI summary as a derivative of the authored article.",
-    cost: "Generated summaries need to stay relevant when the source changes.",
+    decision:
+      "Generate a summary from the title and content during creation and editing, then store it alongside the article for list and search previews.",
+    cost: "Generation adds a service dependency to writes; readers still need the authored article as their reference.",
     label: "Authored content / derived summary",
   },
 ];
@@ -80,15 +81,17 @@ export function WikiMastersCaseStudy() {
       <section className="wm-section wm-split">
         <div>
           <p className="eyebrow">01 / Product challenge</p>
-          <h2>A page is simple. Everything around it needs coordination.</h2>
+          <h2>An article connects identity, storage, and AI.</h2>
           <p>
             Creating and reading articles is the visible experience. Behind it,
             identity, stored content, cached results, media, and AI summaries
             each have a different responsibility.
           </p>
           <p>
-            WikiMasters explores how those pieces can support one understandable
-            knowledge product.
+            An authenticated author creates an article with tags and optional
+            media. Readers browse the list, search titles and summaries, and
+            open the full article. Editing regenerates the summary and
+            invalidates the cached list.
           </p>
         </div>
         <div className="wm-flow-panel wm-responsibilities">
@@ -107,11 +110,11 @@ export function WikiMastersCaseStudy() {
             [Send, "Delivery", "How readers retrieve content"],
             [Sparkles, "Enrichment", "What helps readers understand it"],
           ].map(([Icon, name, text]) => {
-            const Symbol = Icon as typeof Database;
+            const Glyph = Icon as typeof Database;
             return (
               <div key={String(name)}>
                 <i aria-hidden="true">
-                  <Symbol size={18} />
+                  <Glyph size={18} />
                 </i>
                 <span>{String(name)}</span>
                 <p>{String(text)}</p>
@@ -161,10 +164,10 @@ export function WikiMastersCaseStudy() {
                 "Provide a generated summary as an additional reading aid.",
               ],
             ].map(([Icon, title, text]) => {
-              const Symbol = Icon as typeof Database;
+              const Glyph = Icon as typeof Database;
               return (
                 <div key={String(title)}>
-                  <Symbol size={23} />
+                  <Glyph size={23} />
                   <div>
                     <h3>{String(title)}</h3>
                     <p>{String(text)}</p>

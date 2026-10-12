@@ -34,21 +34,21 @@ export const boundaries = [
 ] as const;
 
 export const current = [
-  "Authenticated project workspace",
-  "Resizable IDE layout",
-  "Multi-file project management",
-  "CodeMirror editor integration",
-  "AI suggestions and quick edit",
-  "Persistent conversations",
-  "Background AI workflows",
+  "Authenticated project workspace and file tree",
+  "Resizable layout and multi-file editing",
+  "CodeMirror editor, AI suggestions, and quick edit",
+  "Persistent conversations and background AI workflows",
+  "Coding agent with project file tools",
+  "WebContainer execution, terminal, and live preview",
+  "GitHub repository import and export",
   "Error and model monitoring",
 ] as const;
 
-export const next = [
-  "AI agent with file tools",
-  "WebContainer execution",
-  "Integrated terminal and preview",
-  "GitHub import and export",
+export const constraints = [
+  "Browser execution depends on WebContainer support",
+  "GitHub workflows require connected repository access",
+  "AI and persistence depend on configured external services",
+  "Generated changes still require engineering review",
 ] as const;
 
 export const decisions = [

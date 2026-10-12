@@ -10,8 +10,11 @@ export function HeroSection() {
         <p className="screenbreak-kicker">Senior frontend engineer</p>
         <HeroName />
         <p className="screenbreak-lead">
-          I turn complex product systems into clear, fast, and dependable
-          experiences.
+          I build React and TypeScript products for complex workflows, with
+          measured improvements to performance, reliability, and delivery.
+        </p>
+        <p className="screenbreak-stack">
+          React · TypeScript · Next.js / Fintech &amp; SaaS
         </p>
         <div className="screenbreak-actions">
           <Link className="button-tactile screenbreak-button" href="/work">
@@ -36,7 +39,7 @@ export function HeroSection() {
           <br />
           <span>state</span> consistent
           <br />
-          <span>latency</span> 42ms
+          <span>context</span> illustrative
         </div>
       </div>
     </section>

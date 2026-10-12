@@ -51,7 +51,7 @@ export function DualitySection() {
         </div>
       </div>
       <div className="duality-list duality-list-right" data-reveal>
-        <p className="screenbreak-kicker">System architect</p>
+        <p className="screenbreak-kicker">Frontend architecture</p>
         <h2>What keeps it reliable</h2>
         <ul>
           <li>Domain boundaries</li>

@@ -2,7 +2,7 @@ import { ArrowRight } from "lucide-react";
 import type { CSSProperties } from "react";
 import { CaseStudySectionHeading } from "@/components/case-study-section-heading";
 
-import { guarantees, decisions, delivery } from "@/content/case-studies/kanban";
+import { decisions, delivery, guarantees } from "@/content/case-studies/kanban";
 
 export function KanbanCaseStudy() {
   return (
@@ -87,11 +87,23 @@ export function KanbanCaseStudy() {
       <section className="kanban-delivery">
         <div>
           <p className="eyebrow">03 / Production shape</p>
-          <h2>Designed as a deployed system, not an isolated interface.</h2>
+          <h2>A deployed independent product, with inspectable recovery.</h2>
           <p>
             The repository keeps web, API, contracts, persistence, tests, and
             delivery visible as parts of the same product. That makes the
             reliability claims inspectable rather than decorative.
+          </p>
+          <p>
+            Consider two sessions editing the same task. The first move is
+            accepted; the second submits an older version. The API rejects the
+            stale write, the UI explains the conflict, and newer state is
+            protected. A failed request restores the affected task’s snapshot
+            while other tasks remain available.
+          </p>
+          <p>
+            Unit, component, API, and database tests cover the mutation,
+            permission, and persistence boundaries. The live app and source
+            below make the implementation available for review.
           </p>
         </div>
         <div

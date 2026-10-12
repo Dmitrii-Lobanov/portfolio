@@ -4,8 +4,8 @@ import { GithubIcon } from "@/components/icons";
 
 const scopeTracks = [
   ["Multiple roles", "Explicit boundaries", "Safer workflows"],
-  ["Render pressure", "Profile the hot path", "3× improvement"],
-  ["Fragmented apps", "Shared foundations", "15+ migrations"],
+  ["Render pressure", "Focused state boundaries", "35% fewer renders"],
+  ["Fragmented apps", "Sequenced migration", "15+ applications"],
   ["Server waiting", "Measure full path", "Earlier useful UI"],
 ];
 

@@ -41,17 +41,18 @@ export const projects: Project[] = [
   {
     slug: "cpa-platform",
     index: "01",
-    name: "CPA product platform",
-    label: "Production system",
+    name: "Tinkoff fintech platform",
+    label: "Production fintech · CPA partner platform",
     status: "Featured case",
     summary:
-      "A multi-role frontend platform coordinating offers, onboarding, analytics, permissions, documents, impersonation, and real-time workflows.",
+      "Built and evolved partner and internal operations frontends for a fintech platform serving 300,000+ users, spanning onboarding, analytics, approvals, documents, and real-time workflows.",
     context:
       "Over 4.5 years, two connected product surfaces evolved around granular permissions, dense operational interfaces, changing business rules, and more than 300,000 users.",
-    role: "Senior Frontend Engineer",
-    period: "2021 — 2026",
+    role: "Frontend Developer → Senior Frontend Developer",
+    period: "Aug 2021 — Feb 2026",
     scale: "300,000+ users",
-    outcome: "One platform that could evolve without a disruptive rewrite.",
+    outcome:
+      "Faster pages, responsive workflows, and an onboarding defect resolved.",
     nodes: [
       "Manager UI",
       "Domain modules",
@@ -86,7 +87,7 @@ export const projects: Project[] = [
     slug: "reliable-kanban",
     index: "02",
     name: "Reliable Kanban",
-    label: "Full-stack reliability",
+    label: "Independent product · Async reliability",
     status: "Live",
     summary:
       "A full-stack Kanban system built to make drag-and-drop feel immediate while protecting task state when requests fail, sessions overlap, or clients fall behind.",
@@ -95,7 +96,8 @@ export const projects: Project[] = [
     role: "Product engineer",
     period: "2026",
     scale: "Web + API + database",
-    outcome: "A board that is fast by default - and honest under pressure.",
+    outcome:
+      "Moves respond immediately. Failed writes roll back. Stale updates are rejected.",
     nodes: [
       "Intent",
       "Optimistic state",
@@ -146,7 +148,7 @@ export const projects: Project[] = [
     period: "2026 — ongoing",
     scale: "10 chapters · 224 answers · 12 tracks",
     outcome:
-      "A knowledge base that helps engineers find an answer—and understand where it belongs.",
+      "Move from a first-principles explanation to a concise answer, a quick reference, and a practice prompt.",
     nodes: ["Understand", "Explain", "Recall", "Apply", "Deepen"],
     decisions: [
       {
@@ -176,16 +178,16 @@ export const projects: Project[] = [
     index: "04",
     name: "Polaris",
     label: "AI development workspace",
-    status: "Functional foundation",
+    status: "Working prototype",
     summary:
-      "An experimental browser workspace bringing projects, files, editing, AI assistance, and long-running workflows into one coherent interface.",
+      "A Next.js and TypeScript browser IDE connecting a file tree, code editor, terminal, live preview, GitHub import/export, and AI assistance.",
     context:
       "Browser IDEs combine several independently complex systems: text editing, terminal emulation, runtime isolation, persistence, asynchronous AI work, and repository workflows.",
-    role: "Frontend and systems engineer",
+    role: "Independent frontend and product engineer",
     period: "2026",
-    scale: "Editor · files · AI · persistence · workflows",
+    scale: "Editor · runtime · repositories · AI",
     outcome:
-      "A working foundation whose editor, project, conversation, and background-work responsibilities are separated for deliberate evolution.",
+      "Import a repository, edit files, run a browser preview, and work with an AI assistant in one workspace.",
     nodes: ["CodeMirror", "Xterm", "WebContainer", "AI SDK", "Convex"],
     decisions: [
       {
@@ -208,6 +210,7 @@ export const projects: Project[] = [
       },
     ],
     repository: "https://github.com/Dmitrii-Lobanov/Cursor-clone",
+    demo: "https://cursor-clone-delta.vercel.app/",
   },
   {
     slug: "wikimasters",
@@ -222,14 +225,17 @@ export const projects: Project[] = [
     role: "Full-stack engineer",
     period: "2026",
     scale: "Content · caching · media · AI",
-    outcome: "A working foundation for collaborative knowledge.",
+    outcome:
+      "Create and edit an article, attach media, and help readers browse it through tags and AI summaries.",
     nodes: ["Next.js", "Postgres", "Redis", "Blob", "AI"],
     decisions: [
       {
         constraint: "Content reads dominate writes",
-        decision: "Typed persistence with a cache layer",
+        decision:
+          "Cache the article list for 60 seconds and invalidate after writes",
         tradeoff: "Invalidation becomes an owned concern",
-        result: "Fast reads without hiding the source of truth",
+        result:
+          "Repeated list reads reuse results; article details read from Postgres",
       },
       {
         constraint: "Documents and media have different storage needs",
@@ -250,6 +256,15 @@ export const projects: Project[] = [
 ];
 
 export const articles = [
+  {
+    index: "04",
+    tag: "Performance",
+    readTime: "Case study",
+    title: "Optimizing a Large React + Redux App",
+    description:
+      "An investigation of rendering bottlenecks, state boundaries, dependency cleanup, and bundle optimization in a production frontend.",
+    href: `${externalLinks.medium}/optimizing-a-large-react-redux-app-from-render-chaos-to-a-3x-faster-ui-9d6b2038eb05`,
+  },
   {
     index: "01",
     tag: "System design",

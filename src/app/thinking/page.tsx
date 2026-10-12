@@ -40,7 +40,7 @@ function WikiVisual() {
           <span>{item}</span>
         </i>
       ))}
-      <svg viewBox="0 0 100 100" preserveAspectRatio="none">
+      <svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
         <path d="M17 18 C31 18 34 45 49 51" />
         <path d="M83 18 C70 18 66 42 51 50" />
         <path d="M18 82 C31 82 37 60 49 51" />
@@ -287,10 +287,10 @@ export default function ThinkingPage() {
             <EssayVisual />
             <div className="thinking-format-copy">
               <span>Long-form field notes</span>
-              <h3>Architecture essays</h3>
+              <h3>Engineering field notes</h3>
               <p>
-                Production-grounded arguments about requirements, system
-                boundaries, state, performance, and product workflows.
+                Investigations of React performance, product workflows, state
+                ownership, and architecture decisions.
               </p>
               <strong>{articles.length} selected essays</strong>
               <b>

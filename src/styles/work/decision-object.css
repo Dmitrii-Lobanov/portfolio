@@ -1,0 +1,106 @@
+/* Engineered Objects: the work introduction's rendered sculpture. */
+.work-route .work-intro {
+  min-height: 740px;
+  padding-top: 66px;
+  background: #f8f7f3;
+}
+
+.work-route .work-intro-layout {
+  margin-top: clamp(44px, 7vw, 92px);
+  grid-template-columns: minmax(0, 0.93fr) minmax(0, 1.07fr);
+  gap: clamp(24px, 4vw, 64px);
+}
+
+.work-intro-copy h1 {
+  font-size: clamp(58px, 7.1vw, 106px);
+}
+
+.decision-object {
+  min-width: 0;
+  margin: 0;
+  color: #193744;
+}
+
+.decision-object-stage {
+  position: relative;
+  aspect-ratio: 1;
+  overflow: hidden;
+  border-radius: 22px;
+}
+
+.decision-object-render {
+  display: block;
+  width: 100%;
+  height: auto;
+  mix-blend-mode: multiply;
+  mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    #000 5%,
+    #000 92%,
+    transparent
+  );
+}
+
+.decision-object-caption {
+  margin: 12px 5% 0;
+  padding-top: 17px;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  border-top: 1px solid rgba(39, 76, 80, 0.18);
+  color: #526f75;
+  font: 9px / 1.5 var(--font-geist-mono);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.decision-object-caption span {
+  display: flex;
+  gap: 8px;
+}
+
+.decision-object-caption b {
+  color: #bd4c2c;
+  font-weight: 500;
+}
+
+.work-route .work-intro h1 span {
+  background: linear-gradient(105deg, #102e39 5%, #188da0 75%, #4e969a);
+  background-clip: text;
+  animation: none;
+}
+
+@media (max-width: 1050px) {
+  .work-route .work-intro-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .decision-object {
+    width: min(100%, 620px);
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 620px) {
+  .work-route .work-intro-layout {
+    margin-top: 48px;
+    gap: 24px;
+  }
+
+  .work-intro-copy h1 {
+    font-size: clamp(47px, 12vw, 72px);
+  }
+
+  .decision-object-caption {
+    margin-right: 0;
+    margin-left: 0;
+    gap: 6px;
+    font-size: 8px;
+    letter-spacing: 0;
+  }
+
+  .decision-object-caption span {
+    gap: 5px;
+  }
+}

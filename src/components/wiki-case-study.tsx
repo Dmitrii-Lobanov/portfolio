@@ -2,10 +2,10 @@ import { ArrowRight } from "lucide-react";
 import { CaseStudySectionHeading } from "@/components/case-study-section-heading";
 
 import {
-  learningModes,
   architecture,
   editorialDecisions,
   evidence,
+  learningModes,
 } from "@/content/case-studies/wiki";
 
 const learningVisualMarkers = ["one", "two", "three", "four", "five"];
@@ -113,6 +113,12 @@ export function WikiCaseStudy() {
         <header>
           <p className="eyebrow">02 / The learning loop</p>
           <h2>One topic. Four useful ways to engage with it.</h2>
+          <p>
+            Take debounce: understand why calls are delayed, explain how it
+            differs from throttling, recall the meaning of cancel and flush,
+            then implement those behaviors. The goal is to connect a definition
+            to a decision an engineer can make in a real interface.
+          </p>
         </header>
         <div
           className="wiki-learning-loop"
@@ -211,7 +217,7 @@ export function WikiCaseStudy() {
       <section className="wiki-section wiki-evidence">
         <div className="wiki-evidence-head">
           <p className="eyebrow">05 / Shape of the system</p>
-          <h2>Evidence of structure - not vanity metrics</h2>
+          <h2>A curriculum built for explanation and practice</h2>
         </div>
         <div className="wiki-evidence-grid">
           {evidence.map(([number, label, copy], index) => (
