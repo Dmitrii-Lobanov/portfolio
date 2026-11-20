@@ -46,7 +46,7 @@ export default function ContactPage() {
             international B2B contracts, building React, TypeScript, and Next.js
             products where performance, reliability, and user experience matter.
           </p>
-          <p>Based in Ecuador · UTC−5 · English C1</p>
+          <p>English C1</p>
           <a
             className="button-tactile contact-hero-action"
             href={externalLinks.email}

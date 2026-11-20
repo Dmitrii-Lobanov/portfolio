@@ -13,7 +13,7 @@ export function ContactSection() {
           <h2>Building a product whose complexity is starting to show?</h2>
           <p>
             I’m open to remote Senior Frontend Engineer roles through
-            international B2B contracts. Based in Ecuador · UTC−5 · English C1.
+            international B2B contracts. English C1.
           </p>
         </div>
         <div className="contact-console">

@@ -187,11 +187,11 @@ export default function AboutPage() {
           <div>
             <h3>Senior Frontend Engineer</h3>
             <p>
-              After relocating to Ecuador, I focused on independent product
-              development: Reliable Kanban for optimistic state, concurrency,
-              and recovery, and Polaris for editor, runtime, repository, and AI
-              workflows. These projects extend my frontend expertise with
-              hands-on API and persistence work.
+              I focused on independent product development: Reliable Kanban for
+              optimistic state, concurrency, and recovery, and Polaris for
+              editor, runtime, repository, and AI workflows. These projects
+              extend my frontend expertise with hands-on API and persistence
+              work.
             </p>
             <Link className="action-link route-link" href="/work">
               Explore the independent products <ArrowRight size={16} />
@@ -319,8 +319,7 @@ export default function AboutPage() {
           </p>
         </header>
         <p>
-          Based in Ecuador · UTC−5 · English C1 · Open to remote roles through
-          international B2B contracts.
+          English C1 · Open to remote roles through international B2B contracts.
         </p>
       </section>
       <section className="about-section-surface about-cta">
