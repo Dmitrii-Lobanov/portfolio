@@ -12,7 +12,7 @@ const initialStyle: GradientStyle = {
   "--name-y": "45%",
 };
 
-export function HeroName() {
+export function HeroName({ name }: { name: readonly [string, string] }) {
   const handlePointerMove = (event: PointerEvent<HTMLHeadingElement>) => {
     if (event.pointerType === "touch") return;
 
@@ -36,8 +36,8 @@ export function HeroName() {
       onPointerMove={handlePointerMove}
       onPointerLeave={handlePointerLeave}
     >
-      <span>Dmitrii</span>
-      <span>Lobanov</span>
+      <span>{name[0]}</span>
+      <span>{name[1]}</span>
     </h1>
   );
 }

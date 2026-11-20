@@ -1,23 +1,22 @@
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
+import { type HomeLocale, homeSectionCopy } from "@/content/home";
 
-export function IncidentSection() {
+export function IncidentSection({ locale = "en" }: { locale?: HomeLocale }) {
+  const copy = homeSectionCopy.incident[locale];
   return (
     <section className="edge-stage">
       <div className="edge-copy" data-reveal>
         <p className="screenbreak-kicker screenbreak-kicker-light">
           03 / Edge Case Inc.
         </p>
-        <h2>When the system breaks character</h2>
-        <p>
-          Production incidents become visual stories: symptoms escape the
-          interface, travel through the system, and reveal the real cause.
-        </p>
+        <h2>{copy.title}</h2>
+        <p>{copy.description}</p>
         <Link
           href="/thinking/edge-case-inc"
           className="screenbreak-text-link screenbreak-text-link-light"
         >
-          Follow the investigations <ArrowRight size={16} aria-hidden="true" />
+          {copy.action} <ArrowRight size={16} aria-hidden="true" />
         </Link>
       </div>
       <div
@@ -27,8 +26,8 @@ export function IncidentSection() {
       >
         <div className="incident-console">
           <div className="incident-console-head">
-            <span>Live event topology</span>
-            <span className="incident-live">System observing</span>
+            <span>{copy.topology}</span>
+            <span className="incident-live">{copy.status}</span>
           </div>
           <div className="incident-flow">
             <div className="incident-rail" />
@@ -64,32 +63,30 @@ export function IncidentSection() {
               className="incident-node incident-node-source"
               data-depth="0.18"
             >
-              <strong>Offer UI</strong>
-              <span>event emitted</span>
+              <strong>{copy.source}</strong>
+              <span>{copy.emitted}</span>
             </div>
             <div
               className="incident-node incident-node-gateway"
               data-depth="0.28"
             >
-              <strong>Event gateway</strong>
-              <span>delivery check</span>
+              <strong>{copy.gateway}</strong>
+              <span>{copy.delivery}</span>
             </div>
             <div
               className="incident-node incident-node-state"
               data-depth="0.38"
             >
-              <strong>Server state</strong>
-              <span>accepted once</span>
+              <strong>{copy.state}</strong>
+              <span>{copy.accepted}</span>
             </div>
             <div className="incident-node incident-node-guard" data-depth="0.5">
-              <strong>Idempotency guard</strong>
-              <span>duplicate absorbed</span>
+              <strong>{copy.guard}</strong>
+              <span>{copy.duplicate}</span>
             </div>
             <i className="incident-orb incident-orb-primary" />
             <i className="incident-orb incident-orb-duplicate" />
-            <div className="incident-resolution">
-              Resolved · one state transition
-            </div>
+            <div className="incident-resolution">{copy.resolution}</div>
           </div>
         </div>
       </div>

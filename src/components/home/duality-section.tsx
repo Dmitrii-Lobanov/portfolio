@@ -1,21 +1,19 @@
-export function DualitySection() {
+import { type HomeLocale, homeSectionCopy } from "@/content/home";
+export function DualitySection({ locale = "en" }: { locale?: HomeLocale }) {
+  const copy = homeSectionCopy.duality[locale];
   return (
     <section className="duality-section screenbreak-stage" data-depth-stage>
       <div className="duality-list" data-reveal>
-        <p className="screenbreak-kicker">Product engineer</p>
-        <h2>What people use</h2>
+        <p className="screenbreak-kicker">{copy.productRole}</p>
+        <h2>{copy.productTitle}</h2>
         <ul>
-          <li>Complex workflows</li>
-          <li>Interaction systems</li>
-          <li>Performance</li>
-          <li>Accessible interfaces</li>
+          <li>{copy.workflows}</li>
+          <li>{copy.interactions}</li>
+          <li>{copy.performance}</li>
+          <li>{copy.accessibility}</li>
         </ul>
       </div>
-      <div
-        className="duality-core"
-        role="img"
-        aria-label="Product interactions flowing through a reliable architecture core"
-      >
+      <div className="duality-core" role="img" aria-label={copy.diagram}>
         <div className="core-signal core-signal-in" aria-hidden="true">
           <i />
           <i />
@@ -31,9 +29,9 @@ export function DualitySection() {
           <i />
         </div>
         <div className="core-module" data-depth="0.12">
-          <span>Product signals</span>
-          <strong>System core</strong>
-          <small>Reliable by design</small>
+          <span>{copy.signals}</span>
+          <strong>{copy.core}</strong>
+          <small>{copy.reliability}</small>
         </div>
         <div className="core-node core-node-state" data-depth="-0.14">
           State
@@ -51,13 +49,13 @@ export function DualitySection() {
         </div>
       </div>
       <div className="duality-list duality-list-right" data-reveal>
-        <p className="screenbreak-kicker">Frontend architecture</p>
-        <h2>What keeps it reliable</h2>
+        <p className="screenbreak-kicker">{copy.architectureRole}</p>
+        <h2>{copy.architectureTitle}</h2>
         <ul>
-          <li>Domain boundaries</li>
-          <li>Server state</li>
-          <li>Real-time events</li>
-          <li>Long-lived architecture</li>
+          <li>{copy.boundaries}</li>
+          <li>{copy.state}</li>
+          <li>{copy.events}</li>
+          <li>{copy.architecture}</li>
         </ul>
       </div>
     </section>

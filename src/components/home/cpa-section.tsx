@@ -1,21 +1,19 @@
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
+import { type HomeLocale, homeSectionCopy } from "@/content/home";
 import { BrowserBreakout } from "./home-visuals";
 
-export function CpaSection() {
+export function CpaSection({ locale = "en" }: { locale?: HomeLocale }) {
+  const copy = homeSectionCopy.cpa[locale];
   return (
     <section className="project-showcase-section breakout-section">
       <BrowserBreakout />
       <div className="breakout-copy" data-reveal>
-        <p className="screenbreak-kicker">01 / Tinkoff · Fintech platform</p>
-        <h2>Engineering for 300,000+ users</h2>
-        <p>
-          I built and evolved partner and internal operations frontends,
-          connecting onboarding, analytics, documents, permissions, and
-          real-time workflows. Production p75 LCP improved from 6s to 2s.
-        </p>
+        <p className="screenbreak-kicker">{copy.kicker}</p>
+        <h2>{copy.title}</h2>
+        <p>{copy.description}</p>
         <Link href="/work/cpa-platform" className="screenbreak-text-link">
-          Explore the case study <ArrowRight size={16} aria-hidden="true" />
+          {copy.action} <ArrowRight size={16} aria-hidden="true" />
         </Link>
       </div>
     </section>

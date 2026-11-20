@@ -1,26 +1,25 @@
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import { SiteFooter } from "@/components/editorial";
+import { type HomeLocale, homeSectionCopy } from "@/content/home";
 
-export function ContactSection() {
+export function ContactSection({ locale = "en" }: { locale?: HomeLocale }) {
+  const copy = homeSectionCopy.contact[locale];
   return (
     <section className="screenbreak-contact">
       <p className="screenbreak-kicker screenbreak-kicker-light">
-        05 / Start a conversation
+        {copy.kicker}
       </p>
       <div className="contact-stage">
         <div className="contact-stage-copy">
-          <h2>Building a product whose complexity is starting to show?</h2>
-          <p>
-            I’m open to remote Senior Frontend Engineer roles through
-            international B2B contracts. English C1.
-          </p>
+          <h2>{copy.title}</h2>
+          <p>{copy.description}</p>
         </div>
         <div className="contact-console">
           <div className="contact-console-head">
-            <span>Conversation channel</span>
+            <span>{copy.channel}</span>
             <span className="contact-console-status">
-              <i aria-hidden="true" /> Available
+              <i aria-hidden="true" /> {copy.availability}
             </span>
           </div>
           <div className="contact-signal" aria-hidden="true">
@@ -39,19 +38,19 @@ export function ContactSection() {
           </div>
           <dl className="contact-console-details">
             <div>
-              <dt>Signal</dt>
-              <dd>Product · architecture · frontend</dd>
+              <dt>{copy.topicsLabel}</dt>
+              <dd>{copy.topics}</dd>
             </div>
             <div>
-              <dt>Next step</dt>
-              <dd>A focused first conversation</dd>
+              <dt>{copy.nextLabel}</dt>
+              <dd>{copy.nextStep}</dd>
             </div>
           </dl>
           <Link
             className="button-tactile screenbreak-button contact-console-button"
             href="/contact"
           >
-            Start the conversation
+            {copy.action}
             <ArrowUpRight size={17} aria-hidden="true" />
           </Link>
         </div>

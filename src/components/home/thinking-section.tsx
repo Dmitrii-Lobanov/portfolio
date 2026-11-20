@@ -1,12 +1,14 @@
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
+import { type HomeLocale, homeSectionCopy } from "@/content/home";
 
-export function ThinkingSection() {
+export function ThinkingSection({ locale = "en" }: { locale?: HomeLocale }) {
+  const copy = homeSectionCopy.thinking[locale];
   return (
     <section className="thinking-stage screenbreak-stage" data-depth-stage>
       <div>
-        <p className="screenbreak-kicker">04 / Thinking in public</p>
-        <h2>The reasoning is part of the work</h2>
+        <p className="screenbreak-kicker">{copy.kicker}</p>
+        <h2>{copy.title}</h2>
       </div>
       <div className="thinking-links">
         <Link
@@ -15,7 +17,7 @@ export function ThinkingSection() {
           data-reveal
         >
           <span className="thinking-link-index">01</span>
-          <span className="thinking-link-type">Structured knowledge</span>
+          <span className="thinking-link-type">{copy.wikiType}</span>
           <strong>Frontend Engineering Wiki</strong>
           <span className="thinking-mini thinking-mini-wiki" aria-hidden="true">
             <i />
@@ -33,8 +35,8 @@ export function ThinkingSection() {
           data-reveal
         >
           <span className="thinking-link-index">02</span>
-          <span className="thinking-link-type">Long-form field notes</span>
-          <strong>Engineering field notes</strong>
+          <span className="thinking-link-type">{copy.articlesType}</span>
+          <strong>{copy.articlesTitle}</strong>
           <span
             className="thinking-mini thinking-mini-essays"
             aria-hidden="true"
@@ -51,7 +53,7 @@ export function ThinkingSection() {
           data-reveal
         >
           <span className="thinking-link-index">03</span>
-          <span className="thinking-link-type">Serialized investigations</span>
+          <span className="thinking-link-type">{copy.investigationsType}</span>
           <strong>Edge Case Inc.</strong>
           <span className="thinking-mini thinking-mini-edge" aria-hidden="true">
             <i />
