@@ -15,7 +15,8 @@
   margin: 0 auto;
   padding: 8px 9px 8px 18px;
   display: grid;
-  grid-template-columns: 1fr auto 1fr;
+  grid-template-columns: minmax(max-content, 1fr) auto minmax(max-content, 1fr);
+  column-gap: 12px;
   align-items: center;
   background:
     radial-gradient(
@@ -128,6 +129,7 @@
 .nav-actions {
   justify-self: end;
   display: flex;
+  white-space: nowrap;
   align-items: center;
   gap: 7px;
 }
@@ -215,20 +217,62 @@
 
 .nav-language {
   display: flex;
+  align-items: stretch;
   flex-shrink: 0;
-  border: 1px solid var(--line);
-  border-radius: var(--radius-control);
-  padding: 2px;
-  font-family: var(--font-geist-mono);
-  font-size: 12px;
+  min-inline-size: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: 600 12px / 1 var(--font-geist-mono);
 }
 .nav-language a {
-  padding: 7px 6px;
-  border-radius: 6px;
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 36px;
+  padding-inline: 7px;
   color: var(--muted);
 }
+.nav-language a + a::before {
+  content: "";
+  position: absolute;
+  inset: 10px auto 10px 0;
+  border-inline-start: 1px solid var(--line);
+}
 .nav-language a:hover,
+.nav-language a:focus-visible,
 .nav-language a[aria-current="page"] {
   color: var(--ink);
-  background: white;
+}
+.nav-language a[aria-current="page"]::after {
+  content: "";
+  position: absolute;
+  inset: auto 7px 5px;
+  height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--cyan), var(--acid-dark));
+}
+.nav-language a:focus-visible {
+  outline: 2px solid var(--cyan-dark);
+  outline-offset: -2px;
+  border-radius: 4px;
+}
+
+@media (max-width: 480px) {
+  .site-header .nav-social {
+    display: none;
+  }
+}
+
+@media (max-width: 340px) {
+  .site-header nav {
+    column-gap: 6px;
+  }
+  .nav-actions {
+    gap: 4px;
+  }
+  .site-header .nav-contact {
+    gap: 5px;
+    padding-inline: 8px;
+  }
 }

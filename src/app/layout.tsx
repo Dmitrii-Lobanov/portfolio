@@ -26,13 +26,16 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const requestHeaders = await headers();
   const locale =
-    (await headers()).get("x-portfolio-locale") === "ru" ? "ru" : "en";
+    requestHeaders.get("x-portfolio-locale") === "ru" ? "ru" : "en";
+  const preference =
+    requestHeaders.get("x-portfolio-preference") === "ru" ? "ru" : "en";
 
   return (
     <html lang={locale}>
       <body>
-        <Header />
+        <Header preference={preference} />
         <MotionEffects />
         {children}
       </body>

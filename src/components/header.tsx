@@ -12,14 +12,21 @@ const navItems = [
   { name: "About", href: "/about" },
 ];
 
-export function Header() {
+export function Header({ preference }: { preference: "en" | "ru" }) {
   const pathname = usePathname();
+  const pagePath = pathname.replace(/^\/(en|ru)(?=\/|$)/, "") || "/";
   const russian = pathname === "/ru";
+  const selected = /^\/ru(?=\/|$)/.test(pathname)
+    ? "ru"
+    : /^\/en(?=\/|$)/.test(pathname)
+      ? "en"
+      : preference;
   useEffect(() => {
     document.documentElement.lang = russian ? "ru" : "en";
   }, [russian]);
-  const home = russian ? "/ru" : pathname === "/en" ? "/en" : "/";
-  const onHome = pathname === home;
+  const home = `/${selected}`;
+  const onHome = pagePath === "/";
+  const alternatePath = pagePath === "/" ? "" : pagePath;
   const labels = russian ? ["Главная", "Проекты", "Заметки", "Обо мне"] : null;
   const items = navItems.map((item, index) => ({
     name: labels?.[index] ?? item.name,
@@ -30,7 +37,9 @@ export function Header() {
     if (menuRef.current) menuRef.current.open = false;
   };
   const isActive = (href: string) =>
-    href === home ? onHome : pathname.startsWith(href);
+    href === home
+      ? onHome
+      : pagePath === href || pagePath.startsWith(`${href}/`);
 
   return (
     <header className="site-header" data-scroll-header>
@@ -57,31 +66,27 @@ export function Header() {
           ))}
         </div>
         <div className="nav-actions">
-          {onHome && (
-            <fieldset className="nav-language">
-              <legend className="sr-only">
-                {russian ? "Язык" : "Language"}
-              </legend>
-              <a
-                href="/en"
-                hrefLang="en"
-                lang="en"
-                aria-label="English"
-                aria-current={!russian ? "page" : undefined}
-              >
-                EN
-              </a>
-              <a
-                href="/ru"
-                hrefLang="ru"
-                lang="ru"
-                aria-label="Русский"
-                aria-current={russian ? "page" : undefined}
-              >
-                RU
-              </a>
-            </fieldset>
-          )}
+          <fieldset className="nav-language">
+            <legend className="sr-only">{russian ? "Язык" : "Language"}</legend>
+            <a
+              href={`/en${alternatePath}`}
+              hrefLang="en"
+              lang="en"
+              aria-label="English"
+              aria-current={selected === "en" ? "page" : undefined}
+            >
+              EN
+            </a>
+            <a
+              href={`/ru${alternatePath}`}
+              hrefLang="ru"
+              lang="ru"
+              aria-label="Русский"
+              aria-current={selected === "ru" ? "page" : undefined}
+            >
+              RU
+            </a>
+          </fieldset>
           <details className="nav-menu" ref={menuRef}>
             <summary>{russian ? "Меню" : "Menu"}</summary>
             <div>
@@ -120,8 +125,8 @@ export function Header() {
           </a>
           <Link
             href="/contact"
-            className={`button-tactile nav-contact${pathname.startsWith("/contact") ? " is-active" : ""}`}
-            aria-current={pathname.startsWith("/contact") ? "page" : undefined}
+            className={`button-tactile nav-contact${isActive("/contact") ? " is-active" : ""}`}
+            aria-current={isActive("/contact") ? "page" : undefined}
           >
             {russian ? "Связаться" : "Let's talk"}{" "}
             <span aria-hidden="true">↗</span>
