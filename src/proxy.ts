@@ -10,6 +10,7 @@ export function proxy(request: NextRequest) {
   const hasRussianTranslation =
     pagePath === "/" ||
     pagePath === "/thinking" ||
+    pagePath === "/thinking/knowledge-base" ||
     pagePath === "/about" ||
     pagePath === "/contact" ||
     pagePath === "/work" ||

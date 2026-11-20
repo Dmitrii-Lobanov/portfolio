@@ -115,7 +115,11 @@ export default async function ThinkingPage() {
   const russian = await isRussian();
   const copy = thinkingCopy[russian ? "ru" : "en"];
   const routes = [
-    [copy.build, copy.structured, "/thinking/knowledge-base"],
+    [
+      copy.build,
+      copy.structured,
+      russian ? "/ru/thinking/knowledge-base" : "/en/thinking/knowledge-base",
+    ],
     [copy.mechanism, copy.serialized, "/thinking/edge-case-inc"],
     [copy.evaluate, copy.essay, "/thinking/articles"],
   ];
@@ -191,7 +195,13 @@ export default async function ThinkingPage() {
             <strong>{copy.knowledge}</strong>
             <i />
           </div>
-          <Link href="/thinking/knowledge-base">
+          <Link
+            href={
+              russian
+                ? "/ru/thinking/knowledge-base"
+                : "/en/thinking/knowledge-base"
+            }
+          >
             <i className="thinking-map-connector" aria-hidden="true" />
             <span>01</span>
             <strong>{copy.structuredLearning}</strong>
@@ -221,7 +231,11 @@ export default async function ThinkingPage() {
           <p>{copy.wikiIntro}</p>
         </header>
         <Link
-          href="/thinking/knowledge-base"
+          href={
+            russian
+              ? "/ru/thinking/knowledge-base"
+              : "/en/thinking/knowledge-base"
+          }
           className="thinking-format-card thinking-format-featured"
         >
           <div className="thinking-format-copy">

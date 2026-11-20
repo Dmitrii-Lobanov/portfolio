@@ -25,6 +25,7 @@ export function Header({ preference }: { preference: "en" | "ru" }) {
     russian &&
     (pagePath === "/" ||
       pagePath === "/thinking" ||
+      pagePath === "/thinking/knowledge-base" ||
       pagePath === "/about" ||
       pagePath === "/contact" ||
       pagePath === "/work" ||
