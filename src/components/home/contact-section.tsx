@@ -55,7 +55,7 @@ export function ContactSection({ locale = "en" }: { locale?: HomeLocale }) {
           </Link>
         </div>
       </div>
-      <SiteFooter />
+      <SiteFooter locale={locale} />
     </section>
   );
 }

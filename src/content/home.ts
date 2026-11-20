@@ -238,3 +238,48 @@ export const homeSectionCopy = {
     },
   },
 } as const;
+
+export const homeVisualCopy = {
+  browser: {
+    en: {
+      workspace: "partner.workspace / campaigns",
+      conversion: "Conversion",
+      health: "Event health",
+      stable: "stable",
+      latency: "42 ms",
+      route: "Event route leaving the product interface",
+    },
+    ru: {
+      workspace: "Кабинет партнёра / кампании",
+      conversion: "Конверсия",
+      health: "Доставка событий",
+      stable: "стабильно",
+      latency: "42 мс",
+      route: "Путь события от интерфейса",
+    },
+  },
+  kanban: {
+    en: {
+      delivery: "Product delivery",
+      backlog: "Backlog",
+      progress: "In progress",
+      done: "Done",
+      route: "Work item moving through delivery states",
+      review: "Architecture review",
+      boundary: "System boundary",
+      update: "Optimistic update",
+      state: "Interaction state",
+    },
+    ru: {
+      delivery: "Работа над продуктом",
+      backlog: "В очереди",
+      progress: "В работе",
+      done: "Готово",
+      route: "Перемещение задачи между статусами",
+      review: "Ревью архитектуры",
+      boundary: "Граница системы",
+      update: "Оптимистичное обновление",
+      state: "Состояние интерфейса",
+    },
+  },
+} as const;

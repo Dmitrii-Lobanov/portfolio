@@ -15,7 +15,7 @@ export function KanbanSection({ locale = "en" }: { locale?: HomeLocale }) {
           {copy.action} <ArrowRight size={16} aria-hidden="true" />
         </Link>
       </div>
-      <KanbanBreakout />
+      <KanbanBreakout locale={locale} />
     </section>
   );
 }

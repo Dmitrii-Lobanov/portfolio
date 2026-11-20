@@ -70,11 +70,19 @@ export function ExternalAction({
   );
 }
 
-export function SiteFooter() {
+export function SiteFooter({ locale = "en" }: { locale?: "en" | "ru" }) {
+  const russian = locale === "ru";
   return (
     <footer className="site-footer">
-      <span>© {new Date().getFullYear()} Dmitrii Lobanov</span>
-      <span>Systems · Product · Engineering knowledge</span>
+      <span>
+        © {new Date().getFullYear()}{" "}
+        {russian ? "Дмитрий Лобанов" : "Dmitrii Lobanov"}
+      </span>
+      <span>
+        {russian
+          ? "Системы · Продукт · Инженерная практика"
+          : "Systems · Product · Engineering knowledge"}
+      </span>
     </footer>
   );
 }

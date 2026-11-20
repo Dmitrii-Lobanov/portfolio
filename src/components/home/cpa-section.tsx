@@ -7,7 +7,7 @@ export function CpaSection({ locale = "en" }: { locale?: HomeLocale }) {
   const copy = homeSectionCopy.cpa[locale];
   return (
     <section className="project-showcase-section breakout-section">
-      <BrowserBreakout />
+      <BrowserBreakout locale={locale} />
       <div className="breakout-copy" data-reveal>
         <p className="screenbreak-kicker">{copy.kicker}</p>
         <h2>{copy.title}</h2>

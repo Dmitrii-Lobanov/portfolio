@@ -33,7 +33,7 @@ export function HeroSection({ locale = "en" }: { locale?: HomeLocale }) {
           <br />
           {copy.portraitNote[1]}
         </p>
-        <HeroPortrait />
+        <HeroPortrait alt={copy.name.join(" ")} />
         <div className="cutout-trace" data-depth="0.48">
           <span>event</span> offer.updated
           <br />

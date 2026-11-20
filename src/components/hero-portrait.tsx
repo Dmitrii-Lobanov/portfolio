@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useEffect, useRef } from "react";
 
-export function HeroPortrait() {
+export function HeroPortrait({ alt }: { alt: string }) {
   const portraitRef = useRef<HTMLImageElement>(null);
 
   useEffect(() => {
@@ -51,7 +51,7 @@ export function HeroPortrait() {
     <Image
       ref={portraitRef}
       src="/my-photo-no-bg-amazed.png"
-      alt="Dmitrii Lobanov"
+      alt={alt}
       width={1129}
       height={944}
       className="cutout-portrait cutout-portrait-polished"

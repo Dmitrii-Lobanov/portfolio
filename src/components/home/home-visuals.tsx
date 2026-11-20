@@ -1,4 +1,8 @@
-import type { ImpactVisualKind } from "@/content/home";
+import {
+  type HomeLocale,
+  homeVisualCopy,
+  type ImpactVisualKind,
+} from "@/content/home";
 
 const yearMarkers = ["2019", "2020", "2021", "2022", "2023", "2024", "2025"];
 const densityMarkers = Array.from(
@@ -35,7 +39,8 @@ export function ImpactVisual({ visual }: { visual: ImpactVisualKind }) {
   );
 }
 
-export function BrowserBreakout() {
+export function BrowserBreakout({ locale }: { locale: HomeLocale }) {
+  const copy = homeVisualCopy.browser[locale];
   return (
     <div
       className="breakout-visual screenbreak-stage"
@@ -49,7 +54,7 @@ export function BrowserBreakout() {
             <i />
             <i />
             <i />
-            <span>partner.workspace / campaigns</span>
+            <span>{copy.workspace}</span>
           </div>
           <div className="breakout-screen">
             <div className="breakout-sidebar" />
@@ -64,25 +69,25 @@ export function BrowserBreakout() {
           </div>
         </div>
         <div className="breakout-card breakout-card-a" data-depth="0.55">
-          <span>Conversion</span>
+          <span>{copy.conversion}</span>
           <strong>42.8%</strong>
           <i />
         </div>
         <div className="breakout-card breakout-card-b" data-depth="-0.35">
-          <span>Event health</span>
+          <span>{copy.health}</span>
           <strong>99.98</strong>
-          <small>stable</small>
+          <small>{copy.stable}</small>
         </div>
         <div className="breakout-card breakout-card-c" data-depth="0.28">
           <span>offer.updated</span>
-          <small>42 ms</small>
+          <small>{copy.latency}</small>
         </div>
         <svg
           className="breakout-route"
           viewBox="0 0 720 500"
           aria-hidden="true"
         >
-          <title>Event route leaving the product interface</title>
+          <title>{copy.route}</title>
           <defs>
             <radialGradient id="event-sphere-orange" cx="32%" cy="26%">
               <stop offset="0" stopColor="#ffd8b7" />
@@ -127,7 +132,8 @@ export function BrowserBreakout() {
   );
 }
 
-export function KanbanBreakout() {
+export function KanbanBreakout({ locale }: { locale: HomeLocale }) {
+  const copy = homeVisualCopy.kanban[locale];
   return (
     <div
       className="kanban-breakout screenbreak-stage"
@@ -139,27 +145,27 @@ export function KanbanBreakout() {
         <div className="kanban-window">
           <div className="kanban-toolbar">
             <i />
-            <span>Product delivery</span>
+            <span>{copy.delivery}</span>
           </div>
           <div className="kanban-columns">
             <div>
-              <b>Backlog</b>
+              <b>{copy.backlog}</b>
               <i />
               <i />
             </div>
             <div>
-              <b>In progress</b>
+              <b>{copy.progress}</b>
               <i />
               <i />
             </div>
             <div>
-              <b>Done</b>
+              <b>{copy.done}</b>
               <i />
             </div>
           </div>
         </div>
         <svg className="kanban-route" viewBox="0 0 760 500">
-          <title>Work item moving through delivery states</title>
+          <title>{copy.route}</title>
           <path d="M185 300C280 230 360 250 430 190S565 118 650 170" />
           <circle r="7">
             <animateMotion
@@ -173,15 +179,15 @@ export function KanbanBreakout() {
           className="kanban-flying-card kanban-flying-card-a"
           data-depth="0.45"
         >
-          <span>Architecture review</span>
-          <small>System boundary</small>
+          <span>{copy.review}</span>
+          <small>{copy.boundary}</small>
         </div>
         <div
           className="kanban-flying-card kanban-flying-card-b"
           data-depth="-0.3"
         >
-          <span>Optimistic update</span>
-          <small>Interaction state</small>
+          <span>{copy.update}</span>
+          <small>{copy.state}</small>
         </div>
       </div>
     </div>
