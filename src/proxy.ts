@@ -11,6 +11,7 @@ export function proxy(request: NextRequest) {
     pagePath === "/" ||
     pagePath === "/thinking" ||
     pagePath === "/thinking/knowledge-base" ||
+    pagePath === "/thinking/articles" ||
     pagePath === "/about" ||
     pagePath === "/contact" ||
     pagePath === "/work" ||

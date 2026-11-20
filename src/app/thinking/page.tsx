@@ -121,7 +121,11 @@ export default async function ThinkingPage() {
       russian ? "/ru/thinking/knowledge-base" : "/en/thinking/knowledge-base",
     ],
     [copy.mechanism, copy.serialized, "/thinking/edge-case-inc"],
-    [copy.evaluate, copy.essay, "/thinking/articles"],
+    [
+      copy.evaluate,
+      copy.essay,
+      russian ? "/ru/thinking/articles" : "/en/thinking/articles",
+    ],
   ];
 
   return (
@@ -213,7 +217,9 @@ export default async function ThinkingPage() {
             <strong>{copy.investigations}</strong>
             <small>{copy.mechanisms}</small>
           </Link>
-          <Link href="/thinking/articles">
+          <Link
+            href={russian ? "/ru/thinking/articles" : "/en/thinking/articles"}
+          >
             <i className="thinking-map-connector" aria-hidden="true" />
             <span>03</span>
             <strong>{copy.essays}</strong>
@@ -288,7 +294,10 @@ export default async function ThinkingPage() {
               </b>
             </div>
           </Link>
-          <Link href="/thinking/articles" className="thinking-format-card">
+          <Link
+            href={russian ? "/ru/thinking/articles" : "/en/thinking/articles"}
+            className="thinking-format-card"
+          >
             <EssayVisual copy={copy} />
             <div className="thinking-format-copy">
               <span>{copy.notesLabel}</span>

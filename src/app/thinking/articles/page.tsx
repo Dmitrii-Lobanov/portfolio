@@ -7,51 +7,32 @@ import {
   Workflow,
 } from "lucide-react";
 import type { Metadata } from "next";
+import { headers } from "next/headers";
 import Link from "next/link";
 import { SiteFooter } from "@/components/editorial";
+import { articlesCopy, essaysRussian } from "@/content/articles-copy";
 import { articles, externalLinks } from "@/content/portfolio";
 import "@/styles/articles.css";
 
-export const metadata: Metadata = {
-  title: "Engineering Field Notes | Dmitrii Lobanov",
-  description:
-    "Production field notes on React performance, product workflows, system boundaries, and frontend architecture.",
-};
+async function isRussian() {
+  return (await headers()).get("x-portfolio-locale") === "ru";
+}
 
-const readingLenses = [
-  {
-    index: "04",
-    question: "Why is the frontend slow?",
-    takeaway:
-      "You need to diagnose rendering and loading bottlenecks before choosing an optimization.",
-    icon: Gauge,
-    label: "Follow the measurements",
-  },
-  {
-    index: "03",
-    question: "What should shape the architecture?",
-    takeaway:
-      "You need to assess whether a proposed architecture answers an actual product requirement.",
-    icon: ScanLine,
-    label: "Start with the question",
-  },
-  {
-    index: "02",
-    question: "What makes the workflow complex?",
-    takeaway:
-      "A feature crosses roles, permissions, and several connected product surfaces.",
-    icon: Workflow,
-    label: "Follow the product",
-  },
-  {
-    index: "01",
-    question: "Where do the responsibilities belong?",
-    takeaway:
-      "You need to reason about identity and state ownership across a frontend platform.",
-    icon: Layers,
-    label: "Inspect the system",
-  },
-] as const;
+export async function generateMetadata(): Promise<Metadata> {
+  const russian = await isRussian();
+  return {
+    title: russian
+      ? "Инженерные заметки | Дмитрий Лобанов"
+      : "Engineering Field Notes | Dmitrii Lobanov",
+    description: russian
+      ? "Статьи о производительности React, продуктовых сценариях и архитектуре фронтенда."
+      : "Production field notes on React performance, product workflows, system boundaries, and frontend architecture.",
+    alternates: {
+      canonical: russian ? "/ru/thinking/articles" : "/thinking/articles",
+      languages: { en: "/en/thinking/articles", ru: "/ru/thinking/articles" },
+    },
+  };
+}
 
 function getEssay(index: string) {
   const article = articles.find((item) => item.index === index);
@@ -59,23 +40,52 @@ function getEssay(index: string) {
   return article;
 }
 
-export default function ArticlesPage() {
+export default async function ArticlesPage() {
+  const russian = await isRussian();
+  const copy = articlesCopy[russian ? "ru" : "en"];
+  const readingLenses = [
+    {
+      index: "04",
+      question: copy.slow,
+      takeaway: copy.slowText,
+      icon: Gauge,
+      label: copy.measure,
+    },
+    {
+      index: "03",
+      question: copy.shape,
+      takeaway: copy.shapeText,
+      icon: ScanLine,
+      label: copy.question,
+    },
+    {
+      index: "02",
+      question: copy.workflow,
+      takeaway: copy.workflowText,
+      icon: Workflow,
+      label: copy.follow,
+    },
+    {
+      index: "01",
+      question: copy.responsibility,
+      takeaway: copy.responsibilityText,
+      icon: Layers,
+      label: copy.inspect,
+    },
+  ] as const;
+
   const firstEssay = getEssay("04");
   return (
     <main className="route-main essays-page">
       <section className="essays-hero">
         <div className="essays-hero-copy" data-reveal>
-          <p className="eyebrow">Thinking / Engineering field notes</p>
+          <p className="eyebrow">{copy.eyebrow}</p>
           <h1>
-            The decisions
+            {copy.titleFirst}
             <br />
-            behind the system.
+            {copy.titleLast}
           </h1>
-          <p>
-            Field notes on improving a production frontend: diagnose
-            performance, follow the product workflow, and examine the
-            architecture decisions behind the result.
-          </p>
+          <p>{copy.intro}</p>
           <div className="essays-actions">
             <a
               className="button-tactile essays-primary"
@@ -83,8 +93,7 @@ export default function ArticlesPage() {
               target="_blank"
               rel="noreferrer"
             >
-              Start with performance{" "}
-              <ArrowUpRight size={17} aria-hidden="true" />
+              {copy.start} <ArrowUpRight size={17} aria-hidden="true" />
             </a>
             <a
               className="route-link"
@@ -92,8 +101,7 @@ export default function ArticlesPage() {
               target="_blank"
               rel="noreferrer"
             >
-              All writing on Medium{" "}
-              <ArrowUpRight size={16} aria-hidden="true" />
+              {copy.medium} <ArrowUpRight size={16} aria-hidden="true" />
             </a>
           </div>
         </div>
@@ -102,59 +110,54 @@ export default function ArticlesPage() {
           data-reveal
           data-depth-stage
           role="img"
-          aria-label="A product constraint becomes an explicit ownership decision, with its trade-off recorded alongside it."
+          aria-label={copy.instrument}
         >
           <div className="essays-instrument-label">
-            <span>Field note / trace the reasoning</span>
-            <span>Pressure → decision</span>
+            <span>{copy.instrumentTitle}</span>
+            <span>{copy.observe}</span>
           </div>
           <div className="essays-pressure" data-depth="0.12">
-            <span>01 / Observe the product</span>
+            <span>{copy.observeTitle}</span>
             <strong>
-              One manager.
+              {copy.manager}
               <br />
-              Several partner contexts.
+              {copy.partners}
             </strong>
             <div className="essays-contexts">
-              <span>Tab A · Partner A</span>
-              <span>Tab B · Partner B</span>
+              <span>{copy.tabA}</span>
+              <span>{copy.tabB}</span>
             </div>
           </div>
           <div className="essays-rail" aria-hidden="true">
             <i />
           </div>
           <div className="essays-note" data-depth="0.2">
-            <span>02 / Make ownership explicit</span>
+            <span>{copy.ownership}</span>
             <strong>
-              Identity belongs
+              {copy.identityFirst}
               <br />
-              to the request context.
+              {copy.identityLast}
             </strong>
             <div className="essays-note-rule">
-              <span>Decision</span>
-              <p>Keep each tab’s partner context separate.</p>
+              <span>{copy.decision}</span>
+              <p>{copy.decisionText}</p>
             </div>
             <div className="essays-note-rule">
-              <span>Trade-off</span>
-              <p>Resolve identity deliberately at the boundary.</p>
+              <span>{copy.tradeoff}</span>
+              <p>{copy.tradeoffText}</p>
             </div>
           </div>
-          <p className="essays-instrument-foot">
-            A constraint. A mechanism. A consequence.
-          </p>
+          <p className="essays-instrument-foot">{copy.instrumentFoot}</p>
         </div>
       </section>
       <div className="essays-orientation" data-reveal>
         <div>
           <strong>{articles.length}</strong>
-          <span>selected essays</span>
+          <span>{copy.selected}</span>
         </div>
-        <p>
-          Four ways into the work: performance, requirements, product workflows,
-          and frontend system design.
-        </p>
+        <p>{copy.orientation}</p>
         <span>
-          Published on Medium <ArrowUpRight size={15} aria-hidden="true" />
+          {copy.published} <ArrowUpRight size={15} aria-hidden="true" />
         </span>
       </div>
       <section
@@ -163,19 +166,16 @@ export default function ArticlesPage() {
       >
         <header className="essays-heading" data-reveal>
           <div>
-            <p className="eyebrow">01 / Choose the question</p>
-            <h2 id="essays-reading-title">Read for the reasoning.</h2>
+            <p className="eyebrow">{copy.choose}</p>
+            <h2 id="essays-reading-title">{copy.readingTitle}</h2>
           </div>
-          <p>
-            Each essay takes a different view of the work. Choose the question
-            closest to your own product, from a slow interaction to a difficult
-            architecture decision.
-          </p>
+          <p>{copy.readingIntro}</p>
         </header>
         <div className="essays-grid">
           {readingLenses.map(
             ({ index, question, takeaway, icon: Icon, label }, position) => {
               const article = getEssay(index);
+              const text = russian ? essaysRussian[index] : article;
               return (
                 <article
                   className={`essay-card${position === 0 ? " essay-card-start" : ""}`}
@@ -186,19 +186,17 @@ export default function ArticlesPage() {
                     <span>
                       {String(position + 1).padStart(2, "0")} / {label}
                     </span>
-                    <small>{article.readTime}</small>
+                    <small>{text.readTime}</small>
                   </div>
                   <div className="essay-card-lens">
                     <Icon size={26} aria-hidden="true" />
                     <p>{question}</p>
                   </div>
-                  <span className="essay-card-tag">{article.tag}</span>
-                  <h3>{article.title}</h3>
-                  <p className="essay-card-description">
-                    {article.description}
-                  </p>
+                  <span className="essay-card-tag">{text.tag}</span>
+                  <h3>{text.title}</h3>
+                  <p className="essay-card-description">{text.description}</p>
                   <div className="essay-card-takeaway">
-                    <span>Useful when</span>
+                    <span>{copy.useful}</span>
                     <p>{takeaway}</p>
                   </div>
                   <a
@@ -207,7 +205,7 @@ export default function ArticlesPage() {
                     target="_blank"
                     rel="noreferrer"
                   >
-                    Read the essay <ArrowUpRight size={16} aria-hidden="true" />
+                    {copy.read} <ArrowUpRight size={16} aria-hidden="true" />
                   </a>
                 </article>
               );
@@ -221,33 +219,40 @@ export default function ArticlesPage() {
         data-reveal
       >
         <div>
-          <p className="eyebrow">02 / Keep the context connected</p>
+          <p className="eyebrow">{copy.context}</p>
           <h2 id="essays-context-title">
-            From field notes
+            {copy.contextFirst}
             <br />
-            to working knowledge.
+            {copy.contextLast}
           </h2>
-          <p>
-            See the production system behind the essays, or use the Wiki to
-            explore the frontend concepts underneath the decisions.
-          </p>
+          <p>{copy.contextIntro}</p>
         </div>
-        <nav aria-label="Related engineering work">
-          <Link className="route-link" href="/work/cpa-platform">
-            <span>Explore the Tinkoff case study</span>
+        <nav aria-label={copy.nav}>
+          <Link
+            className="route-link"
+            href={russian ? "/ru/work/cpa-platform" : "/en/work/cpa-platform"}
+          >
+            <span>{copy.tinkoff}</span>
             <ArrowRight size={17} aria-hidden="true" />
           </Link>
-          <Link className="route-link" href="/thinking/knowledge-base">
-            <span>Explore the Engineering Wiki</span>
+          <Link
+            className="route-link"
+            href={
+              russian
+                ? "/ru/thinking/knowledge-base"
+                : "/en/thinking/knowledge-base"
+            }
+          >
+            <span>{copy.wiki}</span>
             <ArrowRight size={17} aria-hidden="true" />
           </Link>
         </nav>
       </section>
       <div className="essays-closing" data-reveal>
         <p>
-          Follow the constraint.
+          {copy.closing}
           <br />
-          <strong>Understand the choice.</strong>
+          <strong>{copy.closingStrong}</strong>
         </p>
         <a
           className="button-tactile essays-primary"
@@ -255,11 +260,11 @@ export default function ArticlesPage() {
           target="_blank"
           rel="noreferrer"
         >
-          Browse all writing
+          {copy.browse}
           <ArrowUpRight size={17} aria-hidden="true" />
         </a>
       </div>
-      <SiteFooter />
+      <SiteFooter locale={russian ? "ru" : "en"} />
     </main>
   );
 }
