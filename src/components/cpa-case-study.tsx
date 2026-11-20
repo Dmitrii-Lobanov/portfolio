@@ -1,46 +1,40 @@
 import { ArrowDown, ArrowRight, ArrowUpRight, ShieldCheck } from "lucide-react";
 import { CaseStudySectionHeading } from "@/components/case-study-section-heading";
+import * as cpaEnglish from "@/content/case-studies/cpa";
+import { cpaRussian } from "@/content/case-studies/cpa.ru";
+import { cpaCopy } from "@/content/case-studies/cpa-copy";
 
-import {
-  contributionStories,
-  decisions,
-  managerDomains,
-  partnerDomains,
-  productionMetrics,
-  stateLayers,
-} from "@/content/case-studies/cpa";
-
-export function CpaCaseStudy() {
+export function CpaCaseStudy({ russian = false }: { russian?: boolean } = {}) {
+  const copy = cpaCopy[russian ? "ru" : "en"];
+  const {
+    contributionStories,
+    decisions,
+    managerDomains,
+    partnerDomains,
+    productionMetrics,
+    stateLayers,
+  } = russian ? cpaRussian : cpaEnglish;
   return (
     <>
       <section className="case-study-surface cpa-overview">
         <div className="cpa-section-heading">
           <div>
-            <p className="eyebrow eyebrow-light">01 / Product system</p>
+            <p className="eyebrow eyebrow-light">{copy.overview}</p>
             <h2>
-              Two products.
+              {copy.twoProducts}
               <br />
-              One operating model.
+              {copy.oneModel}
             </h2>
           </div>
-          <p>
-            The frontend was not a collection of screens. It coordinated two
-            connected experiences, shared infrastructure, and business workflows
-            that crossed role boundaries.
-          </p>
+          <p>{copy.overviewDescription}</p>
         </div>
 
-        <section
-          className="surface-map"
-          aria-label="Manager and partner product surfaces"
-        >
+        <section className="surface-map" aria-label={copy.surfaces}>
           <article>
             <div className="surface-title">
-              <span>01 / Operations</span>
-              <h3>Manager UI</h3>
-              <p>
-                Control the network, configure products and resolve exceptions.
-              </p>
+              <span>{copy.operations}</span>
+              <h3>{copy.manager}</h3>
+              <p>{copy.managerDescription}</p>
             </div>
             <div className="domain-cloud">
               {managerDomains.map((domain) => (
@@ -50,21 +44,18 @@ export function CpaCaseStudy() {
           </article>
 
           <div className="surface-bridge">
-            <span>Shared foundation</span>
+            <span>{copy.foundation}</span>
             <i />
-            <strong>Auth · UI · routing · API · events</strong>
+            <strong>{copy.foundationParts}</strong>
             <i />
-            <span>Impersonation bridge</span>
+            <span>{copy.bridge}</span>
           </div>
 
           <article>
             <div className="surface-title">
-              <span>02 / Self-service</span>
-              <h3>Partner UI</h3>
-              <p>
-                Discover offers, track results and complete operational
-                workflows.
-              </p>
+              <span>{copy.selfService}</span>
+              <h3>{copy.partner}</h3>
+              <p>{copy.partnerDescription}</p>
             </div>
             <div className="domain-cloud">
               {partnerDomains.map((domain) => (
@@ -77,46 +68,40 @@ export function CpaCaseStudy() {
 
       <section className="route-section cpa-identity-section">
         <CaseStudySectionHeading
-          eyebrow="02 / The hard part"
-          title="Identity was a runtime context."
-          description={
-            <>
-              A manager could open multiple tabs as different partners while
-              global notifications and chat still belonged to the manager
-              session.
-            </>
-          }
+          eyebrow={copy.identity}
+          title={copy.identityTitle}
+          description={copy.identityDescription}
         />
 
         <div className="identity-diagram">
           <div className="identity-origin">
             <ShieldCheck aria-hidden="true" />
-            <span>Original session</span>
-            <strong>Manager identity</strong>
-            <small>Owns global features</small>
+            <span>{copy.session}</span>
+            <strong>{copy.managerIdentity}</strong>
+            <small>{copy.global}</small>
           </div>
           <div className="identity-rail" aria-hidden="true">
             <i />
-            <span>explicit context</span>
+            <span>{copy.explicit}</span>
             <i />
           </div>
           <div className="identity-tabs">
             <article>
-              <span>Browser tab A</span>
-              <strong>Partner 1842</strong>
-              <small>sessionStorage → token map</small>
+              <span>{copy.tabA}</span>
+              <strong>{copy.partnerA}</strong>
+              <small>{copy.tokenMap}</small>
             </article>
             <article>
-              <span>Browser tab B</span>
-              <strong>Partner 7291</strong>
-              <small>sessionStorage → token map</small>
+              <span>{copy.tabB}</span>
+              <strong>{copy.partnerB}</strong>
+              <small>{copy.tokenMap}</small>
             </article>
           </div>
           <ArrowDown className="identity-arrow" aria-hidden="true" />
           <div className="identity-request">
-            <span>Every request</span>
-            <strong>Authentication · permission check · audit context</strong>
-            <span>Backend remains authoritative</span>
+            <span>{copy.request}</span>
+            <strong>{copy.checks}</strong>
+            <span>{copy.authority}</span>
           </div>
         </div>
       </section>
@@ -124,26 +109,18 @@ export function CpaCaseStudy() {
       <section className="case-study-surface cpa-architecture-section">
         <div className="cpa-section-heading">
           <div>
-            <p className="eyebrow eyebrow-light">03 / Architecture</p>
-            <h2>Data changed shape at deliberate boundaries.</h2>
+            <p className="eyebrow eyebrow-light">{copy.architecture}</p>
+            <h2>{copy.architectureTitle}</h2>
           </div>
-          <p>
-            An MVVM-inspired flow kept transport models away from view concerns.
-            Components received UI-ready data instead of interpreting backend
-            responses themselves.
-          </p>
+          <p>{copy.architectureDescription}</p>
         </div>
 
-        <div
-          className="cpa-data-flow"
-          role="img"
-          aria-label="Data flow from backend models to React interface"
-        >
+        <div className="cpa-data-flow" role="img" aria-label={copy.flow}>
           {[
-            ["01", "Backend", "Domain models"],
-            ["02", "Data access", "RTK Query"],
-            ["03", "View model", "Hooks + selectors"],
-            ["04", "Interface", "React components"],
+            ["01", copy.backend, copy.models],
+            ["02", copy.access, "RTK Query"],
+            ["03", copy.viewModel, copy.hooks],
+            ["04", copy.interface, copy.react],
           ].map(([number, label, value], index) => (
             <div key={number}>
               <article>
@@ -159,8 +136,8 @@ export function CpaCaseStudy() {
 
         <div className="state-ownership">
           <div className="state-caption">
-            <span>State ownership matrix</span>
-            <span>Authority × lifetime × update radius</span>
+            <span>{copy.ownership}</span>
+            <span>{copy.factors}</span>
           </div>
           {stateLayers.map((layer, index) => (
             <article key={layer.name}>
@@ -175,14 +152,9 @@ export function CpaCaseStudy() {
 
       <section className="route-section cpa-decisions-section">
         <CaseStudySectionHeading
-          eyebrow="04 / Decisions"
-          title="Architecture followed the constraints."
-          description={
-            <>
-              The important choices were less about picking libraries and more
-              about making ownership, identity and change safe at product scale.
-            </>
-          }
+          eyebrow={copy.decisions}
+          title={copy.decisionsTitle}
+          description={copy.decisionsDescription}
         />
         <div className="cpa-decision-grid">
           {decisions.map((decision) => (
@@ -190,7 +162,7 @@ export function CpaCaseStudy() {
               <span>{decision.number}</span>
               <p>{decision.question}</p>
               <h3>{decision.decision}</h3>
-              <small>Why this fit</small>
+              <small>{copy.why}</small>
               <p className="cpa-decision-explanation">{decision.why}</p>
             </article>
           ))}
@@ -199,17 +171,9 @@ export function CpaCaseStudy() {
 
       <section className="route-section cpa-contribution-section">
         <CaseStudySectionHeading
-          eyebrow="05 / Contribution"
-          title="Built inside a living product."
-          description={
-            <>
-              I built the frontend from scratch, defined its architecture and
-              state-management approach, and owned delivery for critical
-              workflows. From requirements through release, I worked with
-              product, design, backend, and QA. I was promoted to Senior in
-              January 2024.
-            </>
-          }
+          eyebrow={copy.contribution}
+          title={copy.contributionTitle}
+          description={copy.contributionDescription}
         />
         <div className="cpa-impact-strip">
           {productionMetrics.map(([value, label]) => (
@@ -227,15 +191,15 @@ export function CpaCaseStudy() {
                 <h3>{title}</h3>
                 <dl>
                   <div>
-                    <dt>Product pressure</dt>
+                    <dt>{copy.pressure}</dt>
                     <dd>{pressure}</dd>
                   </div>
                   <div>
-                    <dt>My contribution</dt>
+                    <dt>{copy.action}</dt>
                     <dd>{action}</dd>
                   </div>
                   <div>
-                    <dt>Observed result</dt>
+                    <dt>{copy.result}</dt>
                     <dd>{evidence}</dd>
                   </div>
                 </dl>
@@ -244,14 +208,14 @@ export function CpaCaseStudy() {
           )}
         </div>
         <div className="cpa-reading-list">
-          <span>Related field notes</span>
+          <span>{copy.notes}</span>
           <a
             className="gradient-action"
             href="https://medium.com/@dmitriilobanov3/optimizing-a-large-react-redux-app-from-render-chaos-to-a-3x-faster-ui-9d6b2038eb05"
             target="_blank"
             rel="noreferrer"
           >
-            <span>React performance investigation</span>
+            <span>{copy.performance}</span>
             <ArrowUpRight aria-hidden="true" />
           </a>
           <a
@@ -260,7 +224,7 @@ export function CpaCaseStudy() {
             target="_blank"
             rel="noreferrer"
           >
-            <span>Frontend system design</span>
+            <span>{copy.system}</span>
             <ArrowUpRight aria-hidden="true" />
           </a>
           <a
@@ -269,15 +233,11 @@ export function CpaCaseStudy() {
             target="_blank"
             rel="noreferrer"
           >
-            <span>Product workflows</span>
+            <span>{copy.workflows}</span>
             <ArrowUpRight aria-hidden="true" />
           </a>
         </div>
-        <p className="cpa-confidentiality">
-          The diagrams use simplified flows and generalized domain names. They
-          contain no proprietary source code, customer data, or internal system
-          details.
-        </p>
+        <p className="cpa-confidentiality">{copy.confidentiality}</p>
       </section>
     </>
   );

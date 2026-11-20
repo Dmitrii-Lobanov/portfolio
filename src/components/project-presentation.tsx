@@ -11,7 +11,7 @@ import {
 import type { Project, ProjectSlug } from "@/content/portfolio";
 
 type ProjectPresentation = {
-  CaseStudy: ComponentType;
+  CaseStudy: ComponentType<{ russian?: boolean }>;
   HeroVisual: ComponentType<{ project: Project }>;
   OutcomeDetail?: ComponentType;
   factLabel: "Scale" | "Focus";

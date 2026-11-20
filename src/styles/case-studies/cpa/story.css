@@ -1467,3 +1467,13 @@
     overflow-wrap: anywhere;
   }
 }
+
+@media (max-width: 380px) {
+  .project-detail .surface-map {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .project-detail .surface-bridge {
+    flex-direction: column;
+    text-align: center;
+  }
+}

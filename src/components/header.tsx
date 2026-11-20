@@ -15,15 +15,19 @@ const navItems = [
 export function Header({ preference }: { preference: "en" | "ru" }) {
   const pathname = usePathname();
   const pagePath = pathname.replace(/^\/(en|ru)(?=\/|$)/, "") || "/";
-  const russian = pathname === "/ru";
   const selected = /^\/ru(?=\/|$)/.test(pathname)
     ? "ru"
     : /^\/en(?=\/|$)/.test(pathname)
       ? "en"
       : preference;
+  const russian = selected === "ru";
+  const contentLanguage =
+    russian && (pagePath === "/" || pagePath === "/work/cpa-platform")
+      ? "ru"
+      : "en";
   useEffect(() => {
-    document.documentElement.lang = russian ? "ru" : "en";
-  }, [russian]);
+    document.documentElement.lang = contentLanguage;
+  }, [contentLanguage]);
   const home = `/${selected}`;
   const onHome = pagePath === "/";
   const alternatePath = pagePath === "/" ? "" : pagePath;
@@ -43,7 +47,10 @@ export function Header({ preference }: { preference: "en" | "ru" }) {
 
   return (
     <header className="site-header" data-scroll-header>
-      <nav aria-label={russian ? "Основная навигация" : "Main navigation"}>
+      <nav
+        lang={selected}
+        aria-label={russian ? "Основная навигация" : "Main navigation"}
+      >
         <Link
           href={home}
           className="wordmark"
@@ -108,7 +115,11 @@ export function Header({ preference }: { preference: "en" | "ru" }) {
             href="https://www.linkedin.com/in/dmitrii-lobanov/"
             target="_blank"
             rel="noreferrer"
-            aria-label="Dmitrii Lobanov on LinkedIn"
+            aria-label={
+              russian
+                ? "Дмитрий Лобанов в LinkedIn"
+                : "Dmitrii Lobanov on LinkedIn"
+            }
             title="LinkedIn"
           >
             <LinkedinIcon width={17} height={17} aria-hidden="true" />
@@ -118,7 +129,11 @@ export function Header({ preference }: { preference: "en" | "ru" }) {
             href="https://github.com/Dmitrii-Lobanov"
             target="_blank"
             rel="noreferrer"
-            aria-label="Dmitrii Lobanov on GitHub"
+            aria-label={
+              russian
+                ? "Дмитрий Лобанов на GitHub"
+                : "Dmitrii Lobanov on GitHub"
+            }
             title="GitHub"
           >
             <GithubIcon width={17} height={17} aria-hidden="true" />

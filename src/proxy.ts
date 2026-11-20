@@ -7,10 +7,21 @@ export function proxy(request: NextRequest) {
   const pagePath = match ? pathname.slice(match[0].length) || "/" : pathname;
   const preference = request.cookies.get("portfolio-language")?.value;
   const locale = explicitLocale ?? (preference === "ru" ? "ru" : "en");
+  const hasRussianTranslation =
+    pagePath === "/" || pagePath === "/work/cpa-platform";
+
+  if (!explicitLocale && locale === "ru" && hasRussianTranslation) {
+    const destination = request.nextUrl.clone();
+    destination.pathname = pagePath === "/" ? "/ru" : `/ru${pagePath}`;
+    const response = NextResponse.redirect(destination);
+    response.headers.set("Cache-Control", "private, no-store");
+    return response;
+  }
+
   const headers = new Headers(request.headers);
   headers.set(
     "x-portfolio-locale",
-    pagePath === "/" && explicitLocale === "ru" ? "ru" : "en",
+    explicitLocale === "ru" && hasRussianTranslation ? "ru" : "en",
   );
   headers.set("x-portfolio-preference", locale);
 
