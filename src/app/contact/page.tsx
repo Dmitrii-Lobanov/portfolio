@@ -10,48 +10,51 @@ import {
   Sparkles,
 } from "lucide-react";
 import type { Metadata } from "next";
+import { headers } from "next/headers";
 import Link from "next/link";
 import { SiteFooter } from "@/components/editorial";
+import { copyByLocale } from "@/content/contact-copy";
 import { externalLinks } from "@/content/portfolio";
 
-export const metadata: Metadata = { title: "Contact | Dmitrii Lobanov" };
+async function isRussian() {
+  return (await headers()).get("x-portfolio-locale") === "ru";
+}
+export async function generateMetadata(): Promise<Metadata> {
+  const russian = await isRussian();
+  return {
+    title: russian ? "Контакты | Дмитрий Лобанов" : "Contact | Dmitrii Lobanov",
+    alternates: {
+      canonical: russian ? "/ru/contact" : "/contact",
+      languages: { en: "/en/contact", ru: "/ru/contact" },
+    },
+  };
+}
 
-const goodFit = [
-  "Senior frontend engineering for fintech and SaaS products",
-  "Complex workflows, permissions, and operational interfaces",
-  "Platform modernization and migration strategy",
-  "Performance, reliability, and engineering foundations",
-  "Technical speaking, mentoring, and knowledge systems",
-];
+export default async function ContactPage() {
+  const russian = await isRussian();
+  const copy = copyByLocale[russian ? "ru" : "en"];
+  const prefix = russian ? "/ru" : "/en";
+  const goodFit = [copy.fit1, copy.fit2, copy.fit3, copy.fit4, copy.fit5];
 
-const usefulContext = [
-  ["01", "The product", "What people are trying to accomplish."],
-  [
-    "02",
-    "The pressure",
-    "What is slow, risky, unclear, or difficult to evolve.",
-  ],
-  ["03", "The outcome", "What a better system should make possible."],
-];
+  const usefulContext = [
+    ["01", copy.product, copy.productText],
+    ["02", copy.problem, copy.problemText],
+    ["03", copy.result, copy.resultText],
+  ];
 
-export default function ContactPage() {
   return (
     <main className="route-main contact-page contact-editorial">
       <section className="contact-section-surface contact-hero-light">
         <div className="contact-hero-copy" data-reveal>
-          <p className="eyebrow">Contact / Current signal: available</p>
-          <h1>Let’s make the difficult part explicit.</h1>
-          <p>
-            I’m open to remote Senior Frontend Engineer roles through
-            international B2B contracts, building React, TypeScript, and Next.js
-            products where performance, reliability, and user experience matter.
-          </p>
-          <p>English C1</p>
+          <p className="eyebrow">{copy.eyebrow}</p>
+          <h1>{copy.heading}</h1>
+          <p>{copy.intro}</p>
+          <p>{copy.english}</p>
           <a
             className="button-tactile contact-hero-action"
             href={externalLinks.email}
           >
-            Start with an email <ArrowUpRight size={18} aria-hidden="true" />
+            {copy.email} <ArrowUpRight size={18} aria-hidden="true" />
           </a>
         </div>
 
@@ -60,12 +63,12 @@ export default function ContactPage() {
           data-depth-stage
           data-reveal
           role="img"
-          aria-label="A message moving from product context to a focused engineering conversation"
+          aria-label={copy.diagram}
         >
           <header>
-            <span>Conversation / useful context</span>
+            <span>{copy.conversation}</span>
             <span>
-              <i /> Signal open
+              <i /> {copy.open}
             </span>
           </header>
           <div className="contact-handoff-track" aria-hidden="true">
@@ -76,38 +79,35 @@ export default function ContactPage() {
           </div>
           <div className="contact-handoff-stages">
             <article data-depth="0.12">
-              <span>01 / Brief</span>
+              <span>{copy.brief}</span>
               <MessageSquareText size={27} />
-              <strong>Product context</strong>
-              <small>Intent received</small>
+              <strong>{copy.productContext}</strong>
+              <small>{copy.received}</small>
             </article>
             <article data-depth="0.2">
-              <span>02 / Discuss</span>
+              <span>{copy.discuss}</span>
               <Route size={27} />
-              <strong>Real constraint</strong>
-              <small>Pressure located</small>
+              <strong>{copy.realConstraint}</strong>
+              <small>{copy.located}</small>
             </article>
             <article data-depth="0.3">
-              <span>03 / Decide</span>
+              <span>{copy.decide}</span>
               <Sparkles size={27} />
-              <strong>Useful next step</strong>
-              <small>Direction clear</small>
+              <strong>{copy.next}</strong>
+              <small>{copy.direction}</small>
             </article>
           </div>
-          <footer>One thoughtful message → one grounded conversation</footer>
+          <footer>{copy.oneMessage}</footer>
         </div>
       </section>
 
       <section className="contact-section-surface contact-surface contact-fit">
         <header className="contact-heading" data-reveal>
           <div>
-            <p className="eyebrow">01 / Good conversations</p>
-            <h2>Bring work with a real product constraint.</h2>
+            <p className="eyebrow">{copy.fit}</p>
+            <h2>{copy.fitTitle}</h2>
           </div>
-          <p>
-            I’m most useful when the interface and the system underneath it both
-            need careful engineering judgment.
-          </p>
+          <p>{copy.fitIntro}</p>
         </header>
         <div className="contact-fit-layout">
           <ul>
@@ -119,14 +119,12 @@ export default function ContactPage() {
             ))}
           </ul>
           <aside data-reveal>
-            <span className="contact-mono-label">
-              A strong fit usually includes
-            </span>
-            <strong>Ownership</strong>
+            <span className="contact-mono-label">{copy.strongFit}</span>
+            <strong>{copy.ownership}</strong>
             <i />
-            <strong>Product pressure</strong>
+            <strong>{copy.pressure}</strong>
             <i />
-            <strong>Room to improve the system</strong>
+            <strong>{copy.improvement}</strong>
           </aside>
         </div>
       </section>
@@ -134,13 +132,10 @@ export default function ContactPage() {
       <section className="contact-section-surface contact-surface contact-brief">
         <header className="contact-heading" data-reveal>
           <div>
-            <p className="eyebrow">02 / A useful first message</p>
-            <h2>Context is more helpful than a polished specification.</h2>
+            <p className="eyebrow">{copy.message}</p>
+            <h2>{copy.messageTitle}</h2>
           </div>
-          <p>
-            You do not need to have the solution. A short description of the
-            product, pressure, and desired outcome is enough to begin.
-          </p>
+          <p>{copy.messageIntro}</p>
         </header>
         <div className="contact-context-grid">
           {usefulContext.map(([number, title, copy]) => (
@@ -156,13 +151,10 @@ export default function ContactPage() {
       <section className="contact-section-surface contact-surface contact-channels">
         <header className="contact-heading" data-reveal>
           <div>
-            <p className="eyebrow">03 / Choose a channel</p>
-            <h2>Use the route that fits the conversation.</h2>
+            <p className="eyebrow">{copy.channels}</p>
+            <h2>{copy.channelsTitle}</h2>
           </div>
-          <p>
-            Email is best for context. LinkedIn works well for an introduction.
-            GitHub shows how I build and explain technical decisions.
-          </p>
+          <p>{copy.channelsIntro}</p>
         </header>
         <div className="contact-channel-grid">
           <a
@@ -171,14 +163,14 @@ export default function ContactPage() {
             data-reveal
           >
             <span>
-              <Mail size={25} /> Preferred
+              <Mail size={25} /> {copy.preferred}
             </span>
             <strong>
               dmitriilobanov3
               <wbr />
               @gmail.com
             </strong>
-            <p>Send a role, project, or difficult engineering problem.</p>
+            <p>{copy.preferredText}</p>
             <ArrowUpRight size={20} />
           </a>
           <a
@@ -189,10 +181,10 @@ export default function ContactPage() {
             data-reveal
           >
             <span>
-              <Share2 size={25} /> Introduction
+              <Share2 size={25} /> {copy.linkedin}
             </span>
-            <strong>Connect on LinkedIn</strong>
-            <p>Start a professional conversation or share an opportunity.</p>
+            <strong>{copy.linkedinTitle}</strong>
+            <p>{copy.linkedinText}</p>
             <ArrowUpRight size={20} />
           </a>
           <a
@@ -203,10 +195,10 @@ export default function ContactPage() {
             data-reveal
           >
             <span>
-              <Code2 size={25} /> Code
+              <Code2 size={25} /> {copy.github}
             </span>
-            <strong>Explore GitHub</strong>
-            <p>Review repositories, experiments, and implementation work.</p>
+            <strong>{copy.githubTitle}</strong>
+            <p>{copy.githubText}</p>
             <ArrowUpRight size={20} />
           </a>
         </div>
@@ -214,22 +206,22 @@ export default function ContactPage() {
 
       <section className="contact-section-surface contact-closing">
         <div data-reveal>
-          <p className="eyebrow">04 / Before you write</p>
-          <h2>Want more context first?</h2>
+          <p className="eyebrow">{copy.before}</p>
+          <h2>{copy.beforeTitle}</h2>
         </div>
-        <nav aria-label="Explore before contacting">
-          <Link href="/work" className="route-link" data-reveal>
-            View selected work <ArrowRight size={17} />
+        <nav aria-label={copy.nav}>
+          <Link href={`${prefix}/work`} className="route-link" data-reveal>
+            {copy.workLink} <ArrowRight size={17} />
           </Link>
-          <Link href="/about" className="route-link" data-reveal>
-            Read how I work <ArrowRight size={17} />
+          <Link href={`${prefix}/about`} className="route-link" data-reveal>
+            {copy.aboutLink} <ArrowRight size={17} />
           </Link>
-          <Link href="/thinking" className="route-link" data-reveal>
-            Explore technical writing <ArrowRight size={17} />
+          <Link href={`${prefix}/thinking`} className="route-link" data-reveal>
+            {copy.thinkingLink} <ArrowRight size={17} />
           </Link>
         </nav>
       </section>
-      <SiteFooter />
+      <SiteFooter locale={russian ? "ru" : "en"} />
     </main>
   );
 }

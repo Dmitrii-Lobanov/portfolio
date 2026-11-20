@@ -24,6 +24,8 @@ export function Header({ preference }: { preference: "en" | "ru" }) {
   const contentLanguage =
     russian &&
     (pagePath === "/" ||
+      pagePath === "/about" ||
+      pagePath === "/contact" ||
       pagePath === "/work" ||
       pagePath === "/work/cpa-platform" ||
       pagePath === "/work/reliable-kanban" ||
