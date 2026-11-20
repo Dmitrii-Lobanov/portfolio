@@ -1,16 +1,36 @@
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import type { Metadata } from "next";
+import { headers } from "next/headers";
 import Link from "next/link";
 import { SiteFooter } from "@/components/editorial";
+import {
+  edgePath,
+  edgeRussian,
+  indexCopy,
+  russianCharacters,
+} from "@/content/edge-case-copy";
 import { edgeCases } from "@/content/portfolio";
 import "@/styles/articles.css";
 import "@/styles/edge-case-index.css";
 
-export const metadata: Metadata = {
-  title: "Edge Case Inc. | Dmitrii Lobanov",
-  description:
-    "Visual engineering investigations: follow unexpected behavior through runtime ownership, user workflows, and business consequences.",
-};
+async function isRussian() {
+  return (await headers()).get("x-portfolio-locale") === "ru";
+}
+export async function generateMetadata(): Promise<Metadata> {
+  const russian = await isRussian();
+  return {
+    title: russian
+      ? "Edge Case Inc. | Дмитрий Лобанов"
+      : "Edge Case Inc. | Dmitrii Lobanov",
+    description: russian
+      ? "Визуальные расследования инженерных инцидентов: от работы кода до последствий для продукта."
+      : "Visual engineering investigations: follow unexpected behavior through runtime ownership, user workflows, and business consequences.",
+    alternates: {
+      canonical: russian ? `/ru${edgePath}` : edgePath,
+      languages: { en: `/en${edgePath}`, ru: `/ru${edgePath}` },
+    },
+  };
+}
 const characters = [
   [
     "Fox",
@@ -43,34 +63,33 @@ const characters = [
     "Joins investigations where AI changes the mechanism or the responsibility.",
   ],
 ];
-export default function EdgeCaseIndexPage() {
+export default async function EdgeCaseIndexPage() {
+  const russian = await isRussian();
+  const copy = indexCopy[russian ? "ru" : "en"];
+  const prefix = russian ? "/ru" : "/en";
   const opening = edgeCases[0];
   return (
     <main className="route-main essays-page investigations-page">
       <section className="essays-hero">
         <div className="essays-hero-copy" data-reveal>
-          <p className="eyebrow">Thinking / Edge Case Inc.</p>
+          <p className="eyebrow">{copy.eyebrow}</p>
           <h1>
-            Small incident.
+            {copy.first}
             <br />
-            Whole-system story.
+            {copy.last}
           </h1>
-          <p>
-            A fictional software company. Real engineering questions. Follow an
-            unexpected behavior through the runtime, the architecture, and the
-            people who depend on it.
-          </p>
+          <p>{copy.intro}</p>
           <div className="essays-actions">
             {opening && (
               <Link
                 className="button-tactile essays-primary"
-                href={`/thinking/edge-case-inc/${opening.slug}`}
+                href={`${prefix}${edgePath}/${opening.slug}`}
               >
-                Open the first case <ArrowRight size={16} aria-hidden="true" />
+                {copy.open} <ArrowRight size={16} aria-hidden="true" />
               </Link>
             )}
             <a className="route-link" href="#investigation-team">
-              Meet the investigators <ArrowRight size={15} aria-hidden="true" />
+              {copy.meet} <ArrowRight size={15} aria-hidden="true" />
             </a>
           </div>
         </div>
@@ -78,17 +97,17 @@ export default function EdgeCaseIndexPage() {
           className="essays-instrument"
           data-reveal
           role="img"
-          aria-label="One server event reaches two active listeners after reconnection, producing duplicate effects. The investigation asks who owns the subscription lifecycle."
+          aria-label={copy.diagram}
         >
           <div className="essays-instrument-label">
-            <span>Case 001 / Runtime trace</span>
-            <span>Observe → explain</span>
+            <span>{copy.trace}</span>
+            <span>{copy.observe}</span>
           </div>
           <div className="essays-pressure investigation-input">
-            <span>01 / The input</span>
-            <strong>One event from the server.</strong>
+            <span>{copy.input}</span>
+            <strong>{copy.event}</strong>
             <div className="essays-contexts">
-              <span>Connection re-established</span>
+              <span>{copy.reconnect}</span>
             </div>
           </div>
           <div className="investigation-rails" aria-hidden="true">
@@ -100,31 +119,32 @@ export default function EdgeCaseIndexPage() {
             </div>
           </div>
           <div className="investigation-listeners">
-            <span>Listener A · still active</span>
-            <span>Listener B · registered</span>
+            <span>{copy.listenerA}</span>
+            <span>{copy.listenerB}</span>
           </div>
           <div className="investigation-result">
-            <span>02 / The symptom</span>
-            <strong>Two effects in the interface.</strong>
-            <p>
-              The transport reconnected. Did the previous subscription leave?
-            </p>
+            <span>{copy.symptom}</span>
+            <strong>{copy.effects}</strong>
+            <p>{copy.question}</p>
           </div>
-          <p className="essays-instrument-foot">
-            Trace the behavior. Find the ownership boundary.
-          </p>
+          <p className="essays-instrument-foot">{copy.foot}</p>
         </div>
       </section>
-      <section className="essays-orientation" aria-label="About the series">
+      <section className="essays-orientation" aria-label={copy.series}>
         <div>
           <strong>{edgeCases.length.toString().padStart(2, "0")}</strong>
-          <span>{edgeCases.length === 1 ? "open case" : "open cases"}</span>
+          <span>
+            {russian
+              ? edgeCases.length === 1
+                ? "открытое дело"
+                : "открытые дела"
+              : edgeCases.length === 1
+                ? "open case"
+                : "open cases"}
+          </span>
         </div>
-        <p>
-          Each case follows one mechanism through four perspectives: production
-          behavior, architecture, product workflows, and business value.
-        </p>
-        <span>Fictional team · real trade-offs</span>
+        <p>{copy.perspectives}</p>
+        <span>{copy.fictional}</span>
       </section>
       <section
         className="essays-reading"
@@ -132,55 +152,56 @@ export default function EdgeCaseIndexPage() {
       >
         <div className="essays-heading" data-reveal>
           <div>
-            <p className="eyebrow">01 / Case directory</p>
-            <h2 id="investigation-directory-title">Start with the symptom.</h2>
+            <p className="eyebrow">{copy.directory}</p>
+            <h2 id="investigation-directory-title">{copy.directoryTitle}</h2>
           </div>
-          <p>
-            The opening investigation begins with a duplicate WebSocket effect.
-            Follow the mechanism before deciding where the fix belongs.
-          </p>
+          <p>{copy.directoryIntro}</p>
         </div>
-        {edgeCases.map((item) => (
-          <article className="investigation-case" key={item.slug} data-reveal>
-            <div className="investigation-case-summary">
-              <div className="essay-card-meta">
-                <span>{item.number}</span>
-                <small>{item.status}</small>
+        {edgeCases
+          .map((entry) =>
+            russian && entry.slug === edgeRussian.slug
+              ? { ...entry, ...edgeRussian }
+              : entry,
+          )
+          .map((item) => (
+            <article className="investigation-case" key={item.slug} data-reveal>
+              <div className="investigation-case-summary">
+                <div className="essay-card-meta">
+                  <span>{item.number}</span>
+                  <small>{item.status}</small>
+                </div>
+                <p className="essay-card-tag">{item.mechanism}</p>
+                <h3>{item.title}</h3>
+                <p>{item.summary}</p>
+                <Link
+                  className="route-link"
+                  href={`${prefix}${edgePath}/${item.slug}`}
+                >
+                  {copy.follow} <ArrowRight size={16} aria-hidden="true" />
+                </Link>
               </div>
-              <p className="essay-card-tag">{item.mechanism}</p>
-              <h3>{item.title}</h3>
-              <p>{item.summary}</p>
-              <Link
-                className="route-link"
-                href={`/thinking/edge-case-inc/${item.slug}`}
-              >
-                Follow the investigation{" "}
-                <ArrowRight size={16} aria-hidden="true" />
-              </Link>
-            </div>
-            <div className="investigation-case-route">
-              <p className="eyebrow">What you’ll investigate</p>
-              <ol>
-                {item.lenses.map((lens) => (
-                  <li key={lens.name}>
-                    <span>{lens.name}</span>
-                    <strong>{lens.role}</strong>
-                    <p>{lens.copy}</p>
-                  </li>
-                ))}
-              </ol>
-              <a
-                className="route-link"
-                href={item.linkedin}
-                target="_blank"
-                rel="noreferrer"
-              >
-                Read the series on LinkedIn{" "}
-                <ArrowUpRight size={15} aria-hidden="true" />
-              </a>
-            </div>
-          </article>
-        ))}
+              <div className="investigation-case-route">
+                <p className="eyebrow">{copy.what}</p>
+                <ol>
+                  {item.lenses.map((lens) => (
+                    <li key={lens.name}>
+                      <span>{lens.name}</span>
+                      <strong>{lens.role}</strong>
+                      <p>{lens.copy}</p>
+                    </li>
+                  ))}
+                </ol>
+                <a
+                  className="route-link"
+                  href={item.linkedin}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  {copy.linkedin} <ArrowUpRight size={15} aria-hidden="true" />
+                </a>
+              </div>
+            </article>
+          ))}
       </section>
       <section
         className="essays-reading"
@@ -189,58 +210,57 @@ export default function EdgeCaseIndexPage() {
       >
         <div className="essays-heading" data-reveal>
           <div>
-            <p className="eyebrow">02 / The investigators</p>
+            <p className="eyebrow">{copy.team}</p>
             <h2 id="investigation-team-title">
-              Different questions.
+              {copy.teamFirst}
               <br />
-              One shared trace.
+              {copy.teamLast}
             </h2>
           </div>
-          <p>
-            The characters make invisible behavior easier to discuss. Four
-            follow the opening case; Owl joins when AI or automation changes the
-            question.
-          </p>
+          <p>{copy.teamIntro}</p>
         </div>
         <div className="investigation-team">
-          {characters.map(([name, focus, question, copy], index) => (
-            <article key={name} data-reveal>
-              <span className="investigation-character-mark" aria-hidden="true">
-                0{index + 1}
-              </span>
-              <p className="essay-card-tag">{focus}</p>
-              <h3>{name}</h3>
-              <strong>{question}</strong>
-              <p>{copy}</p>
-            </article>
-          ))}
+          {(russian ? russianCharacters : characters).map(
+            ([name, focus, question, copy], index) => (
+              <article key={name} data-reveal>
+                <span
+                  className="investigation-character-mark"
+                  aria-hidden="true"
+                >
+                  0{index + 1}
+                </span>
+                <p className="essay-card-tag">{focus}</p>
+                <h3>{name}</h3>
+                <strong>{question}</strong>
+                <p>{copy}</p>
+              </article>
+            ),
+          )}
         </div>
       </section>
       <section className="essays-context" data-reveal>
         <div>
-          <p className="eyebrow">03 / Keep following the reasoning</p>
+          <p className="eyebrow">{copy.context}</p>
           <h2>
-            From an incident
+            {copy.contextFirst}
             <br />
-            to a working principle.
+            {copy.contextLast}
           </h2>
-          <p>
-            Explore the architectural decisions behind product systems, or use
-            the Engineering Wiki to study the underlying concepts.
-          </p>
+          <p>{copy.contextIntro}</p>
         </div>
-        <nav aria-label="Related thinking">
-          <Link className="route-link" href="/thinking/articles">
-            Read the architecture essays{" "}
-            <ArrowRight size={16} aria-hidden="true" />
+        <nav aria-label={copy.related}>
+          <Link className="route-link" href={`${prefix}/thinking/articles`}>
+            {copy.articles} <ArrowRight size={16} aria-hidden="true" />
           </Link>
-          <Link className="route-link" href="/thinking/knowledge-base">
-            Explore the Engineering Wiki{" "}
-            <ArrowRight size={16} aria-hidden="true" />
+          <Link
+            className="route-link"
+            href={`${prefix}/thinking/knowledge-base`}
+          >
+            {copy.wiki} <ArrowRight size={16} aria-hidden="true" />
           </Link>
         </nav>
       </section>
-      <SiteFooter />
+      <SiteFooter locale={russian ? "ru" : "en"} />
     </main>
   );
 }

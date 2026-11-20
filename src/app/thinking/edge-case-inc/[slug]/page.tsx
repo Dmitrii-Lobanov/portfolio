@@ -1,8 +1,10 @@
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import type { Metadata } from "next";
+import { headers } from "next/headers";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ExternalAction, SiteFooter } from "@/components/editorial";
+import { detailCopy, edgePath, edgeRussian } from "@/content/edge-case-copy";
 import { edgeCases, getEdgeCase } from "@/content/portfolio";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -10,48 +12,65 @@ export const dynamicParams = false;
 export function generateStaticParams() {
   return edgeCases.map(({ slug }) => ({ slug }));
 }
+async function isRussian() {
+  return (await headers()).get("x-portfolio-locale") === "ru";
+}
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const item = getEdgeCase((await params).slug);
-  return item
-    ? { title: `${item.title} — Edge Case Inc.`, description: item.summary }
-    : {};
+  if (!item) return {};
+  const russian = await isRussian();
+  const text = russian ? edgeRussian : item;
+  const path = `${edgePath}/${item.slug}`;
+  return {
+    title: `${text.title} — Edge Case Inc.`,
+    description: text.summary,
+    alternates: {
+      canonical: russian ? `/ru${path}` : path,
+      languages: { en: `/en${path}`, ru: `/ru${path}` },
+    },
+  };
 }
 
 export default async function EdgeCasePage({ params }: Props) {
   const item = getEdgeCase((await params).slug);
   if (!item) notFound();
+  const russian = await isRussian();
+  const copy = detailCopy[russian ? "ru" : "en"];
+  const text = russian ? edgeRussian : item;
   return (
     <main className="route-main edge-case-detail">
       <section className="case-file-hero">
-        <Link href="/thinking/edge-case-inc" className="action-link back-link">
+        <Link
+          href={`${russian ? "/ru" : "/en"}${edgePath}`}
+          className="action-link back-link"
+        >
           <ArrowLeft size={15} /> Edge Case Inc.
         </Link>
-        <p className="eyebrow eyebrow-light">{item.number} / Incident file</p>
-        <h1>{item.title}</h1>
-        <p>{item.summary}</p>
+        <p className="eyebrow eyebrow-light">
+          {text.number} / {russian ? "Материалы дела" : "Incident file"}
+        </p>
+        <h1>{text.title}</h1>
+        <p>{text.summary}</p>
         <div className="incident-tape">
-          <span>INCIDENT</span>
-          <span>{item.mechanism}</span>
-          <span>{item.status}</span>
+          <span>{russian ? "ИНЦИДЕНТ" : "INCIDENT"}</span>
+          <span>{text.mechanism}</span>
+          <span>{text.status}</span>
         </div>
       </section>
       <section className="case-mechanism route-section">
         <div className="route-section-heading" data-reveal>
           <div>
-            <p className="eyebrow">01 / Mechanism</p>
-            <h2>Follow the duplicate.</h2>
+            <p className="eyebrow">{copy.mechanism}</p>
+            <h2>{copy.mechanismTitle}</h2>
           </div>
-          <p>
-            The visible symptom occurs at the end. The ownership mistake starts
-            earlier in the connection lifecycle.
-          </p>
+          <p>{copy.mechanismIntro}</p>
         </div>
         <div className="case-path">
-          {item.path.map((step, index) => (
+          {text.path.map((step, index) => (
             <div key={step}>
               <span>0{index + 1}</span>
               <strong>{step}</strong>
-              {index < item.path.length - 1 && <ArrowRight />}
+              {index < text.path.length - 1 && <ArrowRight />}
             </div>
           ))}
         </div>
@@ -59,29 +78,26 @@ export default async function EdgeCasePage({ params }: Props) {
       <section className="route-section lens-section">
         <div className="route-section-heading" data-reveal>
           <div>
-            <p className="eyebrow">02 / Perspectives</p>
-            <h2>One mechanism, four consequences.</h2>
+            <p className="eyebrow">{copy.perspectives}</p>
+            <h2>{copy.perspectivesTitle}</h2>
           </div>
-          <p>
-            Each episode can stand alone on LinkedIn. Together they expose the
-            complete system problem.
-          </p>
+          <p>{copy.perspectivesIntro}</p>
         </div>
         <div className="lens-grid">
-          {item.lenses.map((lens, index) => (
+          {text.lenses.map((lens, index) => (
             <article className="case-lens" key={lens.name} data-reveal>
-              <span>EPISODE 0{index + 1}</span>
+              <span>
+                {russian ? "ЭПИЗОД" : "EPISODE"} 0{index + 1}
+              </span>
               <small>{lens.name}</small>
               <h3>{lens.role}</h3>
               <p>{lens.copy}</p>
             </article>
           ))}
         </div>
-        <ExternalAction href={item.linkedin}>
-          Read the series on LinkedIn
-        </ExternalAction>
+        <ExternalAction href={item.linkedin}>{copy.linkedin}</ExternalAction>
       </section>
-      <SiteFooter />
+      <SiteFooter locale={russian ? "ru" : "en"} />
     </main>
   );
 }

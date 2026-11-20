@@ -120,7 +120,11 @@ export default async function ThinkingPage() {
       copy.structured,
       russian ? "/ru/thinking/knowledge-base" : "/en/thinking/knowledge-base",
     ],
-    [copy.mechanism, copy.serialized, "/thinking/edge-case-inc"],
+    [
+      copy.mechanism,
+      copy.serialized,
+      russian ? "/ru/thinking/edge-case-inc" : "/en/thinking/edge-case-inc",
+    ],
     [
       copy.evaluate,
       copy.essay,
@@ -211,7 +215,13 @@ export default async function ThinkingPage() {
             <strong>{copy.structuredLearning}</strong>
             <small>{copy.durableModels}</small>
           </Link>
-          <Link href="/thinking/edge-case-inc">
+          <Link
+            href={
+              russian
+                ? "/ru/thinking/edge-case-inc"
+                : "/en/thinking/edge-case-inc"
+            }
+          >
             <i className="thinking-map-connector" aria-hidden="true" />
             <span>02</span>
             <strong>{copy.investigations}</strong>
@@ -280,7 +290,14 @@ export default async function ThinkingPage() {
           <p>{copy.contextIntro}</p>
         </header>
         <div className="thinking-supporting-grid">
-          <Link href="/thinking/edge-case-inc" className="thinking-format-card">
+          <Link
+            href={
+              russian
+                ? "/ru/thinking/edge-case-inc"
+                : "/en/thinking/edge-case-inc"
+            }
+            className="thinking-format-card"
+          >
             <EdgeVisual copy={copy} />
             <div className="thinking-format-copy">
               <span>{copy.edgeLabel}</span>
