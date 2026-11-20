@@ -1,41 +1,41 @@
 import { ArrowRight } from "lucide-react";
 import type { Metadata } from "next";
+import { headers } from "next/headers";
 import Link from "next/link";
 import { SiteFooter } from "@/components/editorial";
 import { articles, edgeCases } from "@/content/portfolio";
+import { thinkingCopy } from "@/content/thinking-copy";
 
-export const metadata: Metadata = {
-  title: "Thinking in Public | Dmitrii Lobanov",
-  description:
-    "Engineering knowledge through a structured wiki, serialized system stories, and production-grounded essays.",
-};
+async function isRussian() {
+  return (await headers()).get("x-portfolio-locale") === "ru";
+}
 
-const routes = [
-  [
-    "Build a mental model",
-    "Start with structured knowledge",
-    "/thinking/knowledge-base",
-  ],
-  [
-    "Follow one mechanism",
-    "Enter a serialized investigation",
-    "/thinking/edge-case-inc",
-  ],
-  [
-    "Evaluate a decision",
-    "Read a production-grounded essay",
-    "/thinking/articles",
-  ],
-];
+export async function generateMetadata(): Promise<Metadata> {
+  const russian = await isRussian();
+  return {
+    title: russian
+      ? "Инженерные заметки | Дмитрий Лобанов"
+      : "Thinking in Public | Dmitrii Lobanov",
+    description: russian
+      ? "База знаний по фронтенду, разборы инцидентов и статьи об архитектуре."
+      : "Engineering knowledge through a structured wiki, serialized system stories, and production-grounded essays.",
+    alternates: {
+      canonical: russian ? "/ru/thinking" : "/thinking",
+      languages: { en: "/en/thinking", ru: "/ru/thinking" },
+    },
+  };
+}
 
-function WikiVisual() {
+type ThinkingCopy = (typeof thinkingCopy)[keyof typeof thinkingCopy];
+
+function WikiVisual({ copy }: { copy: ThinkingCopy }) {
   return (
     <div className="thinking-wiki-visual" aria-hidden="true">
       <span className="thinking-wiki-core">
-        <small>Connected</small>
-        <strong>Mental model</strong>
+        <small>{copy.connected}</small>
+        <strong>{copy.mentalModel}</strong>
       </span>
-      {["Browser", "React", "State", "Systems"].map((item) => (
+      {[copy.browser, "React", copy.state, copy.systems].map((item) => (
         <i key={item}>
           <span>{item}</span>
         </i>
@@ -57,31 +57,31 @@ function WikiVisual() {
   );
 }
 
-function EdgeVisual() {
+function EdgeVisual({ copy }: { copy: ThinkingCopy }) {
   return (
     <div
       className="thinking-preview-surface thinking-edge-visual"
       aria-hidden="true"
     >
       <div>
-        <span>Incident</span>
-        <strong>Duplicate event</strong>
+        <span>{copy.incident}</span>
+        <strong>{copy.duplicate}</strong>
       </div>
       <i />
       <i />
       <i />
       <i />
       <footer>
-        <span>Runtime</span>
-        <span>Architecture</span>
-        <span>Product</span>
-        <span>Value</span>
+        <span>{copy.runtime}</span>
+        <span>{copy.architecture}</span>
+        <span>{copy.product}</span>
+        <span>{copy.value}</span>
       </footer>
     </div>
   );
 }
 
-function EssayVisual() {
+function EssayVisual({ copy }: { copy: ThinkingCopy }) {
   return (
     <div
       className="thinking-preview-surface thinking-essay-visual"
@@ -91,70 +91,75 @@ function EssayVisual() {
         <i />
         <i />
         <i />
-        <span>Field note / decision record</span>
+        <span>{copy.fieldNote}</span>
       </header>
       <div>
-        <strong>Requirements shape architecture.</strong>
+        <strong>{copy.requirements}</strong>
         <i />
         <i />
         <i />
         <i />
       </div>
       <footer>
-        <span>Pressure</span>
+        <span>{copy.pressure}</span>
         <i />
-        <span>Decision</span>
+        <span>{copy.decision}</span>
         <i />
-        <span>Evidence</span>
+        <span>{copy.evidence}</span>
       </footer>
     </div>
   );
 }
 
-export default function ThinkingPage() {
+export default async function ThinkingPage() {
+  const russian = await isRussian();
+  const copy = thinkingCopy[russian ? "ru" : "en"];
+  const routes = [
+    [copy.build, copy.structured, "/thinking/knowledge-base"],
+    [copy.mechanism, copy.serialized, "/thinking/edge-case-inc"],
+    [copy.evaluate, copy.essay, "/thinking/articles"],
+  ];
+
   return (
     <main className="route-main thinking-route-v2">
       <section className="thinking-hero-v2">
-        <p className="eyebrow">Thinking / Engineering knowledge</p>
+        <p className="eyebrow">{copy.eyebrow}</p>
         <div className="thinking-hero-layout">
           <div className="thinking-hero-copy">
             <h1>
-              <span>Not a feed.</span>
-              <br />A system for thinking.
+              <span>{copy.heroFirst}</span>
+              <br />
+              {copy.heroSecond}
             </h1>
-            <p>
-              Ideas are organized by the job they need to do: build a durable
-              mental model, follow a production mechanism, or examine an
-              architectural decision in depth.
-            </p>
+            <p>{copy.heroIntro}</p>
           </div>
           <div
             className="thinking-refinery"
             role="img"
-            aria-label="Engineering questions becoming connected and reusable knowledge"
+            aria-label={copy.refineryLabel}
           >
             <header>
-              <span>Knowledge system / active</span>
+              <span>{copy.active}</span>
               <span>
-                <i /> Signal connected
+                <i /> {copy.signal}
               </span>
             </header>
             <div className="thinking-refinery-stage">
               <div className="thinking-refinery-node thinking-refinery-input">
-                <small>Input</small>
-                <strong>Production question</strong>
+                <small>{copy.input}</small>
+                <strong>{copy.question}</strong>
                 <i />
                 <i />
                 <i />
               </div>
               <div className="thinking-refinery-node thinking-refinery-core">
-                <span>Engineering</span>
-                <strong>Reasoning</strong>
+                <span>{copy.engineering}</span>
+                <strong>{copy.reasoning}</strong>
                 <i />
               </div>
               <div className="thinking-refinery-node thinking-refinery-output">
-                <small>Output</small>
-                <strong>Reusable knowledge</strong>
+                <small>{copy.output}</small>
+                <strong>{copy.reusable}</strong>
                 <i />
                 <i />
                 <i />
@@ -164,9 +169,9 @@ export default function ThinkingPage() {
               </b>
             </div>
             <footer>
-              <span>Observe</span>
-              <span>Connect</span>
-              <span>Explain</span>
+              <span>{copy.observe}</span>
+              <span>{copy.connect}</span>
+              <span>{copy.explain}</span>
             </footer>
           </div>
         </div>
@@ -175,38 +180,34 @@ export default function ThinkingPage() {
       <section className="thinking-map-v2">
         <header className="thinking-heading-v2">
           <div>
-            <p className="eyebrow">Knowledge practice</p>
-            <h2>Three formats. One connected body of work.</h2>
+            <p className="eyebrow">{copy.practice}</p>
+            <h2>{copy.formats}</h2>
           </div>
-          <p>
-            The format changes with the question. The underlying practice stays
-            the same: understand the mechanism, expose the trade-off, and make
-            the conclusion reusable.
-          </p>
+          <p>{copy.formatsIntro}</p>
         </header>
         <div className="thinking-map-console">
           <div className="thinking-map-center">
-            <small>Engineering</small>
-            <strong>Knowledge</strong>
+            <small>{copy.engineering}</small>
+            <strong>{copy.knowledge}</strong>
             <i />
           </div>
           <Link href="/thinking/knowledge-base">
             <i className="thinking-map-connector" aria-hidden="true" />
             <span>01</span>
-            <strong>Structured learning</strong>
-            <small>Durable mental models</small>
+            <strong>{copy.structuredLearning}</strong>
+            <small>{copy.durableModels}</small>
           </Link>
           <Link href="/thinking/edge-case-inc">
             <i className="thinking-map-connector" aria-hidden="true" />
             <span>02</span>
-            <strong>Investigations</strong>
-            <small>Mechanisms in motion</small>
+            <strong>{copy.investigations}</strong>
+            <small>{copy.mechanisms}</small>
           </Link>
           <Link href="/thinking/articles">
             <i className="thinking-map-connector" aria-hidden="true" />
             <span>03</span>
-            <strong>Essays</strong>
-            <small>Decisions in depth</small>
+            <strong>{copy.essays}</strong>
+            <small>{copy.decisions}</small>
           </Link>
         </div>
       </section>
@@ -214,13 +215,10 @@ export default function ThinkingPage() {
       <section className="thinking-library-v2">
         <header className="thinking-heading-v2">
           <div>
-            <p className="eyebrow">01 / Structured knowledge</p>
-            <h2>The durable learning system.</h2>
+            <p className="eyebrow">{copy.wikiEyebrow}</p>
+            <h2>{copy.wikiTitle}</h2>
           </div>
-          <p>
-            Use the Wiki when the goal is understanding: concepts are connected
-            to explanations, quick recall, and deliberate practice.
-          </p>
+          <p>{copy.wikiIntro}</p>
         </header>
         <Link
           href="/thinking/knowledge-base"
@@ -228,73 +226,65 @@ export default function ThinkingPage() {
         >
           <div className="thinking-format-copy">
             <span>Frontend Engineering Wiki</span>
-            <h3>Learn deeply. Practice clearly.</h3>
-            <p>
-              A growing system that keeps individual answers connected to
-              broader frontend mental models.
-            </p>
+            <h3>{copy.wikiHeadline}</h3>
+            <p>{copy.wikiDescription}</p>
             <div className="thinking-format-metrics">
               <strong>
-                10 <small>chapters</small>
+                10 <small>{copy.chapters}</small>
               </strong>
               <strong>
-                224 <small>answers</small>
+                224 <small>{copy.answers}</small>
               </strong>
               <strong>
-                12 <small>tracks</small>
+                12 <small>{copy.tracks}</small>
               </strong>
             </div>
             <b>
-              Explore the knowledge base <ArrowRight size={16} />
+              {copy.exploreWiki} <ArrowRight size={16} />
             </b>
           </div>
-          <WikiVisual />
+          <WikiVisual copy={copy} />
           <footer>
-            <span>Understand</span>
-            <span>Explain</span>
-            <span>Recall</span>
-            <span>Apply</span>
+            <span>{copy.understand}</span>
+            <span>{copy.explain}</span>
+            <span>{copy.recall}</span>
+            <span>{copy.apply}</span>
           </footer>
         </Link>
 
         <header className="thinking-heading-v2 thinking-supporting-heading">
           <div>
-            <p className="eyebrow">02 / Reasoning in context</p>
-            <h2>Follow the incident - or examine the decision.</h2>
+            <p className="eyebrow">{copy.context}</p>
+            <h2>{copy.contextTitle}</h2>
           </div>
-          <p>
-            Use the investigations for connected narrative and the essays for
-            concentrated architectural arguments.
-          </p>
+          <p>{copy.contextIntro}</p>
         </header>
         <div className="thinking-supporting-grid">
           <Link href="/thinking/edge-case-inc" className="thinking-format-card">
-            <EdgeVisual />
+            <EdgeVisual copy={copy} />
             <div className="thinking-format-copy">
-              <span>Serialized investigations</span>
+              <span>{copy.edgeLabel}</span>
               <h3>Edge Case Inc.</h3>
-              <p>
-                One small production incident followed through runtime behavior,
-                architecture, product workflow, and business value.
-              </p>
-              <strong>{edgeCases.length} published case</strong>
+              <p>{copy.edgeDescription}</p>
+              <strong>
+                {edgeCases.length} {copy.published}
+              </strong>
               <b>
-                Enter the company <ArrowRight size={16} />
+                {copy.edgeAction} <ArrowRight size={16} />
               </b>
             </div>
           </Link>
           <Link href="/thinking/articles" className="thinking-format-card">
-            <EssayVisual />
+            <EssayVisual copy={copy} />
             <div className="thinking-format-copy">
-              <span>Long-form field notes</span>
-              <h3>Engineering field notes</h3>
-              <p>
-                Investigations of React performance, product workflows, state
-                ownership, and architecture decisions.
-              </p>
-              <strong>{articles.length} selected essays</strong>
+              <span>{copy.notesLabel}</span>
+              <h3>{copy.notesTitle}</h3>
+              <p>{copy.notesDescription}</p>
+              <strong>
+                {articles.length} {copy.selected}
+              </strong>
               <b>
-                Read selected writing <ArrowRight size={16} />
+                {copy.notesAction} <ArrowRight size={16} />
               </b>
             </div>
           </Link>
@@ -303,8 +293,8 @@ export default function ThinkingPage() {
 
       <section className="thinking-route-guide">
         <div>
-          <p className="eyebrow">03 / Choose by need</p>
-          <h2>Start with the question you have.</h2>
+          <p className="eyebrow">{copy.choose}</p>
+          <h2>{copy.chooseTitle}</h2>
         </div>
         <div className="thinking-route-list">
           {routes.map(([need, destination, href], index) => (
@@ -317,7 +307,7 @@ export default function ThinkingPage() {
           ))}
         </div>
       </section>
-      <SiteFooter />
+      <SiteFooter locale={russian ? "ru" : "en"} />
     </main>
   );
 }

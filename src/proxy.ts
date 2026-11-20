@@ -9,6 +9,7 @@ export function proxy(request: NextRequest) {
   const locale = explicitLocale ?? (preference === "ru" ? "ru" : "en");
   const hasRussianTranslation =
     pagePath === "/" ||
+    pagePath === "/thinking" ||
     pagePath === "/about" ||
     pagePath === "/contact" ||
     pagePath === "/work" ||
