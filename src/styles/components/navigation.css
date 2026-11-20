@@ -212,3 +212,23 @@
     0 0 0 2px var(--paper-bright),
     0 0 0 4px rgba(185, 77, 40, 0.28);
 }
+
+.nav-language {
+  display: flex;
+  flex-shrink: 0;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-control);
+  padding: 2px;
+  font-family: var(--font-geist-mono);
+  font-size: 12px;
+}
+.nav-language a {
+  padding: 7px 6px;
+  border-radius: 6px;
+  color: var(--muted);
+}
+.nav-language a:hover,
+.nav-language a[aria-current="page"] {
+  color: var(--ink);
+  background: white;
+}

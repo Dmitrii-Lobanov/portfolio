@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { GithubIcon, LinkedinIcon } from "@/components/icons";
 
 const navItems = [
@@ -14,21 +14,38 @@ const navItems = [
 
 export function Header() {
   const pathname = usePathname();
+  const russian = pathname === "/ru";
+  useEffect(() => {
+    document.documentElement.lang = russian ? "ru" : "en";
+  }, [russian]);
+  const home = russian ? "/ru" : pathname === "/en" ? "/en" : "/";
+  const onHome = pathname === home;
+  const labels = russian ? ["Главная", "Проекты", "Заметки", "Обо мне"] : null;
+  const items = navItems.map((item, index) => ({
+    name: labels?.[index] ?? item.name,
+    href: index === 0 ? home : item.href,
+  }));
   const menuRef = useRef<HTMLDetailsElement>(null);
   const closeMenu = () => {
     if (menuRef.current) menuRef.current.open = false;
   };
   const isActive = (href: string) =>
-    href === "/" ? pathname === "/" : pathname.startsWith(href);
+    href === home ? onHome : pathname.startsWith(href);
 
   return (
     <header className="site-header" data-scroll-header>
-      <nav aria-label="Main navigation">
-        <Link href="/" className="wordmark" aria-label="Dmitrii Lobanov, home">
+      <nav aria-label={russian ? "Основная навигация" : "Main navigation"}>
+        <Link
+          href={home}
+          className="wordmark"
+          aria-label={
+            russian ? "Дмитрий Лобанов, главная" : "Dmitrii Lobanov, home"
+          }
+        >
           DL<span>/</span>
         </Link>
         <div className="nav-links">
-          {navItems.map((item) => (
+          {items.map((item) => (
             <Link
               key={item.name}
               href={item.href}
@@ -40,10 +57,35 @@ export function Header() {
           ))}
         </div>
         <div className="nav-actions">
+          {onHome && (
+            <fieldset className="nav-language">
+              <legend className="sr-only">
+                {russian ? "Язык" : "Language"}
+              </legend>
+              <a
+                href="/en"
+                hrefLang="en"
+                lang="en"
+                aria-label="English"
+                aria-current={!russian ? "page" : undefined}
+              >
+                EN
+              </a>
+              <a
+                href="/ru"
+                hrefLang="ru"
+                lang="ru"
+                aria-label="Русский"
+                aria-current={russian ? "page" : undefined}
+              >
+                RU
+              </a>
+            </fieldset>
+          )}
           <details className="nav-menu" ref={menuRef}>
-            <summary aria-label="Open site navigation">Menu</summary>
+            <summary>{russian ? "Меню" : "Menu"}</summary>
             <div>
-              {navItems.map((item) => (
+              {items.map((item) => (
                 <Link
                   key={item.name}
                   href={item.href}
@@ -81,7 +123,8 @@ export function Header() {
             className={`button-tactile nav-contact${pathname.startsWith("/contact") ? " is-active" : ""}`}
             aria-current={pathname.startsWith("/contact") ? "page" : undefined}
           >
-            Let&apos;s talk <span aria-hidden="true">↗</span>
+            {russian ? "Связаться" : "Let's talk"}{" "}
+            <span aria-hidden="true">↗</span>
           </Link>
         </div>
       </nav>

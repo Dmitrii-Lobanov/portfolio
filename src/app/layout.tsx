@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { headers } from "next/headers";
 import "./globals.css";
 import { Header } from "@/components/header";
 import { MotionEffects } from "@/components/motion-effects";
@@ -20,13 +21,16 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const locale =
+    (await headers()).get("x-portfolio-locale") === "ru" ? "ru" : "en";
+
   return (
-    <html lang="en">
+    <html lang={locale}>
       <body>
         <Header />
         <MotionEffects />
