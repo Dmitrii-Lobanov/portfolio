@@ -8,7 +8,10 @@ export function proxy(request: NextRequest) {
   const preference = request.cookies.get("portfolio-language")?.value;
   const locale = explicitLocale ?? (preference === "ru" ? "ru" : "en");
   const hasRussianTranslation =
-    pagePath === "/" || pagePath === "/work/cpa-platform";
+    pagePath === "/" ||
+    pagePath === "/work" ||
+    pagePath === "/work/cpa-platform" ||
+    pagePath === "/work/reliable-kanban";
 
   if (!explicitLocale && locale === "ru" && hasRussianTranslation) {
     const destination = request.nextUrl.clone();

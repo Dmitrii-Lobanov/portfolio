@@ -1,16 +1,23 @@
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 
-export function WorkCta() {
+export function WorkCta({ russian }: { russian: boolean }) {
   return (
     <section className="work-route-cta">
       <div className="work-route-cta-copy">
         <span>
-          <i /> Open to ambitious systems
+          <i />{" "}
+          {russian ? "Открыт к сложным задачам" : "Open to ambitious systems"}
         </span>
-        <strong>Have a product whose complexity is starting to show?</strong>
+        <strong>
+          {russian
+            ? "Строите продукт, которым становится сложнее управлять?"
+            : "Have a product whose complexity is starting to show?"}
+        </strong>
         <small>
-          Let&apos;s turn the pressure points into clear engineering decisions.
+          {russian
+            ? "Давайте разберёмся, где возникают сложности и какие решения помогут."
+            : "Let's turn the pressure points into clear engineering decisions."}
         </small>
       </div>
       <div className="work-route-cta-signal" aria-hidden="true">
@@ -23,7 +30,8 @@ export function WorkCta() {
         className="button-tactile nav-contact work-route-cta-button"
         href="/contact"
       >
-        Start a conversation <ArrowUpRight size={17} aria-hidden="true" />
+        {russian ? "Связаться" : "Start a conversation"}{" "}
+        <ArrowUpRight size={17} aria-hidden="true" />
       </Link>
     </section>
   );

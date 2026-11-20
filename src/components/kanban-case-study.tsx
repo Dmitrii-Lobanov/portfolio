@@ -2,35 +2,33 @@ import { ArrowRight } from "lucide-react";
 import type { CSSProperties } from "react";
 import { CaseStudySectionHeading } from "@/components/case-study-section-heading";
 
-import { decisions, delivery, guarantees } from "@/content/case-studies/kanban";
+import * as english from "@/content/case-studies/kanban";
+import { kanbanCopy, kanbanRussian } from "@/content/case-studies/kanban.ru";
 
-export function KanbanCaseStudy() {
+export function KanbanCaseStudy({ russian = false }: { russian?: boolean }) {
+  const { decisions, delivery, guarantees } = russian ? kanbanRussian : english;
+  const copy = kanbanCopy[russian ? "ru" : "en"];
   return (
     <>
       <section className="kanban-story">
         <div className="kanban-story-copy">
-          <p className="eyebrow">01 / Product tension</p>
+          <p className="eyebrow">{copy.tension}</p>
           <h2>
-            Moving a card is easy.
-            <span> Keeping the move trustworthy is the work.</span>
+            {copy.title}
+            <span> {copy.subtitle}</span>
           </h2>
-          <p>
-            A board can change instantly in the browser while the request is
-            still travelling. During that gap, the API can fail, another session
-            can edit the same task, or access can change. The product needed to
-            feel immediate without presenting hopeful UI as durable truth.
-          </p>
+          <p>{copy.intro}</p>
         </div>
 
         <div
           className="kanban-guarantee-panel"
           role="img"
-          aria-label="Task update lifecycle"
+          aria-label={copy.lifecycle}
         >
           <div className="kanban-panel-label kanban-panel-head">
-            <span>Task update / reliability loop</span>
+            <span>{copy.loop}</span>
             <span>
-              <i /> System observing
+              <i /> {copy.observing}
             </span>
           </div>
           <div className="kanban-guarantee-flow">
@@ -48,24 +46,18 @@ export function KanbanCaseStudy() {
             ))}
           </div>
           <div className="kanban-panel-label kanban-loop-result">
-            <span>Client intent</span>
+            <span>{copy.intent}</span>
             <b />
-            <span>Durable task state</span>
+            <span>{copy.durable}</span>
           </div>
         </div>
       </section>
 
       <section className="kanban-decisions">
         <CaseStudySectionHeading
-          eyebrow="02 / Reliability decisions"
-          title="Four boundaries make the board feel simple."
-          description={
-            <>
-              Reliability is expressed through product behavior: what updates
-              immediately, what waits for authority, and what happens when the
-              two disagree.
-            </>
-          }
+          eyebrow={copy.decisions}
+          title={copy.decisionTitle}
+          description={copy.decisionDescription}
         />
         <div className="kanban-decision-grid">
           {decisions.map((decision, index) => (
@@ -86,29 +78,15 @@ export function KanbanCaseStudy() {
 
       <section className="kanban-delivery">
         <div>
-          <p className="eyebrow">03 / Production shape</p>
-          <h2>A deployed independent product, with inspectable recovery.</h2>
-          <p>
-            The repository keeps web, API, contracts, persistence, tests, and
-            delivery visible as parts of the same product. That makes the
-            reliability claims inspectable rather than decorative.
-          </p>
-          <p>
-            Consider two sessions editing the same task. The first move is
-            accepted; the second submits an older version. The API rejects the
-            stale write, the UI explains the conflict, and newer state is
-            protected. A failed request restores the affected task’s snapshot
-            while other tasks remain available.
-          </p>
-          <p>
-            Unit, component, API, and database tests cover the mutation,
-            permission, and persistence boundaries. The live app and source
-            below make the implementation available for review.
-          </p>
+          <p className="eyebrow">{copy.production}</p>
+          <h2>{copy.productionTitle}</h2>
+          <p>{copy.repo}</p>
+          <p>{copy.scenario}</p>
+          <p>{copy.tests}</p>
         </div>
         <div
           className="kanban-production-visual"
-          aria-label="Production system layers from web to delivery"
+          aria-label={copy.layers}
           role="img"
         >
           <div className="kanban-production-orbit orbit-one" />
@@ -129,11 +107,11 @@ export function KanbanCaseStudy() {
             ))}
           </div>
           <div className="kanban-production-status" aria-hidden="true">
-            <span>Commit</span>
+            <span>{copy.commit}</span>
             <b />
-            <span>Verified</span>
+            <span>{copy.verified}</span>
             <b />
-            <span>Deployed</span>
+            <span>{copy.deployed}</span>
           </div>
         </div>
       </section>

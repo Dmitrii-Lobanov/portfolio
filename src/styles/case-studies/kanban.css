@@ -930,7 +930,7 @@
 @media (max-width: 1000px) {
   .kanban-story,
   .kanban-delivery {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
   .kanban-guarantee-panel {
     min-height: 520px;

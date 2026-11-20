@@ -17,7 +17,10 @@ export function HeroSection({ locale = "en" }: { locale?: HomeLocale }) {
           React · TypeScript · Next.js / Fintech &amp; SaaS
         </p>
         <div className="screenbreak-actions">
-          <Link className="button-tactile screenbreak-button" href="/work">
+          <Link
+            className="button-tactile screenbreak-button"
+            href={locale === "ru" ? "/ru/work" : "/en/work"}
+          >
             {copy.work} <ArrowRight size={17} aria-hidden="true" />
           </Link>
           <Link className="screenbreak-text-link" href="/contact">

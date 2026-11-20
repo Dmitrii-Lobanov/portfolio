@@ -22,7 +22,11 @@ export function Header({ preference }: { preference: "en" | "ru" }) {
       : preference;
   const russian = selected === "ru";
   const contentLanguage =
-    russian && (pagePath === "/" || pagePath === "/work/cpa-platform")
+    russian &&
+    (pagePath === "/" ||
+      pagePath === "/work" ||
+      pagePath === "/work/cpa-platform" ||
+      pagePath === "/work/reliable-kanban")
       ? "ru"
       : "en";
   useEffect(() => {

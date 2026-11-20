@@ -6,6 +6,7 @@ import { notFound } from "next/navigation";
 import { ExternalAction, SiteFooter } from "@/components/editorial";
 import { projectPresentations } from "@/components/project-presentation";
 import { cpaRussianProject } from "@/content/case-studies/cpa.ru";
+import { kanbanRussianProject } from "@/content/case-studies/kanban.ru";
 import { getProject, projects } from "@/content/portfolio";
 import { cn } from "@/lib/utils";
 
@@ -17,27 +18,42 @@ export function generateStaticParams() {
   return projects.map(({ slug }) => ({ slug }));
 }
 
-async function isRussianCpa(slug: string) {
-  return (
-    slug === "cpa-platform" &&
+const russianProjects = {
+  "cpa-platform": cpaRussianProject,
+  "reliable-kanban": kanbanRussianProject,
+};
+
+function hasRussianCopy(slug: string): slug is keyof typeof russianProjects {
+  return Object.hasOwn(russianProjects, slug);
+}
+
+async function getRussianCopy(slug: string) {
+  return hasRussianCopy(slug) &&
     (await headers()).get("x-portfolio-locale") === "ru"
-  );
+    ? russianProjects[slug]
+    : undefined;
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const project = getProject((await params).slug);
   if (!project) return {};
 
-  const russian = await isRussianCpa(project.slug);
-  const copy = russian ? cpaRussianProject : project;
+  const translation = await getRussianCopy(project.slug);
+  const russian = Boolean(translation);
+  const copy = translation ?? project;
 
   return {
     title: `${copy.name} | ${russian ? "Дмитрий Лобанов" : "Dmitrii Lobanov"}`,
     description: copy.summary,
-    ...(project.slug === "cpa-platform" && {
+    ...(hasRussianCopy(project.slug) && {
       alternates: {
-        canonical: russian ? "/ru/work/cpa-platform" : "/work/cpa-platform",
-        languages: { en: "/work/cpa-platform", ru: "/ru/work/cpa-platform" },
+        canonical: russian
+          ? `/ru/work/${project.slug}`
+          : `/work/${project.slug}`,
+        languages: {
+          en: `/work/${project.slug}`,
+          ru: `/ru/work/${project.slug}`,
+        },
       },
     }),
   };
@@ -47,8 +63,9 @@ export default async function ProjectPage({ params }: Props) {
   const project = getProject((await params).slug);
   if (!project) notFound();
 
-  const russian = await isRussianCpa(project.slug);
-  const copy = russian ? cpaRussianProject : project;
+  const translation = await getRussianCopy(project.slug);
+  const russian = Boolean(translation);
+  const copy = translation ?? project;
   const presentation = projectPresentations[project.slug];
   const { CaseStudy, HeroVisual, OutcomeDetail } = presentation;
 
@@ -59,7 +76,10 @@ export default async function ProjectPage({ params }: Props) {
       <section
         className={cn("project-detail-hero", presentation.heroClassName)}
       >
-        <Link href="/work" className="action-link back-link">
+        <Link
+          href={russian ? "/ru/work" : "/en/work"}
+          className="action-link back-link"
+        >
           <ArrowLeft size={15} /> {russian ? "Все проекты" : "All work"}
         </Link>
         <div className="project-detail-title">
@@ -99,16 +119,16 @@ export default async function ProjectPage({ params }: Props) {
           {presentation.outcomeStep} / {russian ? "Результат" : "Outcome"}
         </p>
         <h2>{copy.outcome}</h2>
-        {OutcomeDetail && <OutcomeDetail />}
+        {OutcomeDetail && <OutcomeDetail russian={russian} />}
         <div className="project-actions">
           {project.demo && (
             <ExternalAction href={project.demo}>
-              Open live product
+              {russian ? "Открыть приложение" : "Open live product"}
             </ExternalAction>
           )}
           {project.repository && (
             <ExternalAction href={project.repository}>
-              View source
+              {russian ? "Посмотреть исходный код" : "View source"}
             </ExternalAction>
           )}
           {project.article && (

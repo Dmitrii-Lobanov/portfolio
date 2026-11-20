@@ -13,7 +13,7 @@ import type { Project, ProjectSlug } from "@/content/portfolio";
 type ProjectPresentation = {
   CaseStudy: ComponentType<{ russian?: boolean }>;
   HeroVisual: ComponentType<{ project: Project }>;
-  OutcomeDetail?: ComponentType;
+  OutcomeDetail?: ComponentType<{ russian?: boolean }>;
   factLabel: "Scale" | "Focus";
   heroClassName: string;
   mainClassName?: string;
@@ -40,29 +40,29 @@ function WikiMastersOutcome() {
   );
 }
 
-function KanbanOutcome() {
+function KanbanOutcome({ russian = false }: { russian?: boolean }) {
   return (
     <div className="kanban-outcome-signal" aria-hidden="true">
       <div>
         <i />
-        <span>Immediate</span>
-        <small>local intent</small>
+        <span>{russian ? "Мгновенно" : "Immediate"}</span>
+        <small>{russian ? "действие пользователя" : "local intent"}</small>
       </div>
       <b>
         <i />
       </b>
       <div>
         <i />
-        <span>Validated</span>
-        <small>server authority</small>
+        <span>{russian ? "Проверено" : "Validated"}</span>
+        <small>{russian ? "проверка сервера" : "server authority"}</small>
       </div>
       <b>
         <i />
       </b>
       <div>
         <i />
-        <span>Durable</span>
-        <small>accepted state</small>
+        <span>{russian ? "Сохранено" : "Durable"}</span>
+        <small>{russian ? "состояние подтверждено" : "accepted state"}</small>
       </div>
     </div>
   );

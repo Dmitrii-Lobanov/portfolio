@@ -11,7 +11,14 @@ export function KanbanSection({ locale = "en" }: { locale?: HomeLocale }) {
         <p className="screenbreak-kicker">{copy.kicker}</p>
         <h2>{copy.title}</h2>
         <p>{copy.description}</p>
-        <Link href="/work/reliable-kanban" className="screenbreak-text-link">
+        <Link
+          href={
+            locale === "ru"
+              ? "/ru/work/reliable-kanban"
+              : "/en/work/reliable-kanban"
+          }
+          className="screenbreak-text-link"
+        >
           {copy.action} <ArrowRight size={16} aria-hidden="true" />
         </Link>
       </div>
