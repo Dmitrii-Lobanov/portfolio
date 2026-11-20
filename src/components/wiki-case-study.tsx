@@ -1,41 +1,34 @@
 import { ArrowRight } from "lucide-react";
 import { CaseStudySectionHeading } from "@/components/case-study-section-heading";
 
-import {
-  architecture,
-  editorialDecisions,
-  evidence,
-  learningModes,
-} from "@/content/case-studies/wiki";
+import * as english from "@/content/case-studies/wiki";
+import { wikiCopy, wikiRussian } from "@/content/case-studies/wiki.ru";
 
 const learningVisualMarkers = ["one", "two", "three", "four", "five"];
 const evidenceVisualMarkers = ["one", "two", "three", "four", "five", "six"];
 
-export function WikiCaseStudy() {
+export function WikiCaseStudy({ russian = false }: { russian?: boolean }) {
+  const { architecture, editorialDecisions, evidence, learningModes } = russian
+    ? wikiRussian
+    : english;
+  const copy = wikiCopy[russian ? "ru" : "en"];
   return (
     <>
       <section className="wiki-section wiki-problem">
         <div className="wiki-problem-copy">
-          <p className="eyebrow">01 / The problem</p>
-          <h2>
-            Frontend knowledge is abundant. Finding the right explanation is
-            difficult.
-          </h2>
-          <p>
-            Documentation, articles, interview lists, and courses each solve a
-            different part of learning. The Wiki connects them into a route from
-            first understanding to confident application.
-          </p>
+          <p className="eyebrow">{copy.problem}</p>
+          <h2>{copy.problemTitle}</h2>
+          <p>{copy.problemIntro}</p>
         </div>
         <div
           className="wiki-connection-map"
           role="img"
-          aria-label="Separate knowledge formats converging into one connected mental model"
+          aria-label={copy.mapLabel}
         >
           <header>
-            <span>Knowledge fragments / connection map</span>
+            <span>{copy.mapTitle}</span>
             <span>
-              <i /> System linking
+              <i /> {copy.linking}
             </span>
           </header>
           <svg viewBox="0 0 640 330" aria-hidden="true">
@@ -77,52 +70,47 @@ export function WikiCaseStudy() {
           </svg>
           <span className="wiki-map-node wiki-map-source wiki-map-docs">
             <b aria-hidden="true">{`{ }`}</b>
-            Documentation
-            <small>Source truth</small>
+            {copy.docs}
+            <small>{copy.source}</small>
           </span>
           <span className="wiki-map-node wiki-map-source wiki-map-articles">
             <b aria-hidden="true">Aa</b>
-            Articles
-            <small>Deep context</small>
+            {copy.articles}
+            <small>{copy.context}</small>
           </span>
           <span className="wiki-map-node wiki-map-source wiki-map-interviews">
             <b aria-hidden="true">?</b>
-            Interview prompts
-            <small>Active recall</small>
+            {copy.interviews}
+            <small>{copy.recall}</small>
           </span>
           <span className="wiki-map-node wiki-map-source wiki-map-courses">
             <b aria-hidden="true">▶</b>
-            Courses
-            <small>Guided practice</small>
+            {copy.courses}
+            <small>{copy.guided}</small>
           </span>
           <div className="wiki-map-node wiki-map-core">
-            <small>Connected</small>
-            <strong>Mental model</strong>
+            <small>{copy.connected}</small>
+            <strong>{copy.mentalModel}</strong>
           </div>
           <footer>
-            <span>Understand</span>
+            <span>{copy.understand}</span>
             <i />
-            <span>Explain</span>
+            <span>{copy.explain}</span>
             <i />
-            <span>Apply</span>
+            <span>{copy.apply}</span>
           </footer>
         </div>
       </section>
 
       <section className="wiki-section wiki-learning">
         <header>
-          <p className="eyebrow">02 / The learning loop</p>
-          <h2>One topic. Four useful ways to engage with it.</h2>
-          <p>
-            Take debounce: understand why calls are delayed, explain how it
-            differs from throttling, recall the meaning of cancel and flush,
-            then implement those behaviors. The goal is to connect a definition
-            to a decision an engineer can make in a real interface.
-          </p>
+          <p className="eyebrow">{copy.learning}</p>
+          <h2>{copy.learningTitle}</h2>
+          <p>{copy.learningIntro}</p>
         </header>
         <div
           className="wiki-learning-loop"
-          aria-label="Learning loop"
+          aria-label={copy.learningLabel}
           role="img"
         >
           {learningModes.map(([index, title, copy], modeIndex) => (
@@ -151,14 +139,9 @@ export function WikiCaseStudy() {
 
       <section className="wiki-section wiki-architecture">
         <CaseStudySectionHeading
-          eyebrow="03 / Information architecture"
-          title="The structure grows without becoming a content dump."
-          description={
-            <>
-              Readers can navigate by goal, topic, or depth without losing their
-              position in the wider system.
-            </>
-          }
+          eyebrow={copy.architecture}
+          title={copy.architectureTitle}
+          description={copy.architectureIntro}
         />
         <div className="wiki-architecture-grid">
           {architecture.map(([label, title, copy], index) => (
@@ -185,8 +168,8 @@ export function WikiCaseStudy() {
 
       <section className="wiki-section wiki-editorial">
         <header>
-          <p className="eyebrow">04 / Editorial decisions</p>
-          <h2>Content is designed as deliberately as an interface.</h2>
+          <p className="eyebrow">{copy.editorial}</p>
+          <h2>{copy.editorialTitle}</h2>
         </header>
         <div className="wiki-editorial-grid">
           {editorialDecisions.map(
@@ -196,11 +179,11 @@ export function WikiCaseStudy() {
                 <h3>{title}</h3>
                 <dl>
                   <div>
-                    <dt>Pressure</dt>
+                    <dt>{copy.pressure}</dt>
                     <dd>{constraint}</dd>
                   </div>
                   <div>
-                    <dt>Decision</dt>
+                    <dt>{copy.decision}</dt>
                     <dd>{decision}</dd>
                   </div>
                 </dl>
@@ -216,11 +199,11 @@ export function WikiCaseStudy() {
 
       <section className="wiki-section wiki-evidence">
         <div className="wiki-evidence-head">
-          <p className="eyebrow">05 / Shape of the system</p>
-          <h2>A curriculum built for explanation and practice</h2>
+          <p className="eyebrow">{copy.evidence}</p>
+          <h2>{copy.evidenceTitle}</h2>
         </div>
         <div className="wiki-evidence-grid">
-          {evidence.map(([number, label, copy], index) => (
+          {evidence.map(([number, label, description], index) => (
             <article
               className={`wiki-evidence-card visual-${index + 1}`}
               data-value={number}
@@ -228,17 +211,13 @@ export function WikiCaseStudy() {
             >
               <strong>{number}</strong>
               <span>{label}</span>
-              <p>{copy}</p>
+              <p>{description}</p>
               <div
                 className="wiki-evidence-visual"
-                data-label={
-                  ["Coverage", "Connected", "In progress", "Modes"][index]
-                }
+                data-label={copy.evidenceLabels[index]}
                 aria-hidden="true"
               >
-                <em>
-                  {["Coverage", "Connected", "In progress", "Modes"][index]}
-                </em>
+                <em>{copy.evidenceLabels[index]}</em>
                 {evidenceVisualMarkers.map((marker) => (
                   <i key={`${label}-${marker}`} />
                 ))}

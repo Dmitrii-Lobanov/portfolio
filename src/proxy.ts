@@ -11,7 +11,9 @@ export function proxy(request: NextRequest) {
     pagePath === "/" ||
     pagePath === "/work" ||
     pagePath === "/work/cpa-platform" ||
-    pagePath === "/work/reliable-kanban";
+    pagePath === "/work/reliable-kanban" ||
+    pagePath === "/work/frontend-engineering-wiki" ||
+    pagePath === "/work/polaris";
 
   if (!explicitLocale && locale === "ru" && hasRussianTranslation) {
     const destination = request.nextUrl.clone();

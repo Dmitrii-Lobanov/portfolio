@@ -7,6 +7,8 @@ import { ExternalAction, SiteFooter } from "@/components/editorial";
 import { projectPresentations } from "@/components/project-presentation";
 import { cpaRussianProject } from "@/content/case-studies/cpa.ru";
 import { kanbanRussianProject } from "@/content/case-studies/kanban.ru";
+import { polarisRussianProject } from "@/content/case-studies/polaris.ru";
+import { wikiRussianProject } from "@/content/case-studies/wiki.ru";
 import { getProject, projects } from "@/content/portfolio";
 import { cn } from "@/lib/utils";
 
@@ -21,6 +23,8 @@ export function generateStaticParams() {
 const russianProjects = {
   "cpa-platform": cpaRussianProject,
   "reliable-kanban": kanbanRussianProject,
+  "frontend-engineering-wiki": wikiRussianProject,
+  polaris: polarisRussianProject,
 };
 
 function hasRussianCopy(slug: string): slug is keyof typeof russianProjects {

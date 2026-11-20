@@ -1,47 +1,39 @@
 import { ArrowRight } from "lucide-react";
 import { CaseStudySectionHeading } from "@/components/case-study-section-heading";
 
-import {
-  boundaries,
-  clocks,
-  constraints,
-  current,
-  decisions,
-  requestStages,
-} from "@/content/case-studies/polaris";
+import * as english from "@/content/case-studies/polaris";
+import { polarisCopy, polarisRussian } from "@/content/case-studies/polaris.ru";
 
-export function PolarisCaseStudy() {
+export function PolarisCaseStudy({ russian = false }: { russian?: boolean }) {
+  const { boundaries, clocks, constraints, current, decisions, requestStages } =
+    russian ? polarisRussian : english;
+  const copy = polarisCopy[russian ? "ru" : "en"];
   return (
     <>
       <section className="polaris-pressure">
         <div className="polaris-pressure-copy">
-          <p className="eyebrow">01 / Product tension</p>
-          <h2>An AI editor brings several systems together.</h2>
-          <p>
-            Import a GitHub repository, open a file, request an AI change, and
-            run the result in a browser preview. Each step crosses a different
-            lifecycle: repository work, editor state, persisted files,
-            background AI execution, and a running WebContainer.
-          </p>
+          <p className="eyebrow">{copy.tension}</p>
+          <h2>{copy.tensionTitle}</h2>
+          <p>{copy.tensionIntro}</p>
         </div>
         <div
           className="polaris-workspace-map"
           role="img"
-          aria-label="A workspace command coordinating editor, file persistence, and background assistant systems"
+          aria-label={copy.mapLabel}
         >
           <header>
-            <span>Workspace orchestration</span>
+            <span>{copy.orchestration}</span>
             <span>
-              <i /> Session active
+              <i /> {copy.session}
             </span>
           </header>
           <div className="polaris-command-bar">
             <span aria-hidden="true">⌘</span>
             <div>
-              <small>User intent</small>
-              <strong>Refactor selection</strong>
+              <small>{copy.intent}</small>
+              <strong>{copy.refactor}</strong>
             </div>
-            <b>Run</b>
+            <b>{copy.run}</b>
           </div>
           <div className="polaris-dispatch" aria-hidden="true">
             <span />
@@ -52,37 +44,37 @@ export function PolarisCaseStudy() {
           <div className="polaris-surfaces">
             <article>
               <div className="polaris-surface-heading">
-                <small>01 / Immediate</small>
+                <small>{copy.immediate}</small>
                 <i />
               </div>
-              <strong>Editor intent</strong>
+              <strong>{copy.editor}</strong>
               <div className="polaris-editor-lines" aria-hidden="true">
                 <i />
                 <i />
                 <i />
                 <i />
               </div>
-              <span>Selection preserved</span>
+              <span>{copy.selection}</span>
             </article>
             <article>
               <div className="polaris-surface-heading">
-                <small>02 / Persistent</small>
+                <small>{copy.persistent}</small>
                 <i />
               </div>
-              <strong>Project state</strong>
+              <strong>{copy.project}</strong>
               <div className="polaris-file-stack" aria-hidden="true">
                 <i />
                 <i />
                 <i />
               </div>
-              <span>Changes recorded</span>
+              <span>{copy.recorded}</span>
             </article>
             <article>
               <div className="polaris-surface-heading">
-                <small>03 / Asynchronous</small>
+                <small>{copy.async}</small>
                 <i />
               </div>
-              <strong>Assistant task</strong>
+              <strong>{copy.assistant}</strong>
               <div className="polaris-assistant-wave" aria-hidden="true">
                 <i />
                 <i />
@@ -90,12 +82,12 @@ export function PolarisCaseStudy() {
                 <i />
                 <i />
               </div>
-              <span>Running independently</span>
+              <span>{copy.independent}</span>
             </article>
           </div>
           <footer>
-            <span>One action</span>
-            <b>three lifecycles</b>
+            <span>{copy.oneAction}</span>
+            <b>{copy.threeLifecycles}</b>
             <i />
           </footer>
         </div>
@@ -104,14 +96,10 @@ export function PolarisCaseStudy() {
       <section className="polaris-clocks">
         <header>
           <div>
-            <p className="eyebrow">02 / Workspace model</p>
-            <h2>One workspace. Three different clocks.</h2>
+            <p className="eyebrow">{copy.workspace}</p>
+            <h2>{copy.workspaceTitle}</h2>
           </div>
-          <p>
-            The workspace stays coherent by giving each kind of state its own
-            pace and source of truth. Immediate feedback never pretends to be a
-            saved result, and background work never blocks the editor.
-          </p>
+          <p>{copy.workspaceIntro}</p>
         </header>
         <div className="polaris-clock-grid">
           {clocks.map(([number, title, copy], index) => (
@@ -140,22 +128,15 @@ export function PolarisCaseStudy() {
 
       <section className="polaris-request">
         <CaseStudySectionHeading
-          eyebrow="03 / AI workflow"
-          title="The interaction continues after the button is released."
-          description={
-            <>
-              The interface acknowledges intent immediately, then turns it into
-              durable background work. Context assembly, model execution,
-              streaming, and persistence remain visible as separate stages—so a
-              slow or failed step can be understood and recovered.
-            </>
-          }
+          eyebrow={copy.ai}
+          title={copy.aiTitle}
+          description={copy.aiIntro}
         />
         <div className="polaris-request-track">
           <header>
-            <span>AI request / observable execution</span>
+            <span>{copy.request}</span>
             <span>
-              <i /> Workflow active
+              <i /> {copy.workflow}
             </span>
           </header>
           <div className="polaris-request-rail" aria-hidden="true">
@@ -184,29 +165,24 @@ export function PolarisCaseStudy() {
             ))}
           </div>
           <footer>
-            <span>Intent accepted</span>
-            <span>Context resolved</span>
-            <span>Result retained</span>
+            <span>{copy.accepted}</span>
+            <span>{copy.resolved}</span>
+            <span>{copy.retained}</span>
           </footer>
         </div>
       </section>
 
       <section className="polaris-boundaries">
         <CaseStudySectionHeading
-          eyebrow="04 / Integration boundaries"
-          title="Every subsystem gets a narrow contract."
-          description={
-            <>
-              Adapter code is deliberate friction: it keeps a tool change from
-              becoming a workspace rewrite.
-            </>
-          }
+          eyebrow={copy.integration}
+          title={copy.integrationTitle}
+          description={copy.integrationIntro}
         />
         <div className="polaris-boundary-table">
           <header>
-            <span>Contract map / five guarded seams</span>
+            <span>{copy.contracts}</span>
             <span>
-              <i /> Boundaries active
+              <i /> {copy.boundaries}
             </span>
           </header>
           {boundaries.map(([name, owns, excludes], index) => (
@@ -216,7 +192,7 @@ export function PolarisCaseStudy() {
                 <strong>{name}</strong>
               </div>
               <div className="polaris-boundary-owner">
-                <small>Owns</small>
+                <small>{copy.owns}</small>
                 <span>{owns}</span>
               </div>
               <div className="polaris-boundary-gate" aria-hidden="true">
@@ -224,15 +200,15 @@ export function PolarisCaseStudy() {
                 <b />
               </div>
               <div className="polaris-boundary-excludes">
-                <small>Kept outside</small>
+                <small>{copy.outside}</small>
                 <span>{excludes}</span>
               </div>
             </article>
           ))}
           <footer>
-            <span>Capability</span>
+            <span>{copy.capability}</span>
             <i />
-            <span>Protected responsibility</span>
+            <span>{copy.responsibility}</span>
           </footer>
         </div>
       </section>
@@ -240,22 +216,18 @@ export function PolarisCaseStudy() {
       <section className="polaris-scope">
         <header>
           <div>
-            <p className="eyebrow">05 / Product surface</p>
-            <h2>Import, edit, run, and export from one browser workspace.</h2>
+            <p className="eyebrow">{copy.surface}</p>
+            <h2>{copy.scopeTitle}</h2>
           </div>
-          <p>
-            The prototype connects repository import, editing, AI assistance,
-            terminal output, and live preview. Runtime support, service access,
-            and review remain visible constraints on that workflow.
-          </p>
+          <p>{copy.scopeIntro}</p>
         </header>
         <div className="polaris-scope-grid">
           <article className="polaris-scope-current">
             <header>
               <span>
-                <i /> Implemented workflow
+                <i /> {copy.implemented}
               </span>
-              <b>Working now</b>
+              <b>{copy.working}</b>
             </header>
             <ul>
               {current.map((item, index) => (
@@ -270,14 +242,14 @@ export function PolarisCaseStudy() {
           <div className="polaris-scope-bridge" aria-hidden="true">
             <i />
             <b />
-            <span>Conditions</span>
+            <span>{copy.conditions}</span>
           </div>
           <article className="polaris-scope-next">
             <header>
               <span>
-                <i /> Operating constraints
+                <i /> {copy.constraints}
               </span>
-              <b>Review before use</b>
+              <b>{copy.review}</b>
             </header>
             <ul>
               {constraints.map((item, index) => (
@@ -295,13 +267,10 @@ export function PolarisCaseStudy() {
       <section className="polaris-decisions">
         <header>
           <div>
-            <p className="eyebrow">06 / Engineering decisions</p>
-            <h2>The product shape determined the architecture.</h2>
+            <p className="eyebrow">{copy.decisions}</p>
+            <h2>{copy.decisionTitle}</h2>
           </div>
-          <p>
-            Each choice turns a product pressure into a deliberate boundary. The
-            cost stays visible alongside the behavior it makes possible.
-          </p>
+          <p>{copy.decisionIntro}</p>
         </header>
         <div className="polaris-decision-grid">
           {decisions.map(([title, pressure, decision, cost, effect], index) => (
@@ -317,29 +286,23 @@ export function PolarisCaseStudy() {
                   <i className="polaris-decision-signal" />
                   <b className="polaris-decision-boundary" />
                 </div>
-                <em>
-                  {
-                    [
-                      "Request released · task continues",
-                      "Editor swapped · contract remains",
-                      "Sources gathered · context made explicit",
-                    ][index]
-                  }
-                </em>
+                <em>{copy.scenes[index]}</em>
               </div>
-              <small>0{index + 1} / Decision</small>
+              <small>
+                0{index + 1} / {copy.decision}
+              </small>
               <h3>{title}</h3>
               <dl>
                 <div>
-                  <dt>Pressure</dt>
+                  <dt>{copy.pressure}</dt>
                   <dd>{pressure}</dd>
                 </div>
                 <div>
-                  <dt>Decision</dt>
+                  <dt>{copy.decision}</dt>
                   <dd>{decision}</dd>
                 </div>
                 <div>
-                  <dt>Cost</dt>
+                  <dt>{copy.cost}</dt>
                   <dd>{cost}</dd>
                 </div>
               </dl>

@@ -26,7 +26,9 @@ export function Header({ preference }: { preference: "en" | "ru" }) {
     (pagePath === "/" ||
       pagePath === "/work" ||
       pagePath === "/work/cpa-platform" ||
-      pagePath === "/work/reliable-kanban")
+      pagePath === "/work/reliable-kanban" ||
+      pagePath === "/work/frontend-engineering-wiki" ||
+      pagePath === "/work/polaris")
       ? "ru"
       : "en";
   useEffect(() => {
