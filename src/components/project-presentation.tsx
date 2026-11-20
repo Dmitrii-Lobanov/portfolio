@@ -8,11 +8,12 @@ import {
   WikiMastersArticle,
   WikiMastersCaseStudy,
 } from "@/components/wikimasters-case-study";
+import { wikiMastersRussianOutcome } from "@/content/case-studies/wikimasters.ru";
 import type { Project, ProjectSlug } from "@/content/portfolio";
 
 type ProjectPresentation = {
   CaseStudy: ComponentType<{ russian?: boolean }>;
-  HeroVisual: ComponentType<{ project: Project }>;
+  HeroVisual: ComponentType<{ project: Project; russian?: boolean }>;
   OutcomeDetail?: ComponentType<{ russian?: boolean }>;
   factLabel: "Scale" | "Focus";
   heroClassName: string;
@@ -25,11 +26,13 @@ function InstrumentHero({ project }: { project: Project }) {
   return <ProjectInstrument project={project} />;
 }
 
-function WikiMastersHero() {
-  return <WikiMastersArticle />;
+function WikiMastersHero({ russian }: { russian?: boolean }) {
+  return <WikiMastersArticle russian={russian} />;
 }
 
-function WikiMastersOutcome() {
+function WikiMastersOutcome({ russian }: { russian?: boolean }) {
+  if (russian)
+    return <p className="wm-outcome-copy">{wikiMastersRussianOutcome}</p>;
   return (
     <p className="wm-outcome-copy">
       Authenticated authors create and edit articles with tags and media.

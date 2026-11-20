@@ -10,6 +10,8 @@ import {
   UserRound,
 } from "lucide-react";
 
+import { wikiMastersCopy } from "@/content/case-studies/wikimasters.ru";
+
 const decisions = [
   {
     icon: Database,
@@ -42,20 +44,54 @@ const decisions = [
   },
 ];
 
-export function WikiMastersArticle() {
+const russianDecisions = [
+  {
+    title: "Быстрое чтение с опорой на базу",
+    pressure: "Читатели могут многократно запрашивать один и тот же список.",
+    decision:
+      "Кэшировать список статей в Redis на 60 секунд. При создании или правке удалять ключ списка. Полную статью читать напрямую из Postgres.",
+    cost: "TTL ограничивает срок жизни списка в кэше, а его сброс при записи добавляет зависимость от Redis.",
+    label: "Запись в базе / копия в кэше",
+  },
+  {
+    title: "Текст и медиа хранятся отдельно",
+    pressure:
+      "У записей о статьях и загруженных файлов разные требования к хранению.",
+    decision:
+      "Хранить метаданные в реляционной базе, а медиа — в объектном хранилище.",
+    cost: "Нужно согласовать ссылки и жизненные циклы в двух системах хранения.",
+    label: "Запись о статье / медиафайл",
+  },
+  {
+    title: "Пересказ дополняет оригинал",
+    pressure:
+      "Краткий обзор помогает сориентироваться в материале, но сгенерированный текст остаётся дополнением.",
+    decision:
+      "При создании или правке генерировать пересказ из заголовка и текста. Хранить его рядом со статьёй для списка и результатов поиска.",
+    cost: "Запись зависит от сервиса генерации, а источником для читателя остаётся авторская статья.",
+    label: "Авторский текст / пересказ",
+  },
+];
+
+export function WikiMastersArticle({
+  russian = false,
+}: {
+  russian?: boolean;
+} = {}) {
+  const copy = wikiMastersCopy[russian ? "ru" : "en"];
   return (
     <div
       className="wm-flow-panel wm-article"
       role="img"
-      aria-label="Illustration of an authored article with an attached media asset and a supplemental AI summary"
+      aria-label={copy.heroLabel}
     >
       <div className="wm-instrument-label">
-        <span>Knowledge / authored first</span>
+        <span>{copy.knowledge}</span>
         <BookOpen size={18} />
       </div>
       <div className="wm-paper">
-        <span className="wm-kicker">Article / source of truth</span>
-        <strong>Ideas worth keeping.</strong>
+        <span className="wm-kicker">{copy.articleSource}</span>
+        <strong>{copy.paperTitle}</strong>
         <div className="wm-paper-lines" aria-hidden="true">
           <i />
           <i />
@@ -63,52 +99,44 @@ export function WikiMastersArticle() {
         </div>
         <div className="wm-attachments">
           <span>
-            <Image size={20} /> Media asset
+            <Image size={20} /> {copy.media}
           </span>
           <span>
-            <Sparkles size={20} /> AI summary
+            <Sparkles size={20} /> {copy.summary}
           </span>
         </div>
       </div>
-      <p>Write the knowledge. Keep its context connected.</p>
+      <p>{copy.paperNote}</p>
     </div>
   );
 }
 
-export function WikiMastersCaseStudy() {
+export function WikiMastersCaseStudy({
+  russian = false,
+}: {
+  russian?: boolean;
+} = {}) {
+  const copy = wikiMastersCopy[russian ? "ru" : "en"];
   return (
     <>
       <section className="wm-section wm-split">
         <div>
-          <p className="eyebrow">01 / Product challenge</p>
-          <h2>An article connects identity, storage, and AI.</h2>
-          <p>
-            Creating and reading articles is the visible experience. Behind it,
-            identity, stored content, cached results, media, and AI summaries
-            each have a different responsibility.
-          </p>
-          <p>
-            An authenticated author creates an article with tags and optional
-            media. Readers browse the list, search titles and summaries, and
-            open the full article. Editing regenerates the summary and
-            invalidates the cached list.
-          </p>
+          <p className="eyebrow">{copy.challenge}</p>
+          <h2>{copy.challengeTitle}</h2>
+          <p>{copy.challengeIntro}</p>
+          <p>{copy.challengeFlow}</p>
         </div>
         <div className="wm-flow-panel wm-responsibilities">
           <header>
-            <span className="wm-kicker">
-              One article / clear responsibilities
-            </span>
-            <span className="wm-responsibility-status">
-              Context coordinated
-            </span>
+            <span className="wm-kicker">{copy.responsibilities}</span>
+            <span className="wm-responsibility-status">{copy.coordinated}</span>
           </header>
           <i className="wm-responsibility-packet" aria-hidden="true" />
           {[
-            [UserRound, "Identity", "Who is using the product"],
-            [Database, "Persistence", "Where authored knowledge lives"],
-            [Send, "Delivery", "How readers retrieve content"],
-            [Sparkles, "Enrichment", "What helps readers understand it"],
+            [UserRound, copy.identity, copy.identityDescription],
+            [Database, copy.persistence, copy.persistenceDescription],
+            [Send, copy.delivery, copy.deliveryDescription],
+            [Sparkles, copy.enrichment, copy.enrichmentDescription],
           ].map(([Icon, name, text]) => {
             const Glyph = Icon as typeof Database;
             return (
@@ -126,20 +154,17 @@ export function WikiMastersCaseStudy() {
       <section className="wm-section">
         <header className="wm-heading">
           <div>
-            <p className="eyebrow">02 / Content lifecycle</p>
-            <h2>One source of truth. Several ways to deliver it.</h2>
+            <p className="eyebrow">{copy.lifecycle}</p>
+            <h2>{copy.lifecycleTitle}</h2>
           </div>
-          <p>
-            The article remains the reference point. Cached reads, media, and
-            summaries support different parts of the reading experience.
-          </p>
+          <p>{copy.lifecycleIntro}</p>
         </header>
         <div className="wm-flow-panel wm-lifecycle">
           <div className="wm-source">
             <BookOpen size={28} />
-            <span className="wm-kicker">Authored content</span>
-            <h3>The article</h3>
-            <p>Created, edited, and stored as a durable record.</p>
+            <span className="wm-kicker">{copy.authored}</span>
+            <h3>{copy.article}</h3>
+            <p>{copy.articleDescription}</p>
           </div>
           <div className="wm-lifecycle-routes" aria-hidden="true">
             <i />
@@ -148,21 +173,9 @@ export function WikiMastersCaseStudy() {
           </div>
           <div className="wm-branches">
             {[
-              [
-                Database,
-                "Read efficiently",
-                "Reuse cached results while keeping the database authoritative.",
-              ],
-              [
-                Image,
-                "Keep media connected",
-                "Reference uploaded assets alongside the article.",
-              ],
-              [
-                Sparkles,
-                "Offer an overview",
-                "Provide a generated summary as an additional reading aid.",
-              ],
+              [Database, copy.efficient, copy.efficientDescription],
+              [Image, copy.connected, copy.connectedDescription],
+              [Sparkles, copy.overview, copy.overviewDescription],
             ].map(([Icon, title, text]) => {
               const Glyph = Icon as typeof Database;
               return (
@@ -181,17 +194,18 @@ export function WikiMastersCaseStudy() {
       <section className="wm-section">
         <header className="wm-heading">
           <div>
-            <p className="eyebrow">03 / Engineering decisions</p>
-            <h2>Three boundaries keep the knowledge dependable.</h2>
+            <p className="eyebrow">{copy.engineering}</p>
+            <h2>{copy.engineeringTitle}</h2>
           </div>
-          <p>
-            Each integration answers a product need and introduces a
-            responsibility that the application must own.
-          </p>
+          <p>{copy.engineeringIntro}</p>
         </header>
         <div className="wm-decision-grid">
-          {decisions.map(
-            ({ icon: Icon, title, pressure, decision, cost, label }, index) => (
+          {decisions.map((item, index) => {
+            const { icon: Icon } = item;
+            const { title, pressure, decision, cost, label } = russian
+              ? russianDecisions[index]
+              : item;
+            return (
               <article key={title}>
                 <div
                   className={`wm-mini wm-mini-${index + 1}`}
@@ -215,76 +229,63 @@ export function WikiMastersCaseStudy() {
                 <h3>{title}</h3>
                 <dl>
                   <div>
-                    <dt>Pressure</dt>
+                    <dt>{copy.pressure}</dt>
                     <dd>{pressure}</dd>
                   </div>
                   <div>
-                    <dt>Decision</dt>
+                    <dt>{copy.decision}</dt>
                     <dd>{decision}</dd>
                   </div>
                   <div>
-                    <dt>Cost</dt>
+                    <dt>{copy.cost}</dt>
                     <dd>{cost}</dd>
                   </div>
                 </dl>
               </article>
-            ),
-          )}
+            );
+          })}
         </div>
       </section>
       <section className="wm-section">
         <header className="wm-heading">
           <div>
-            <p className="eyebrow">04 / Product scope</p>
-            <h2>A working wiki, with room to grow.</h2>
+            <p className="eyebrow">{copy.scope}</p>
+            <h2>{copy.scopeTitle}</h2>
           </div>
-          <p>
-            The project is an MVP. Its current foundation covers the article
-            experience and supporting services; deeper collaboration remains a
-            future direction.
-          </p>
+          <p>{copy.scopeIntro}</p>
         </header>
         <div className="wm-scope">
           <article>
-            <span className="wm-kicker">Current foundation</span>
-            <h3>Author, organize, and read.</h3>
+            <span className="wm-kicker">{copy.current}</span>
+            <h3>{copy.currentTitle}</h3>
             <ul>
-              {[
-                "Article creation, editing, and listing",
-                "Authentication with Stack Auth",
-                "Typed database access and Redis caching",
-                "Media storage and AI article summaries",
-              ].map((x) => (
-                <li key={x}>
-                  <Files size={17} />
-                  {x}
-                </li>
-              ))}
+              {[copy.create, copy.auth, copy.typed, copy.mediaSummaries].map(
+                (x) => (
+                  <li key={x}>
+                    <Files size={17} />
+                    {x}
+                  </li>
+                ),
+              )}
             </ul>
           </article>
           <article>
-            <span className="wm-kicker">
-              Future directions / repository ideas
-            </span>
-            <h3>Deeper collaboration.</h3>
+            <span className="wm-kicker">{copy.future}</span>
+            <h3>{copy.futureTitle}</h3>
             <ul>
-              {[
-                "Revision history and change comparisons",
-                "Live editing with presence",
-                "Comments and discussions",
-                "Draft, review, and publishing workflows",
-              ].map((x) => (
-                <li key={x}>
-                  <Layers size={17} />
-                  {x}
-                </li>
-              ))}
+              {[copy.history, copy.live, copy.comments, copy.drafts].map(
+                (x) => (
+                  <li key={x}>
+                    <Layers size={17} />
+                    {x}
+                  </li>
+                ),
+              )}
             </ul>
           </article>
         </div>
         <p className="wm-evidence">
-          <Search size={16} /> Scope follows the project README; future ideas
-          are not presented as shipped features.
+          <Search size={16} /> {copy.evidence}
         </p>
       </section>
     </>

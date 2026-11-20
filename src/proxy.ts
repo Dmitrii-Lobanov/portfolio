@@ -13,7 +13,8 @@ export function proxy(request: NextRequest) {
     pagePath === "/work/cpa-platform" ||
     pagePath === "/work/reliable-kanban" ||
     pagePath === "/work/frontend-engineering-wiki" ||
-    pagePath === "/work/polaris";
+    pagePath === "/work/polaris" ||
+    pagePath === "/work/wikimasters";
 
   if (!explicitLocale && locale === "ru" && hasRussianTranslation) {
     const destination = request.nextUrl.clone();

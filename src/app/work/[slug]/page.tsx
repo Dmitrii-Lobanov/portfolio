@@ -9,6 +9,7 @@ import { cpaRussianProject } from "@/content/case-studies/cpa.ru";
 import { kanbanRussianProject } from "@/content/case-studies/kanban.ru";
 import { polarisRussianProject } from "@/content/case-studies/polaris.ru";
 import { wikiRussianProject } from "@/content/case-studies/wiki.ru";
+import { wikiMastersRussianProject } from "@/content/case-studies/wikimasters.ru";
 import { getProject, projects } from "@/content/portfolio";
 import { cn } from "@/lib/utils";
 
@@ -25,6 +26,7 @@ const russianProjects = {
   "reliable-kanban": kanbanRussianProject,
   "frontend-engineering-wiki": wikiRussianProject,
   polaris: polarisRussianProject,
+  wikimasters: wikiMastersRussianProject,
 };
 
 function hasRussianCopy(slug: string): slug is keyof typeof russianProjects {
@@ -94,7 +96,7 @@ export default async function ProjectPage({ params }: Props) {
             <h1>{copy.name}</h1>
           </div>
           <p>{copy.summary}</p>
-          <HeroVisual project={project} />
+          <HeroVisual project={project} russian={russian} />
         </div>
         <dl className="project-facts">
           <div>
@@ -106,7 +108,13 @@ export default async function ProjectPage({ params }: Props) {
             <dd>{copy.period}</dd>
           </div>
           <div>
-            <dt>{russian ? "Масштаб" : presentation.factLabel}</dt>
+            <dt>
+              {russian
+                ? presentation.factLabel === "Focus"
+                  ? "Фокус"
+                  : "Масштаб"
+                : presentation.factLabel}
+            </dt>
             <dd>{copy.scale}</dd>
           </div>
           <div>

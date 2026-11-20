@@ -28,7 +28,8 @@ export function Header({ preference }: { preference: "en" | "ru" }) {
       pagePath === "/work/cpa-platform" ||
       pagePath === "/work/reliable-kanban" ||
       pagePath === "/work/frontend-engineering-wiki" ||
-      pagePath === "/work/polaris")
+      pagePath === "/work/polaris" ||
+      pagePath === "/work/wikimasters")
       ? "ru"
       : "en";
   useEffect(() => {
